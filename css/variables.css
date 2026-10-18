@@ -1,0 +1,107 @@
+﻿/* Design System Variables â€” Agent Mentor */
+:root {
+    /* Colors â€” Dark Theme (Default) */
+    --bg-primary: #0a0e1a;
+    --bg-secondary: #111827;
+    --bg-tertiary: #1a2035;
+    --bg-card: #161d2f;
+    --bg-card-hover: #1e2844;
+    --bg-code: #1e1e2e;
+
+    --text-primary: #f0f4ff;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+
+    --accent-primary: #6366f1;
+    --accent-primary-hover: #818cf8;
+    --accent-secondary: #06b6d4;
+    --accent-tertiary: #8b5cf6;
+
+    --gradient-primary: linear-gradient(135deg, #6366f1, #06b6d4);
+    --gradient-secondary: linear-gradient(135deg, #8b5cf6, #ec4899);
+    --gradient-hero: linear-gradient(135deg, #0a0e1a 0%, #1a1040 50%, #0a0e1a 100%);
+
+    --success: #22c55e;
+    --warning: #f59e0b;
+    --error: #ef4444;
+    --info: #3b82f6;
+
+    --border: #1e293b;
+    --border-light: #334155;
+
+    /* Typography */
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-code: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --text-5xl: 3rem;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.4);
+    --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 350ms ease;
+
+    /* Z-index */
+    --z-nav: 100;
+    --z-modal: 200;
+    --z-tooltip: 300;
+
+    /* Container */
+    --container-max: 1200px;
+    --container-narrow: 800px;
+}
+
+/* Light Theme */
+[data-theme="light"] {
+    --bg-primary: #f8fafc;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #f1f5f9;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f8fafc;
+    --bg-code: #f5f5f5;
+
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #94a3b8;
+
+    --border: #e2e8f0;
+    --border-light: #cbd5e1;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+    --shadow-xl: 0 20px 50px rgba(0, 0, 0, 0.15);
+    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.15);
+
+    --gradient-hero: linear-gradient(135deg, #f8fafc 0%, #e8e0f0 50%, #f8fafc 100%);
+}
