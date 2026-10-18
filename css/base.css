@@ -1,38 +1,15 @@
-﻿/* Base Styles â€” Agent Mentor */
-body {
-    font-family: var(--font-body);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    transition: background-color var(--transition-normal), color var(--transition-normal);
-}
-
+/* Base Typography & Elements */
 .container {
     width: 100%;
     max-width: var(--container-max);
     margin: 0 auto;
-    padding: 0 var(--space-lg);
+    padding: 0 24px;
 }
 
-/* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.25;
     color: var(--text-primary);
-}
-
-h1 { font-size: var(--text-5xl); }
-h2 { font-size: var(--text-4xl); }
-h3 { font-size: var(--text-2xl); }
-h4 { font-size: var(--text-xl); }
-
-p {
-    color: var(--text-secondary);
-    line-height: 1.7;
-}
-
-code {
-    font-family: var(--font-code);
-    font-size: var(--text-sm);
 }
 
 .gradient-text {
@@ -44,15 +21,15 @@ code {
 
 .section-title {
     text-align: center;
-    margin-bottom: var(--space-md);
-    font-size: var(--text-4xl);
+    margin-bottom: 12px;
+    font-size: 2.5rem;
 }
 
 .section-subtitle {
     text-align: center;
     color: var(--text-secondary);
-    font-size: var(--text-lg);
-    margin-bottom: var(--space-3xl);
+    font-size: 1.125rem;
+    margin-bottom: 48px;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -60,28 +37,4 @@ code {
 
 .text-center {
     text-align: center;
-}
-
-/* Selection */
-::selection {
-    background: var(--accent-primary);
-    color: white;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--border-light);
-    border-radius: var(--radius-full);
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary);
 }
