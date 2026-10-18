@@ -1,0 +1,2511 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agent Mentor - Complete 15-Level AI Agent Developer Learning Roadmap. From Python fundamentals to autonomous multi-agent systems and production LLMOps.">
+    <meta name="keywords" content="AI Agent, Roadmap, LangChain, LangGraph, CrewAI, MCP, LLMOps, RAG, Autonomous Agents, Python">
+    <meta name="author" content="Agent Mentor">
+    <title>Learning Roadmap | Agent Mentor — AI Agent Developer Platform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/roadmap.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Embedded Theme & Fallback Styling to ensure flawless presentation -->
+    <style>
+        :root {
+            --bg-primary: #0a0e17;
+            --bg-secondary: #0f172a;
+            --bg-card: rgba(17, 24, 39, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-primary: #6366f1;
+            --accent-secondary: #06b6d4;
+            --accent-tertiary: #10b981;
+            --accent-warning: #f59e0b;
+            --accent-danger: #ef4444;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-heading: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+            --glow-indigo: 0 0 25px rgba(99, 102, 241, 0.25);
+            --glow-cyan: 0 0 25px rgba(6, 182, 212, 0.25);
+            --glow-emerald: 0 0 25px rgba(16, 185, 129, 0.25);
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --bg-card: rgba(255, 255, 255, 0.85);
+            --bg-card-hover: rgba(255, 255, 255, 0.98);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(99, 102, 241, 0.4);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(99, 102, 241, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 50% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 45%);
+            background-attachment: fixed;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            box-sizing: border-box;
+        }
+
+        /* Navbar */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(10, 14, 23, 0.82);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-logo-glow {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+            color: #fff;
+        }
+
+        .brand-text span {
+            background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.25rem 0;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-primary), #4f46e5);
+            color: #ffffff;
+            padding: 0.55rem 1.15rem;
+            border-radius: 8px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(99, 102, 241, 0.35);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Hero Header Section */
+        .roadmap-hero {
+            padding: 4.5rem 0 3rem;
+            position: relative;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.85rem;
+            border-radius: 9999px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #818cf8;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-badge .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #818cf8;
+            box-shadow: 0 0 10px #818cf8;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.85); }
+        }
+
+        .roadmap-hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.25rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin: 0 0 1.25rem;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 30%, #818cf8 70%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .roadmap-hero p.subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 720px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        /* Overview & Stats Dashboard Card */
+        .roadmap-dashboard {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem 2rem;
+            margin: 0 auto 3rem;
+            max-width: 980px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 1.75rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            text-align: left;
+            border-right: 1px solid var(--border-color);
+            padding-right: 1rem;
+        }
+
+        .stat-item:last-child {
+            border-right: none;
+            padding-right: 0;
+        }
+
+        .stat-label {
+            font-size: 0.775rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .stat-value {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .stat-value.highlight-completed {
+            color: var(--accent-tertiary);
+        }
+
+        .stat-value.highlight-active {
+            color: var(--accent-warning);
+        }
+
+        .overall-progress-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            text-align: left;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+        }
+
+        .progress-bar-bg {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 9999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #10b981, #06b6d4, #6366f1);
+            border-radius: 9999px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Filters & Controls */
+        .controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-btn.active {
+            background: rgba(99, 102, 241, 0.15);
+            border-color: var(--accent-primary);
+            color: #818cf8;
+            font-weight: 600;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 260px;
+        }
+
+        .search-input {
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 0.5rem 1rem 0.5rem 2.25rem;
+            font-size: 0.875rem;
+            color: var(--text-primary);
+            outline: none;
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Timeline Flow Section */
+        .timeline-section {
+            position: relative;
+            padding-bottom: 6rem;
+        }
+
+        /* Vertical Connector Spine */
+        .timeline-spine {
+            position: absolute;
+            left: 50%;
+            top: 2rem;
+            bottom: 4rem;
+            width: 2px;
+            background: linear-gradient(180deg, 
+                var(--accent-tertiary) 0%, 
+                var(--accent-warning) 20%, 
+                rgba(99, 102, 241, 0.4) 40%, 
+                rgba(255, 255, 255, 0.05) 100%);
+            transform: translateX(-50%);
+            z-index: 1;
+        }
+
+        /* Phase Section Headers */
+        .phase-block {
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .phase-header-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .phase-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.02em;
+        }
+
+        .phase-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .phase-tag-1 { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+        .phase-tag-2 { background: rgba(6, 182, 212, 0.15); color: #22d3ee; }
+        .phase-tag-3 { background: rgba(99, 102, 241, 0.15); color: #818cf8; }
+        .phase-tag-4 { background: rgba(244, 63, 94, 0.15); color: #fb7185; }
+
+        /* Roadmap Grid of Level Cards */
+        .level-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Level Card Component */
+        .level-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            transition: var(--transition);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: transparent;
+            transition: var(--transition);
+        }
+
+        .level-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Status-specific card accents */
+        .level-card.status-completed::before {
+            background: linear-gradient(90deg, #10b981, #059669);
+        }
+        .level-card.status-completed:hover {
+            border-color: rgba(16, 185, 129, 0.4);
+            box-shadow: var(--glow-emerald);
+        }
+
+        .level-card.status-in-progress::before {
+            background: linear-gradient(90deg, #f59e0b, #d97706);
+        }
+        .level-card.status-in-progress {
+            border-color: rgba(245, 158, 11, 0.35);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.12);
+        }
+
+        .level-card.status-available::before {
+            background: linear-gradient(90deg, #06b6d4, #6366f1);
+        }
+        .level-card.status-available:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            box-shadow: var(--glow-cyan);
+        }
+
+        .level-card.status-locked {
+            opacity: 0.78;
+        }
+        .level-card.status-locked:hover {
+            opacity: 0.95;
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Card Header */
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+
+        .level-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .level-icon-wrap {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .level-card:hover .level-icon-wrap {
+            transform: scale(1.05);
+        }
+
+        .level-num-wrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .level-number {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .level-duration {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.25rem 0.65rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        .badge-completed {
+            background: rgba(16, 185, 129, 0.12);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-in-progress {
+            background: rgba(245, 158, 11, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .badge-available {
+            background: rgba(6, 182, 212, 0.12);
+            color: #22d3ee;
+            border: 1px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .badge-locked {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text-muted);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Card Content */
+        .card-body {
+            margin-bottom: 1.5rem;
+        }
+
+        .level-title {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin: 0 0 0.65rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .level-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin: 0 0 1.25rem;
+            line-height: 1.6;
+        }
+
+        /* Subtopics list */
+        .subtopics-title {
+            font-size: 0.775rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin: 0 0 0.65rem;
+        }
+
+        .subtopics-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.45rem;
+        }
+
+        .subtopic-item {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.825rem;
+            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: var(--transition);
+        }
+
+        .subtopic-item:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .subtopic-icon {
+            flex-shrink: 0;
+            font-size: 0.85rem;
+        }
+
+        /* Progress in Card */
+        .card-progress {
+            margin: 1.25rem 0 1.25rem;
+        }
+
+        .card-progress-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .card-progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 9999px;
+            overflow: hidden;
+        }
+
+        .card-progress-fill {
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.8s ease-in-out;
+        }
+
+        .fill-completed {
+            background: linear-gradient(90deg, #10b981, #34d399);
+        }
+
+        .fill-in-progress {
+            background: linear-gradient(90deg, #f59e0b, #fbbf24);
+        }
+
+        .fill-available {
+            background: linear-gradient(90deg, #06b6d4, #6366f1);
+        }
+
+        .fill-locked {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Card Action Button */
+        .card-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+
+        .btn-completed {
+            background: rgba(16, 185, 129, 0.1);
+            color: #34d399;
+            border: 1px solid rgba(16, 185, 129, 0.25);
+        }
+        .btn-completed:hover {
+            background: rgba(16, 185, 129, 0.2);
+            border-color: #34d399;
+        }
+
+        .btn-in-progress {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #ffffff;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.3);
+        }
+        .btn-in-progress:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.4);
+        }
+
+        .btn-available {
+            background: linear-gradient(135deg, #06b6d4, #6366f1);
+            color: #ffffff;
+            border: 1px solid transparent;
+            box-shadow: 0 4px 14px rgba(6, 182, 212, 0.3);
+        }
+        .btn-available:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .btn-locked {
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Call to Action Section at bottom */
+        .roadmap-cta-section {
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.6) 0%, rgba(10, 14, 23, 0.9) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            margin: 4rem auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .roadmap-cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin: 0 0 1rem;
+        }
+
+        .roadmap-cta-section p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 620px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-btn-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-lg-primary {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #ffffff;
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-lg-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .btn-lg-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.85rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-lg-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Site Footer */
+        .site-footer {
+            background: #080b12;
+            border-top: 1px solid var(--border-color);
+            padding: 4.5rem 0 2rem;
+            color: var(--text-secondary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.25rem;
+        }
+
+        .footer-desc {
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            max-width: 320px;
+        }
+
+        .footer-socials {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--text-primary);
+            padding-left: 3px;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-legal-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-legal-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 992px) {
+            .level-cards-grid {
+                grid-template-columns: 1fr;
+            }
+            .timeline-spine {
+                left: 2rem;
+            }
+            .phase-header-wrap {
+                justify-content: flex-start;
+                padding-left: 0.5rem;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            .dashboard-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.25rem;
+            }
+            .stat-item:nth-child(2) {
+                border-right: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                height: 64px;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-links.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: #0a0e17;
+                padding: 1.5rem;
+                border-bottom: 1px solid var(--border-color);
+                gap: 1.25rem;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .roadmap-hero h1 {
+                font-size: 2.3rem;
+            }
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            .stat-item {
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 0.75rem;
+            }
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                text-align: center;
+            }
+            .controls-bar {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .search-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Site Header & Global Navigation -->
+    <header class="site-header">
+        <div class="container navbar">
+            <a href="index.html" class="nav-brand" aria-label="Agent Mentor Home">
+                <div class="brand-logo-glow">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                        <circle cx="12" cy="5" r="2"></circle>
+                        <path d="M12 7v4"></path>
+                        <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                        <line x1="16" y1="16" x2="16.01" y2="16"></line>
+                    </svg>
+                </div>
+                <div class="brand-text">Agent<span>Mentor</span></div>
+            </a>
+
+            <nav>
+                <ul class="nav-links" id="primary-nav">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="roadmap.html" class="nav-link active">Roadmap</a></li>
+                    <li><a href="lessons.html" class="nav-link">Lessons</a></li>
+                    <li><a href="playground.html" class="nav-link">Playground</a></li>
+                    <li><a href="projects.html" class="nav-link">Projects</a></li>
+                    <li><a href="resources.html" class="nav-link">Resources</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark and Light Mode" title="Toggle theme">
+                    <svg class="sun-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <a href="#level-2" class="nav-cta">Resume Level 2</a>
+                <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Open Navigation Menu">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Header Section -->
+        <section class="roadmap-hero">
+            <div class="container">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    <span>15-Level AI Agent Curriculum</span>
+                </div>
+                <h1 class="text-gradient">Your Learning Roadmap</h1>
+                <p class="subtitle">
+                    A structured, production-tested path from raw Python fundamentals to building autonomous multi-agent systems, Model Context Protocol (MCP) servers, and scalable cloud LLMOps.
+                </p>
+
+                <!-- Overview & Stats Dashboard Card -->
+                <div class="roadmap-dashboard">
+                    <div class="dashboard-grid">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Levels</span>
+                            <span class="stat-value">15 Levels</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Completed</span>
+                            <span class="stat-value highlight-completed">2 Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Current Level</span>
+                            <span class="stat-value highlight-active">Level 2</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Curriculum Time</span>
+                            <span class="stat-value">85+ Hours</span>
+                        </div>
+                    </div>
+
+                    <div class="overall-progress-wrap">
+                        <div class="progress-header">
+                            <span style="font-weight: 600; color: var(--text-primary);">Overall Mastery Progress</span>
+                            <span style="font-family: var(--font-mono); font-weight: 600; color: var(--accent-secondary);" id="overall-progress-text">17% Completed (2.6 / 15 Levels)</span>
+                        </div>
+                        <div class="progress-bar-bg">
+                            <div class="progress-bar-fill" style="width: 17%;" id="overall-progress-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Filters & Topic Search Bar -->
+                <div class="controls-bar">
+                    <div class="filter-group" id="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">All Levels (15)</button>
+                        <button class="filter-btn" data-filter="completed">Completed (2)</button>
+                        <button class="filter-btn" data-filter="in-progress">In Progress (1)</button>
+                        <button class="filter-btn" data-filter="available">Available (1)</button>
+                        <button class="filter-btn" data-filter="locked">Locked (11)</button>
+                    </div>
+
+                    <div class="search-box">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <input type="text" class="search-input" id="roadmap-search" placeholder="Search subtopics (e.g. MCP, RAG, Pydantic)..." aria-label="Search roadmap levels">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section class="timeline-section">
+            <div class="container">
+                <!-- Vertical Timeline Spine -->
+                <div class="timeline-spine"></div>
+
+                <!-- ================= PHASE 1 ================= -->
+                <div class="phase-block" data-phase="1">
+                    <div class="phase-header-wrap">
+                        <div class="phase-pill">
+                            <span class="phase-tag phase-tag-1">Phase 1</span>
+                            <span>Foundations, Tooling & Backend APIs</span>
+                        </div>
+                    </div>
+
+                    <div class="level-cards-grid">
+                        
+                        <!-- Level 0 -->
+                        <article class="level-card status-completed" id="level-0" data-status="completed" data-level="0">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap" style="color: #34d399; background: rgba(16, 185, 129, 0.1);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="4 17 10 11 4 5"></polyline>
+                                            <line x1="12" y1="19" x2="20" y2="19"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 00</span>
+                                        <span class="level-duration">Beginner • 3 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-completed">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    Completed
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Setup & Fundamentals</h3>
+                                <p class="level-desc">
+                                    Equip your workstation with a modern Python environment, command line mastery, and blazingly fast virtual environment management.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⚙️</span>
+                                        <span>Python Installation & Path Management</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">💻</span>
+                                        <span>IDE Setup (VS Code / PyCharm / Cursor)</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⌨️</span>
+                                        <span>Terminal & Command Line Essentials</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📦</span>
+                                        <span>Virtual Environments & UV / Poetry Tooling</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span style="color: #34d399;">100%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-completed" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=0" class="card-action btn-completed">
+                                    <span>Review Level</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 1 -->
+                        <article class="level-card status-completed" id="level-1" data-status="completed" data-level="1">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap" style="color: #38bdf8; background: rgba(56, 189, 248, 0.1);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="m18 16 4-4-4-4"></path>
+                                            <path d="m6 8-4 4 4 4"></path>
+                                            <path d="m14.5 4-5 16"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 01</span>
+                                        <span class="level-duration">Intermediate • 8 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-completed">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                                    Completed
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Python for AI Agents</h3>
+                                <p class="level-desc">
+                                    Master Python paradigms tailored for agents: OOP design patterns, asynchronous execution with asyncio, and rigorous data schemas with Pydantic.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🧱</span>
+                                        <span>Data Types, Lists, Dicts & Function Signatures</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🧬</span>
+                                        <span>Object-Oriented Programming (OOP) for Agents</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⚡</span>
+                                        <span>AsyncIO, Coroutines & Concurrency</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🛡️</span>
+                                        <span>Pydantic Models & Strict Type Validation</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔐</span>
+                                        <span>Env Variables, File Handling & Secrets (.env)</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🧪</span>
+                                        <span>Structured Logging, Regex & Pytest Testing</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span style="color: #34d399;">100%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-completed" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=1" class="card-action btn-completed">
+                                    <span>Review Level</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 2 -->
+                        <article class="level-card status-in-progress" id="level-2" data-status="in-progress" data-level="2">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap" style="color: #fbbf24; background: rgba(245, 158, 11, 0.1);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <line x1="6" y1="3" x2="6" y2="15"></line>
+                                            <circle cx="18" cy="6" r="3"></circle>
+                                            <circle cx="6" cy="18" r="3"></circle>
+                                            <path d="M18 9a9 9 0 0 1-9 9"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 02</span>
+                                        <span class="level-duration">Intermediate • 5 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-in-progress">
+                                    <span class="pulse-dot" style="background:#fbbf24; box-shadow:0 0 8px #fbbf24;"></span>
+                                    In Progress
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Git, GitHub & Linux</h3>
+                                <p class="level-desc">
+                                    Collaborative source control, git branching mechanics, secure API key management, and essential Linux commands for production deployments.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🌿</span>
+                                        <span>Git Fundamentals, Staging & Commit Graph</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔀</span>
+                                        <span>Branching, Merge Conflicts & Rebase</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🐙</span>
+                                        <span>GitHub Pull Requests, Issues & Code Review</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔒</span>
+                                        <span>.env Files, Gitignore & Secret Leak Prevention</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🐧</span>
+                                        <span>Linux Bash Commands & CI/CD Intro</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span style="color: #fbbf24;">60% Complete</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-in-progress" style="width: 60%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=2" class="card-action btn-in-progress">
+                                    <span>Continue Learning</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 3 -->
+                        <article class="level-card status-available" id="level-3" data-status="available" data-level="3">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap" style="color: #22d3ee; background: rgba(6, 182, 212, 0.1);">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect>
+                                            <rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect>
+                                            <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                                            <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 03</span>
+                                        <span class="level-duration">Intermediate • 6 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+                                    Available
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">APIs & Backend Basics</h3>
+                                <p class="level-desc">
+                                    Understand the lifeblood of agent connectivity: HTTP verbs, async client requests, robust JSON manipulation, authentication headers, and webhooks.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📡</span>
+                                        <span>HTTP Protocols, Headers & Status Codes</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🌐</span>
+                                        <span>RESTful Architecture & Design Principles</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⚡</span>
+                                        <span>Async Network Calls with Requests & HTTPX</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📋</span>
+                                        <span>JSON Serialization & Schema Validation</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔑</span>
+                                        <span>API Authentication (Bearer Tokens & OAuth)</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🪝</span>
+                                        <span>Webhooks & Event-Driven Architecture</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span style="color: #22d3ee;">Ready to Start</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-available" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=3" class="card-action btn-available">
+                                    <span>Start Level 3</span>
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+                                </a>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- ================= PHASE 2 ================= -->
+                <div class="phase-block" data-phase="2">
+                    <div class="phase-header-wrap">
+                        <div class="phase-pill">
+                            <span class="phase-tag phase-tag-2">Phase 2</span>
+                            <span>LLM Core, Tool Calling & RAG</span>
+                        </div>
+                    </div>
+
+                    <div class="level-cards-grid">
+
+                        <!-- Level 4 -->
+                        <article class="level-card status-locked" id="level-4" data-status="locked" data-level="4">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 2a4 4 0 0 1 4 4v1a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"></path>
+                                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                            <line x1="12" y1="19" x2="12" y2="23"></line>
+                                            <line x1="8" y1="23" x2="16" y2="23"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 04</span>
+                                        <span class="level-duration">Intermediate • 6 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">LLM Fundamentals</h3>
+                                <p class="level-desc">
+                                    Discover the internal machinery of Transformers, probability distributions, tokenization math, prompt heuristics, and Chain-of-Thought reasoning.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🧠</span>
+                                        <span>How LLMs Work & Next-Token Prediction</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔢</span>
+                                        <span>Tokenization, Context Windows & Cost Economics</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">✍️</span>
+                                        <span>Prompt Engineering & System Prompt Mastery</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🎯</span>
+                                        <span>Few-Shot In-Context Learning</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔗</span>
+                                        <span>Chain-of-Thought (CoT) & Reasoning Heuristics</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=4" class="card-action btn-locked">
+                                    <span>Complete Level 3 to Unlock</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 5 -->
+                        <article class="level-card status-locked" id="level-5" data-status="locked" data-level="5">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 05</span>
+                                        <span class="level-duration">Advanced • 7 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">LLM APIs & Tool Calling</h3>
+                                <p class="level-desc">
+                                    Connect models to real actions using modern SDKs (OpenAI, Claude, Gemini), tool call definitions, structured JSON output, and Pydantic validation.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⚡</span>
+                                        <span>OpenAI, Gemini & Claude API Integration</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🛠️</span>
+                                        <span>Function Calling & Tool Execution Specs</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📐</span>
+                                        <span>Structured Outputs & JSON Schema Enforcers</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🧩</span>
+                                        <span>Pydantic Output Parsers & Error Correction</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔄</span>
+                                        <span>Handling Rate Limits, Retries & Fallbacks</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=5" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 6 -->
+                        <article class="level-card status-locked" id="level-6" data-status="locked" data-level="6">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+                                            <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+                                            <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 06</span>
+                                        <span class="level-duration">Advanced • 8 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">RAG & Vector Databases</h3>
+                                <p class="level-desc">
+                                    Arm your agents with dynamic external knowledge using dense vector embeddings, smart chunking strategies, vector search engines, and document QA.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🧬</span>
+                                        <span>Embeddings & Semantic Similarity Metrics</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📄</span>
+                                        <span>Chunking Strategies & Document Preprocessing</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🗄️</span>
+                                        <span>ChromaDB, FAISS & Pinecone Vector Stores</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔍</span>
+                                        <span>Hybrid Search, Re-Ranking & Context Stuffing</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">💬</span>
+                                        <span>Production Document Q&A Architectures</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=6" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- ================= PHASE 3 ================= -->
+                <div class="phase-block" data-phase="3">
+                    <div class="phase-header-wrap">
+                        <div class="phase-pill">
+                            <span class="phase-tag phase-tag-3">Phase 3</span>
+                            <span>Agent Architecture, Frameworks & Multi-Agent Swarms</span>
+                        </div>
+                    </div>
+
+                    <div class="level-cards-grid">
+
+                        <!-- Level 7 -->
+                        <article class="level-card status-locked" id="level-7" data-status="locked" data-level="7">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="12" r="10"></circle>
+                                            <polyline points="12 6 12 12 16 14"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 07</span>
+                                        <span class="level-duration">Advanced • 9 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Agent Architecture</h3>
+                                <p class="level-desc">
+                                    Construct autonomous reasoning agents from scratch using the ReAct loop, short & long-term memory, dynamic sub-goal planning, and self-reflection.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔁</span>
+                                        <span>The ReAct Pattern (Reasoning + Action)</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">💾</span>
+                                        <span>Short-Term vs Long-Term Memory Systems</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🗺️</span>
+                                        <span>Dynamic Planning & Task Decomposition</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔧</span>
+                                        <span>Tool Use, Sandboxes & Execution Guardrails</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🪞</span>
+                                        <span>Autonomous Agent Loops & Self-Correction</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=7" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 8 -->
+                        <article class="level-card status-locked" id="level-8" data-status="locked" data-level="8">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="3" y="3" width="7" height="7"></rect>
+                                            <rect x="14" y="3" width="7" height="7"></rect>
+                                            <rect x="14" y="14" width="7" height="7"></rect>
+                                            <rect x="3" y="14" width="7" height="7"></rect>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 08</span>
+                                        <span class="level-duration">Advanced • 10 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Agent Frameworks</h3>
+                                <p class="level-desc">
+                                    Build industrial-grade agents with industry-standard frameworks: LangChain, LangGraph state machines, CrewAI role agents, and OpenAI Agents SDK.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🦜</span>
+                                        <span>LangChain Core Architecture & Expression Language (LCEL)</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🕸️</span>
+                                        <span>LangGraph Stateful Graphs, Cycles & Checkpoints</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">👥</span>
+                                        <span>CrewAI Multi-Role Agents & Process Pipelines</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⚡</span>
+                                        <span>OpenAI Agents SDK & Swarm Framework Patterns</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⚖️</span>
+                                        <span>Framework Benchmarking & Architecture Trade-offs</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=8" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 9 -->
+                        <article class="level-card status-locked" id="level-9" data-status="locked" data-level="9">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                            <circle cx="9" cy="7" r="4"></circle>
+                                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 09</span>
+                                        <span class="level-duration">Expert • 10 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Multi-Agent Systems</h3>
+                                <p class="level-desc">
+                                    Orchestrate coordinated teams of specialized agents utilizing the Model Context Protocol (MCP), hierarchical managers, and human oversight.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔌</span>
+                                        <span>Model Context Protocol (MCP) Server & Client</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">👑</span>
+                                        <span>Supervisor, Router & Hierarchical Orchestration</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🤝</span>
+                                        <span>Peer-to-Peer Inter-Agent Communication</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">👤</span>
+                                        <span>Human-in-the-Loop (HITL) Interventions</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📊</span>
+                                        <span>Agent Consensus & Deadlock Prevention</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=9" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- ================= PHASE 4 ================= -->
+                <div class="phase-block" data-phase="4">
+                    <div class="phase-header-wrap">
+                        <div class="phase-pill">
+                            <span class="phase-tag phase-tag-4">Phase 4</span>
+                            <span>Fullstack, LLMOps, Safety & Production Deployment</span>
+                        </div>
+                    </div>
+
+                    <div class="level-cards-grid">
+
+                        <!-- Level 10 -->
+                        <article class="level-card status-locked" id="level-10" data-status="locked" data-level="10">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                            <polyline points="2 17 12 22 22 17"></polyline>
+                                            <polyline points="2 12 12 17 22 12"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 10</span>
+                                        <span class="level-duration">Advanced • 8 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">FastAPI & Databases</h3>
+                                <p class="level-desc">
+                                    Package intelligent agents behind high-concurrency REST endpoints with JWT authorization, session checkpoints, PostgreSQL, and Redis caching.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🚀</span>
+                                        <span>FastAPI Asynchronous Endpoint Architectures</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🛡️</span>
+                                        <span>JWT Authentication & API Key Rate Limiting</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🐘</span>
+                                        <span>PostgreSQL & SQLAlchemy Async Sessions</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🍃</span>
+                                        <span>MongoDB & Redis for Agent Checkpointing</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📡</span>
+                                        <span>Server-Sent Events (SSE) for Streaming Tokens</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=10" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 11 -->
+                        <article class="level-card status-locked" id="level-11" data-status="locked" data-level="11">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 11</span>
+                                        <span class="level-duration">Advanced • 9 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Docker & LLMOps</h3>
+                                <p class="level-desc">
+                                    Containerize complex agent stacks, deploy into cloud clusters, inspect execution spans via LangSmith, and evaluate agent quality with RAGAS.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🐳</span>
+                                        <span>Docker Containerization & Multi-Stage Builds</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">☁️</span>
+                                        <span>Cloud Deployment (AWS, GCP, Railway, Modal)</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🔍</span>
+                                        <span>LangSmith & OpenTelemetry Distributed Tracing</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📊</span>
+                                        <span>RAGAS & Automated Benchmark Evaluations</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📈</span>
+                                        <span>Token Cost Tracking, Latency Budgets & Alerts</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=11" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 12 -->
+                        <article class="level-card status-locked" id="level-12" data-status="locked" data-level="12">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                                            <line x1="8" y1="21" x2="16" y2="21"></line>
+                                            <line x1="12" y1="17" x2="12" y2="21"></line>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 12</span>
+                                        <span class="level-duration">Intermediate • 7 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Frontend for Agents</h3>
+                                <p class="level-desc">
+                                    Craft interactive interfaces that display agent reasoning chains, markdown text streaming, tool invocation cards, and multimodal conversations.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🎨</span>
+                                        <span>Modern HTML5, CSS3 & JavaScript Foundations</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">⚛️</span>
+                                        <span>React & Next.js Agent Interface Architecture</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🌊</span>
+                                        <span>Real-time Chat Streaming & UI Optimizations</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🎛️</span>
+                                        <span>Tool Call Visualizers & Interactive Artifacts</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🎙️</span>
+                                        <span>Voice, Audio & Multimodal Interactions</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=12" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 13 -->
+                        <article class="level-card status-locked" id="level-13" data-status="locked" data-level="13">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 13</span>
+                                        <span class="level-duration">Expert • 7 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">AI Safety & Testing</h3>
+                                <p class="level-desc">
+                                    Fortify applications against prompt injections, data extraction, insecure tool executions, hallucinated actions, and automated jailbreak probes.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🛡️</span>
+                                        <span>Prompt Injection & Indirect Injection Mitigation</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🚧</span>
+                                        <span>Guardrails Implementation (NeMo & Llama Guard)</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🎯</span>
+                                        <span>Adversarial Red Teaming & Automated Probes</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">📦</span>
+                                        <span>Tool Execution Sandboxing & Least Privilege</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🧪</span>
+                                        <span>Continuous Regression & Safety Evaluation</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=13" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- Level 14 -->
+                        <article class="level-card status-locked" id="level-14" data-status="locked" data-level="14">
+                            <div class="card-top">
+                                <div class="level-meta">
+                                    <div class="level-icon-wrap">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <circle cx="12" cy="8" r="7"></circle>
+                                            <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                        </svg>
+                                    </div>
+                                    <div class="level-num-wrap">
+                                        <span class="level-number">Level 14</span>
+                                        <span class="level-duration">Capstone • 12 Hours</span>
+                                    </div>
+                                </div>
+                                <span class="status-badge badge-locked">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    Locked
+                                </span>
+                            </div>
+
+                            <div class="card-body">
+                                <h3 class="level-title">Portfolio & Career</h3>
+                                <p class="level-desc">
+                                    Ship a flagship production autonomous multi-agent system, nail senior AI engineer technical interviews, and contribute to top open-source projects.
+                                </p>
+
+                                <div class="subtopics-title">Core Subtopics</div>
+                                <ul class="subtopics-list">
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🚀</span>
+                                        <span>Production Capstone Multi-Agent Project</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">💼</span>
+                                        <span>Interactive Portfolio & Live Agent Demos</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🎯</span>
+                                        <span>AI Agent Developer Interview Prep & Case Studies</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🤝</span>
+                                        <span>Freelancing, Consulting & AI Agency Blueprint</span>
+                                    </li>
+                                    <li class="subtopic-item">
+                                        <span class="subtopic-icon">🌐</span>
+                                        <span>Open Source Contributions in the Agent Ecosystem</span>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="card-footer-wrap">
+                                <div class="card-progress">
+                                    <div class="card-progress-meta">
+                                        <span>Progress</span>
+                                        <span>0%</span>
+                                    </div>
+                                    <div class="card-progress-bar">
+                                        <div class="card-progress-fill fill-locked" style="width: 0%;"></div>
+                                    </div>
+                                </div>
+                                <a href="lessons.html?level=14" class="card-action btn-locked">
+                                    <span>Locked</span>
+                                </a>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+
+                <!-- Call To Action Card -->
+                <div class="roadmap-cta-section">
+                    <h2 class="text-gradient">Ready to Accelerate Your AI Agent Career?</h2>
+                    <p>
+                        Pick up right where you left off or dive into interactive exercises. Each level provides complete code repositories, unit test suites, and interactive playgrounds.
+                    </p>
+                    <div class="cta-btn-group">
+                        <a href="lessons.html?level=2" class="btn-lg-primary">Continue Level 2: Git & Linux</a>
+                        <a href="playground.html" class="btn-lg-secondary">Open Agent Playground</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Column 1: Brand Info -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <div class="brand-logo-glow" style="width:32px; height:32px;">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+                                <circle cx="12" cy="5" r="2"></circle>
+                                <path d="M12 7v4"></path>
+                                <line x1="8" y1="16" x2="8.01" y2="16"></line>
+                                <line x1="16" y1="16" x2="16.01" y2="16"></line>
+                            </svg>
+                        </div>
+                        <span class="brand-text">Agent<span>Mentor</span></span>
+                    </a>
+                    <p class="footer-desc">
+                        The comprehensive curriculum for engineers building autonomous AI agents, multi-agent swarms, Model Context Protocol servers, and enterprise LLMOps.
+                    </p>
+                    <div class="footer-socials">
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="GitHub">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Twitter">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                        </a>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Discord">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6h0a14.5 14.5 0 0 0-4-1.3 9.4 9.4 0 0 0-.4 1 12.6 12.6 0 0 0-3.2 0 9.4 9.4 0 0 0-.4-1A14.5 14.5 0 0 0 6 6a15.8 15.8 0 0 0-2.4 11 14.7 14.7 0 0 0 4.5 2.3 10.4 10.4 0 0 0 1-1.6 9.6 9.6 0 0 1-1.6-.8l.3-.2a11.9 11.9 0 0 0 8.4 0l.3.2a9.6 9.6 0 0 1-1.6.8 10.4 10.4 0 0 0 1 1.6 14.7 14.7 0 0 0 4.5-2.3A15.8 15.8 0 0 0 18 6zM8.5 15.5c-1 0-1.7-.9-1.7-2s.7-2 1.7-2c1 0 1.7.9 1.7 2s-.7 2-1.7 2zm7 0c-1 0-1.7-.9-1.7-2s.7-2 1.7-2c1 0 1.7.9 1.7 2s-.7 2-1.7 2z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Column 2: Curriculum -->
+                <div class="footer-col">
+                    <h4>Curriculum</h4>
+                    <ul class="footer-links">
+                        <li><a href="#level-0">Level 0: Setup</a></li>
+                        <li><a href="#level-1">Level 1: Python</a></li>
+                        <li><a href="#level-5">Level 5: Tool Calling</a></li>
+                        <li><a href="#level-7">Level 7: Architecture</a></li>
+                        <li><a href="#level-9">Level 9: Multi-Agent</a></li>
+                        <li><a href="#level-11">Level 11: LLMOps</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Resources -->
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="lessons.html">Course Modules</a></li>
+                        <li><a href="playground.html">Code Playground</a></li>
+                        <li><a href="projects.html">Capstone Projects</a></li>
+                        <li><a href="resources.html">Agent Cheatsheets</a></li>
+                        <li><a href="resources.html#docs">MCP Server Guide</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Platform -->
+                <div class="footer-col">
+                    <h4>Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="roadmap.html">Roadmap Overview</a></li>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Bottom Legal Bar -->
+            <div class="footer-bottom">
+                <div>&copy; 2026 Agent Mentor. Crafted for developers shaping autonomous AI systems.</div>
+                <div class="footer-legal-links">
+                    <a href="#">Security</a>
+                    <a href="#">Terms</a>
+                    <a href="#">Privacy</a>
+                    <a href="#top" style="color: var(--accent-secondary);">Back to Top ↑</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!-- Inline Filter, Search & Interactive Behavior -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const primaryNav = document.getElementById('primary-nav');
+            if (mobileBtn && primaryNav) {
+                mobileBtn.addEventListener('click', () => {
+                    primaryNav.classList.toggle('active');
+                });
+            }
+
+            // Theme Toggle Support (if js/theme.js is loading or fallback)
+            const themeBtn = document.getElementById('theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+                    const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', nextTheme);
+                    localStorage.setItem('agent-mentor-theme', nextTheme);
+                });
+                const savedTheme = localStorage.getItem('agent-mentor-theme');
+                if (savedTheme) {
+                    document.documentElement.setAttribute('data-theme', savedTheme);
+                }
+            }
+
+            // Interactive Filtering by Status
+            const filterButtons = document.querySelectorAll('#filter-buttons .filter-btn');
+            const cards = document.querySelectorAll('.level-card');
+            const searchInput = document.getElementById('roadmap-search');
+
+            function applyFilter() {
+                const activeFilterBtn = document.querySelector('#filter-buttons .filter-btn.active');
+                const filterValue = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+                const searchQuery = (searchInput ? searchInput.value : '').toLowerCase().trim();
+
+                cards.forEach(card => {
+                    const status = card.dataset.status;
+                    const cardText = card.innerText.toLowerCase();
+                    const matchesFilter = (filterValue === 'all') || (status === filterValue);
+                    const matchesSearch = !searchQuery || cardText.includes(searchQuery);
+
+                    if (matchesFilter && matchesSearch) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                // Hide empty phase blocks if all cards inside are hidden
+                document.querySelectorAll('.phase-block').forEach(phase => {
+                    const visibleCards = phase.querySelectorAll('.level-card[style*="display: flex"], .level-card:not([style*="display: none"])');
+                    const anyVisible = Array.from(visibleCards).some(c => c.style.display !== 'none');
+                    phase.style.display = anyVisible ? 'block' : 'none';
+                });
+            }
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    applyFilter();
+                });
+            });
+
+            if (searchInput) {
+                searchInput.addEventListener('input', applyFilter);
+            }
+        });
+    </script>
+</body>
+</html>
