@@ -1,0 +1,41 @@
+﻿{
+  "id": "6-01",
+  "level": 6,
+  "lesson": 1,
+  "title": "RAG: Embeddings, Chunking & Vector Search with ChromaDB",
+  "duration": "60 mins",
+  "why": "LLMs only know their training cutoff data and cannot see your proprietary documents. RAG (Retrieval-Augmented Generation) connects your agent to external documents and internal databases with real-time vector search.",
+  "objectives": [
+    "Understand high-dimensional text embeddings and cosine similarity",
+    "Implement document chunking strategies (recursive character splitting)",
+    "Index and query documents using ChromaDB"
+  ],
+  "concept": "Chunking splits large documents into semantic pieces (e.g. 500 characters with 50 character overlap). An embedding model maps each chunk to a dense float vector. When a user asks a query, nearest neighbors are retrieved and injected into the prompt.",
+  "code": [
+    {
+      "filename": "rag_pipeline.py",
+      "language": "python",
+      "content": "import math\n\ndef cosine_similarity(vec_a: list[float], vec_b: list[float]) -> float:\n    dot_product = sum(a * b for a, b in zip(vec_a, vec_b))\n    norm_a = math.sqrt(sum(a * a for a in vec_a))\n    norm_b = math.sqrt(sum(b * b for b in vec_b))\n    return dot_product / (norm_a * norm_b) if norm_a and norm_b else 0.0\n\n# Mock 3-dimensional embeddings\nq_vec = [0.8, 0.2, 0.5]\ndoc1_vec = [0.75, 0.25, 0.45]  # Highly similar\ndoc2_vec = [-0.1, 0.9, -0.3]  # Low similarity\n\nprint(f'Similarity to Doc 1: {cosine_similarity(q_vec, doc1_vec):.4f}')\nprint(f'Similarity to Doc 2: {cosine_similarity(q_vec, doc2_vec):.4f}')\n"
+    }
+  ],
+  "practice": {
+    "description": "Write a recursive chunking function that splits text into chunks of at most 200 characters preserving whole words.",
+    "hint": "Split by spaces and accumulate words until the length exceeds 200."
+  },
+  "project": {
+    "description": "PDF Knowledge Assistant with ChromaDB",
+    "requirements": [
+      "Load text from documents, chunk into 500-char segments",
+      "Query nearest chunks and pass as context into an LLM synthesis prompt"
+    ]
+  },
+  "checklist": [
+    "Understood vector spaces and cosine similarity",
+    "Implemented text chunking with overlap to preserve context",
+    "Integrated retrieved passages into an LLM answer prompt"
+  ],
+  "mistakes": [
+    "Chunking too large (exceeding token window) or too small (losing semantic meaning)"
+  ],
+  "next": "Level 7: Agent Architecture, Memory, Planning & ReAct"
+}
