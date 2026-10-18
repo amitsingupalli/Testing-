@@ -1,0 +1,64 @@
+﻿{
+  "title": "Level 1 Mastery: Python for AI Agents",
+  "topic": "python",
+  "difficulty": "Intermediate",
+  "description": "Evaluate your proficiency in Python fundamentals, Pydantic validation, async tool execution, and error handling for autonomous agents.",
+  "questions": [
+    {
+      "question": "Why is Pydantic preferred over standard dictionaries when handling structured outputs from LLMs?",
+      "options": [
+        "It makes API calls 10x faster automatically",
+        "It validates data types, handles schema coercion, and generates OpenAPI JSON schemas",
+        "It encrypts prompt inputs to prevent prompt injection",
+        "It replaces the need for virtual environments"
+      ],
+      "correct": 1,
+      "explanation": "Pydantic enforces strict type contracts, coerces compatible values, and provides .model_json_schema() which is sent directly to LLMs for structured tool/function calling."
+    },
+    {
+      "question": "What is the primary risk of omitting a hard iteration limit in an autonomous agent while-loop?",
+      "code": "while not agent_goal_achieved:\n    action = llm.decide(history)\n    execute(action)",
+      "options": [
+        "Python will throw a SyntaxError immediately",
+        "The script will deplete memory and fail to import",
+        "The agent could enter an infinite loop, draining API credits and locking server resources",
+        "The LLM context window will automatically expand without cost"
+      ],
+      "correct": 2,
+      "explanation": "If the agent fails to reach its stop condition or gets stuck in a repetitive loop, it can rack up hundreds of dollars in API costs in minutes without a strict max_iterations guard."
+    },
+    {
+      "question": "When defining tools for LLMs, what is the critical role of the Python function docstring?",
+      "options": [
+        "It is ignored by LLM SDKs and only read by developers",
+        "It serves as the natural language prompt that instructs the LLM what the tool does and when to invoke it",
+        "It compiles the Python code into C bytecode for faster execution",
+        "It registers the function in the operating system PATH"
+      ],
+      "correct": 1,
+      "explanation": "LLM tool-calling APIs extract function docstrings and parameter annotations to explain the tool's behavior and argument schema to the language model."
+    },
+    {
+      "question": "Which asyncio method should you use to execute 5 independent search API calls simultaneously?",
+      "options": [
+        "asyncio.wait_forever()",
+        "asyncio.sleep()",
+        "asyncio.gather()",
+        "asyncio.thread_lock()"
+      ],
+      "correct": 2,
+      "explanation": "syncio.gather(*tasks) schedules multiple coroutines concurrently on the event loop and returns when all have finished."
+    },
+    {
+      "question": "What should an agent tool do when it encounters an external API timeout?",
+      "options": [
+        "Raise an unhandled exception to crash the entire application",
+        "Catch the timeout and return an actionable observation string for the LLM to decide the next step",
+        "Silently pass and return None without telling the model",
+        "Delete the chat history database"
+      ],
+      "correct": 1,
+      "explanation": "In agent design, tool failures are observations. Returning an informative error string lets the model understand what went wrong and choose an alternative action."
+    }
+  ]
+}
