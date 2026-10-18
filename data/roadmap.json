@@ -1,0 +1,154 @@
+﻿{
+  "levels": [
+    {
+      "id": 0,
+      "title": "Setup & Developer Fundamentals",
+      "icon": "\u2699\uFE0F",
+      "description": "Set up your development environment with Python, IDE, terminal, and virtual environments.",
+      "subtopics": ["Python Installation", "IDE Setup (VS Code/PyCharm)", "Terminal Basics", "Virtual Environments (venv/uv)", "pip & Package Management"],
+      "lessons": 4,
+      "project": "Set up a complete Python development environment",
+      "status": "available"
+    },
+    {
+      "id": 1,
+      "title": "Python for AI Agent Development",
+      "icon": "\uD83D\uDC0D",
+      "description": "Master Python with a focus on skills needed for building AI agents: data structures, async, Pydantic, APIs.",
+      "subtopics": ["Variables & Data Types", "Strings, Lists, Dicts", "Functions & Decorators", "OOP & Classes", "File Handling (JSON/CSV/PDF)", "Type Hints & Pydantic", "Async/Await", "APIs with requests", "Environment Variables", "Logging & Testing", "Project Structure"],
+      "lessons": 17,
+      "project": "Build a CLI tool that fetches data from an API and saves structured output",
+      "status": "available"
+    },
+    {
+      "id": 2,
+      "title": "Git, GitHub & Linux",
+      "icon": "\uD83D\uDD00",
+      "description": "Learn version control, collaboration workflows, and basic Linux commands for deployment.",
+      "subtopics": ["Git Basics", "Branching & Merging", "GitHub Workflows", ".env & Secrets", "CI/CD Introduction"],
+      "lessons": 5,
+      "project": "Create a well-structured GitHub repository with branching and CI",
+      "status": "locked"
+    },
+    {
+      "id": 3,
+      "title": "APIs, JSON, HTTP & Backend Basics",
+      "icon": "\uD83C\uDF10",
+      "description": "Understand how web APIs work â€” the backbone of every AI agent's communication.",
+      "subtopics": ["HTTP Methods & Status Codes", "REST API Design", "requests & httpx", "JSON Parsing", "Authentication (API Keys, OAuth)", "Webhooks"],
+      "lessons": 6,
+      "project": "Build a Weather API CLI app with error handling",
+      "status": "locked"
+    },
+    {
+      "id": 4,
+      "title": "LLM Fundamentals & Prompt Engineering",
+      "icon": "\uD83E\uDDE0",
+      "description": "Understand how Large Language Models work and master the art of prompt engineering.",
+      "subtopics": ["How LLMs Work", "Tokenization & Context Windows", "Temperature & Parameters", "Prompt Engineering Basics", "Few-Shot & Chain-of-Thought", "System Prompts"],
+      "lessons": 6,
+      "project": "Create a prompt engineering playbook with 20+ tested patterns",
+      "status": "locked"
+    },
+    {
+      "id": 5,
+      "title": "LLM APIs, Structured Outputs & Tool Calling",
+      "icon": "\uD83D\uDD27",
+      "description": "Build with OpenAI, Gemini, and Claude APIs. Master function calling and structured outputs.",
+      "subtopics": ["OpenAI API", "Gemini API", "Claude API", "Ollama (Local LLMs)", "Function/Tool Calling", "Structured Outputs with Pydantic"],
+      "lessons": 6,
+      "project": "Build an AI chat assistant with 3+ tools",
+      "status": "locked"
+    },
+    {
+      "id": 6,
+      "title": "RAG, Embeddings & Vector Databases",
+      "icon": "\uD83D\uDCDA",
+      "description": "Build Retrieval Augmented Generation systems for document intelligence.",
+      "subtopics": ["Text Embeddings", "Chunking Strategies", "ChromaDB", "FAISS", "Pinecone & Qdrant", "RAG Pipeline Design"],
+      "lessons": 6,
+      "project": "Build a PDF Knowledge Assistant",
+      "status": "locked"
+    },
+    {
+      "id": 7,
+      "title": "AI Agent Architecture",
+      "icon": "\uD83C\uDFD7\uFE0F",
+      "description": "Learn how AI agents think, plan, remember, and use tools. Build agents from scratch.",
+      "subtopics": ["What is an AI Agent", "ReAct Pattern", "Agent Memory Systems", "Planning & Reasoning", "Tool Use & Integration"],
+      "lessons": 5,
+      "project": "Build a Research Agent from scratch",
+      "status": "locked"
+    },
+    {
+      "id": 8,
+      "title": "Agent Frameworks",
+      "icon": "\u26D3\uFE0F",
+      "description": "Master popular frameworks: LangChain, LangGraph, CrewAI, and OpenAI Agents SDK.",
+      "subtopics": ["LangChain Basics", "LangChain Agents & Tools", "LangGraph State Machines", "LangGraph Multi-Step Agents", "CrewAI Teams", "CrewAI Custom Tools", "OpenAI Agents SDK"],
+      "lessons": 7,
+      "project": "Build a multi-tool agent with LangGraph",
+      "status": "locked"
+    },
+    {
+      "id": 9,
+      "title": "Multi-Agent Systems & Orchestration",
+      "icon": "\uD83D\uDC65",
+      "description": "Build systems where multiple agents collaborate, with human oversight.",
+      "subtopics": ["Multi-Agent Patterns", "Model Context Protocol (MCP)", "Agent Orchestration", "Human-in-the-Loop", "Supervisor Architecture"],
+      "lessons": 5,
+      "project": "Build a multi-agent hackathon planner",
+      "status": "locked"
+    },
+    {
+      "id": 10,
+      "title": "FastAPI, Authentication & Databases",
+      "icon": "\u26A1",
+      "description": "Build production-ready backends for your AI agents.",
+      "subtopics": ["FastAPI Basics", "REST API Design", "JWT Authentication", "PostgreSQL & SQLAlchemy", "MongoDB Integration"],
+      "lessons": 5,
+      "project": "Build an Agent API Server with authentication",
+      "status": "locked"
+    },
+    {
+      "id": 11,
+      "title": "Docker, Cloud & LLMOps",
+      "icon": "\uD83D\uDC33",
+      "description": "Deploy, monitor, and evaluate your AI agents in production.",
+      "subtopics": ["Docker Basics", "Docker Compose", "Cloud Deployment (AWS/GCP)", "LangSmith/Langfuse Tracing", "RAGAS/DeepEval Evaluation"],
+      "lessons": 5,
+      "project": "Deploy an AI agent to the cloud with monitoring",
+      "status": "locked"
+    },
+    {
+      "id": 12,
+      "title": "Frontend for AI Agents",
+      "icon": "\uD83C\uDFA8",
+      "description": "Build beautiful chat UIs and dashboards for your agents.",
+      "subtopics": ["HTML/CSS/JS Basics", "React Fundamentals", "Next.js for AI Apps", "Chat UI Components", "Streaming Responses"],
+      "lessons": 5,
+      "project": "Build a deployed chat UI for your agent",
+      "status": "locked"
+    },
+    {
+      "id": 13,
+      "title": "AI Safety, Guardrails & Testing",
+      "icon": "\uD83D\uDEE1\uFE0F",
+      "description": "Build responsible, secure, and tested AI agents.",
+      "subtopics": ["Prompt Injection Defense", "Content Filtering", "Guardrails Implementation", "Red Teaming", "Agent Testing Strategies"],
+      "lessons": 5,
+      "project": "Add safety guardrails to an existing agent",
+      "status": "locked"
+    },
+    {
+      "id": 14,
+      "title": "Portfolio Projects & Career",
+      "icon": "\uD83D\uDE80",
+      "description": "Build your portfolio, prepare for interviews, and launch your career.",
+      "subtopics": ["Portfolio Website", "3 Showcase Projects", "Interview Preparation", "Freelancing Strategy", "Open Source Contributions"],
+      "lessons": 5,
+      "project": "Complete portfolio with 3+ deployed AI agent projects",
+      "status": "locked"
+    }
+  ]
+}
