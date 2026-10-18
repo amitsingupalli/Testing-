@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-13",
+  "level": 1,
+  "lesson": 13,
+  "title": "Secrets Management & Environment Variables",
+  "duration": "40 mins",
+  "why": "AI Agent development requires multiple sensitive API credentials (OpenAI, Anthropic, Tavily, Pinecone). Committing an API key to GitHub leads to immediate key revocation, leaked billing credits, and security compromises.",
+  "objectives": [
+    "Load secrets using python-dotenv",
+    "Safely configure .gitignore for environment files",
+    "Validate API keys on startup before booting agent loops"
+  ],
+  "concept": "Store all secrets in a .env file that is strictly ignored by Git. Use .env.example as a template for team members containing variable names without real keys.",
+  "code": [
+    {
+      "filename": "load_secrets.py",
+      "language": "python",
+      "content": "import os\nfrom dotenv import load_dotenv\n\nload_dotenv()\n\ndef get_required_secret(key_name: str) -> str:\n    val = os.getenv(key_name)\n    if not val:\n        raise ValueError(f'CRITICAL: Environment variable \"{key_name}\" is not set!')\n    # Mask for safe logging\n    masked = val[:4] + '...' + val[-4:] if len(val) > 8 else '****'\n    print(f'ðŸ”‘ Loaded {key_name}: {masked}')\n    return val\n\n# Example usage\ntry:\n    api_key = get_required_secret('OPENAI_API_KEY')\nexcept ValueError as err:\n    print(f'Configuration alert: {err}')\n"
+    }
+  ],
+  "practice": {
+    "description": "Create an .env.example file and write a Python startup script that verifies all listed example keys exist in os.environ.",
+    "hint": "Read .env.example line by line, strip comments (#), and check key in os.environ."
+  },
+  "project": {
+    "description": "Agent Configuration Validator",
+    "requirements": [
+      "Define Pydantic Settings model using pydantic-settings",
+      "Validate API keys, timeouts, and max retry counts on application launch"
+    ]
+  },
+  "checklist": [
+    "Ensured .env is added to .gitignore",
+    "Loaded configuration with python-dotenv",
+    "Added startup validation for mandatory API credentials"
+  ],
+  "mistakes": [
+    "Hardcoding test API keys in source files and committing them to git"
+  ],
+  "next": "Lesson 14: Regular Expressions for Parsing Raw LLM Outputs"
+}
