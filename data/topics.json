@@ -1,0 +1,164 @@
+﻿{
+  "topics": [
+    {
+      "id": "python",
+      "name": "Python",
+      "icon": "\uD83D\uDC0D",
+      "level": 1,
+      "lessons": 17,
+      "description": "Core language for AI agent development. From basics to async, Pydantic, and project structure.",
+      "tags": ["core", "beginner"],
+      "color": "#3776AB"
+    },
+    {
+      "id": "git",
+      "name": "Git & GitHub",
+      "icon": "\uD83D\uDD00",
+      "level": 2,
+      "lessons": 5,
+      "description": "Version control, collaboration, branching strategies, and CI/CD for agent projects.",
+      "tags": ["core", "beginner"],
+      "color": "#F05032"
+    },
+    {
+      "id": "apis",
+      "name": "APIs & HTTP",
+      "icon": "\uD83C\uDF10",
+      "level": 3,
+      "lessons": 6,
+      "description": "REST APIs, HTTP methods, requests/httpx, authentication. The backbone of agent communication.",
+      "tags": ["core", "intermediate"],
+      "color": "#009688"
+    },
+    {
+      "id": "llm-fundamentals",
+      "name": "LLM Fundamentals",
+      "icon": "\uD83E\uDDE0",
+      "level": 4,
+      "lessons": 5,
+      "description": "How Large Language Models work: transformers, tokenization, parameters, and limitations.",
+      "tags": ["ai", "intermediate"],
+      "color": "#9C27B0"
+    },
+    {
+      "id": "prompt-engineering",
+      "name": "Prompt Engineering",
+      "icon": "\u270D\uFE0F",
+      "level": 4,
+      "lessons": 4,
+      "description": "Craft effective prompts: few-shot, chain-of-thought, system prompts, and advanced techniques.",
+      "tags": ["ai", "intermediate"],
+      "color": "#FF9800"
+    },
+    {
+      "id": "llm-apis",
+      "name": "LLM APIs",
+      "icon": "\uD83D\uDD27",
+      "level": 5,
+      "lessons": 6,
+      "description": "Build with OpenAI, Gemini, Claude, and Ollama. Function calling and structured outputs.",
+      "tags": ["ai", "intermediate"],
+      "color": "#4CAF50"
+    },
+    {
+      "id": "rag",
+      "name": "RAG",
+      "icon": "\uD83D\uDCDA",
+      "level": 6,
+      "lessons": 6,
+      "description": "Retrieval Augmented Generation: embeddings, chunking, vector databases, document QA.",
+      "tags": ["ai", "advanced"],
+      "color": "#2196F3"
+    },
+    {
+      "id": "agent-architecture",
+      "name": "Agent Architecture",
+      "icon": "\uD83C\uDFD7\uFE0F",
+      "level": 7,
+      "lessons": 5,
+      "description": "Design intelligent agents: ReAct pattern, memory systems, planning, and tool integration.",
+      "tags": ["agent", "advanced"],
+      "color": "#E91E63"
+    },
+    {
+      "id": "langchain",
+      "name": "LangChain",
+      "icon": "\u26D3\uFE0F",
+      "level": 8,
+      "lessons": 4,
+      "description": "The most popular agent framework. Chains, agents, tools, and memory management.",
+      "tags": ["framework", "advanced"],
+      "color": "#1A5276"
+    },
+    {
+      "id": "langgraph",
+      "name": "LangGraph",
+      "icon": "\uD83D\uDCCA",
+      "level": 8,
+      "lessons": 4,
+      "description": "Graph-based agent workflows. State machines, conditional routing, and multi-step agents.",
+      "tags": ["framework", "advanced"],
+      "color": "#00BCD4"
+    },
+    {
+      "id": "crewai",
+      "name": "CrewAI",
+      "icon": "\uD83D\uDC65",
+      "level": 8,
+      "lessons": 3,
+      "description": "Multi-agent collaboration framework. Build teams of specialized agents.",
+      "tags": ["framework", "advanced"],
+      "color": "#FF5722"
+    },
+    {
+      "id": "multi-agent",
+      "name": "Multi-Agent Systems",
+      "icon": "\uD83E\uDD1D",
+      "level": 9,
+      "lessons": 4,
+      "description": "Orchestration patterns, MCP, human-in-the-loop, and supervisor architectures.",
+      "tags": ["agent", "advanced"],
+      "color": "#673AB7"
+    },
+    {
+      "id": "fastapi",
+      "name": "FastAPI",
+      "icon": "\u26A1",
+      "level": 10,
+      "lessons": 5,
+      "description": "Build production-ready API backends for your agents. REST, auth, databases.",
+      "tags": ["backend", "advanced"],
+      "color": "#009688"
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "icon": "\uD83D\uDC33",
+      "level": 11,
+      "lessons": 3,
+      "description": "Containerize and deploy your agents. Docker, Docker Compose, and cloud deployment.",
+      "tags": ["devops", "advanced"],
+      "color": "#2496ED"
+    },
+    {
+      "id": "frontend",
+      "name": "React / Next.js",
+      "icon": "\uD83C\uDFA8",
+      "level": 12,
+      "lessons": 4,
+      "description": "Build beautiful chat UIs and dashboards with React and Next.js.",
+      "tags": ["frontend", "advanced"],
+      "color": "#61DAFB"
+    },
+    {
+      "id": "ai-safety",
+      "name": "AI Safety",
+      "icon": "\uD83D\uDEE1\uFE0F",
+      "level": 13,
+      "lessons": 4,
+      "description": "Security, guardrails, prompt injection defense, red teaming, and evaluation.",
+      "tags": ["safety", "advanced"],
+      "color": "#F44336"
+    }
+  ]
+}
