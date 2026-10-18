@@ -1,0 +1,42 @@
+﻿{
+  "id": "1-17",
+  "level": 1,
+  "lesson": 17,
+  "title": "Production Python Project Structure for AI Agents",
+  "duration": "60 mins",
+  "why": "A toy script is just one file. A production AI agent has configuration, tool directories, memory providers, prompt templates, API routers, and test suites. Organizing files correctly prevents circular imports and makes your codebase ready for deployment.",
+  "objectives": [
+    "Structure an enterprise-grade AI agent repository",
+    "Configure pyproject.toml and package imports",
+    "Build the Level 1 Capstone Project"
+  ],
+  "concept": "Standard architecture separates the Agent Runner (orchestration) from Tools (execution plugins), Memory (state stores), and Prompts (templates).",
+  "code": [
+    {
+      "filename": "project_tree.txt",
+      "language": "bash",
+      "content": "ai_agent_project/\nâ”œâ”€â”€ pyproject.toml\nâ”œâ”€â”€ .env.example\nâ”œâ”€â”€ .gitignore\nâ”œâ”€â”€ README.md\nâ”œâ”€â”€ src/\nâ”‚   â””â”€â”€ agent/\nâ”‚       â”œâ”€â”€ __init__.py\nâ”‚       â”œâ”€â”€ core/\nâ”‚       â”‚   â”œâ”€â”€ runner.py\nâ”‚       â”‚   â””â”€â”€ state.py\nâ”‚       â”œâ”€â”€ tools/\nâ”‚       â”‚   â”œâ”€â”€ __init__.py\nâ”‚       â”‚   â”œâ”€â”€ web_search.py\nâ”‚       â”‚   â””â”€â”€ calculator.py\nâ”‚       â”œâ”€â”€ prompts/\nâ”‚       â”‚   â””â”€â”€ system.md\nâ”‚       â””â”€â”€ memory/\nâ”‚           â””â”€â”€ buffer.py\nâ””â”€â”€ tests/\n    â”œâ”€â”€ test_runner.py\n    â””â”€â”€ test_tools.py"
+    }
+  ],
+  "practice": {
+    "description": "Set up the complete directory tree using bash commands or Python pathlib scripts with empty __init__.py files.",
+    "hint": "Use mkdir -p or Path.mkdir(parents=True)."
+  },
+  "project": {
+    "description": "Level 1 Capstone: Autonomous CLI Research Agent Prototype",
+    "requirements": [
+      "Combine Pydantic schemas, tool registry, mock LLM decision loop, and exception handlers",
+      "Implement persistent logging and sliding memory window",
+      "Provide complete README with setup and test instructions"
+    ]
+  },
+  "checklist": [
+    "Organized modular project structure",
+    "Eliminated circular dependencies with clean package design",
+    "Completed Level 1 Capstone Project"
+  ],
+  "mistakes": [
+    "Dumping all agent logic, prompts, and database calls into a single unmaintainable file"
+  ],
+  "next": "Level 2: Git, GitHub, Linux & Environment Management"
+}
