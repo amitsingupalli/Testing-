@@ -1,11 +1,9 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Agent Mentor - Your Personal AI Agent Developer Learning Coach. Master AI agent development with structured lessons, projects, and quizzes.">
-    <meta name="keywords" content="AI Agent, Developer, Learning, LangChain, LangGraph, Python, LLM, RAG">
-    <meta name="author" content="Agent Mentor">
     <title>Agent Mentor - AI Agent Developer Learning Coach</title>
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/reset.css">
@@ -19,11 +17,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">
-                <span class="logo-icon">ðŸ¤–</span>
+                <span class="logo-icon">&#129302;</span>
                 <span class="logo-text">Agent Mentor</span>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -34,7 +31,7 @@
                 <li><a href="progress.html" class="nav-link">Progress</a></li>
             </ul>
             <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">ðŸŒ™</button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">&#127769;</button>
                 <button class="nav-hamburger" id="hamburger" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
@@ -42,11 +39,10 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <div class="hero-badge">ðŸš€ Your AI Agent Journey Starts Here</div>
+                <div class="hero-badge">&#128640; Your AI Agent Journey Starts Here</div>
                 <h1 class="hero-title">
                     Become a Job-Ready<br>
                     <span class="gradient-text">AI Agent Developer</span>
@@ -57,10 +53,10 @@
                 </p>
                 <div class="hero-cta">
                     <a href="roadmap.html" class="btn btn-primary btn-lg">
-                        <span>ðŸ“š</span> Start Learning
+                        <span>&#128218;</span> Start Learning
                     </a>
                     <a href="topics.html" class="btn btn-secondary btn-lg">
-                        <span>ðŸ—ºï¸</span> View Topics
+                        <span>&#128506;&#65039;</span> View Topics
                     </a>
                 </div>
                 <div class="hero-stats">
@@ -95,57 +91,56 @@ from openai import OpenAI
 
 client = OpenAI()
 
-def research_agent(query):
-    """An AI agent that researches topics."""
+def research_agent(query: str):
+    """An AI agent that researches topics autonomously."""
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
             {"role": "system", "content": "You are a research assistant."},
             {"role": "user", "content": query}
         ],
-        tools=[web_search, summarize],
+        tools=[web_search, summarize_documents],
     )
     return response.choices[0].message
 
-# Build this and more! ðŸš€</code></pre>
+# Build this and more!</code></pre>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
             <h2 class="section-title">Why Agent Mentor?</h2>
-            <p class="section-subtitle">Everything you need to go from beginner to AI Agent Developer</p>
+            <p class="section-subtitle">Everything you need to go from beginner to professional AI Agent Developer</p>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">ðŸŽ¯</div>
+                    <div class="feature-icon">&#127919;</div>
                     <h3>Structured Path</h3>
-                    <p>15 carefully ordered levels. No jumping around â€” each skill builds on the last.</p>
+                    <p>15 carefully ordered levels. No jumping around -- each skill builds on the last.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">ðŸ’»</div>
+                    <div class="feature-icon">&#128187;</div>
                     <h3>Hands-on Code</h3>
                     <p>Every lesson has runnable code, practice tasks, and mini-projects.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">ðŸ¤–</div>
+                    <div class="feature-icon">&#129302;</div>
                     <h3>Agent-Focused</h3>
                     <p>No unnecessary theory. Every concept is taught through the lens of AI agents.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">ðŸ§ª</div>
+                    <div class="feature-icon">&#129514;</div>
                     <h3>Quizzes & Tests</h3>
                     <p>Verify your understanding with quizzes after every major module.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">ðŸ“Š</div>
+                    <div class="feature-icon">&#128202;</div>
                     <h3>Track Progress</h3>
                     <p>Dashboard with completion tracking, streaks, and achievement badges.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">ðŸš€</div>
+                    <div class="feature-icon">&#128640;</div>
                     <h3>Real Projects</h3>
                     <p>Build portfolio projects: RAG chatbot, research agent, multi-agent systems.</p>
                 </div>
@@ -153,37 +148,32 @@ def research_agent(query):
         </div>
     </section>
 
-    <!-- Roadmap Preview Section -->
     <section class="roadmap-preview" id="roadmapPreview">
         <div class="container">
             <h2 class="section-title">Your Learning Roadmap</h2>
             <p class="section-subtitle">15 levels from setup to production AI agents</p>
-            <div class="roadmap-timeline" id="roadmapTimeline">
-                <!-- Populated by JS -->
-            </div>
+            <div class="roadmap-timeline" id="roadmapTimeline"></div>
             <div class="text-center" style="margin-top: 2rem;">
-                <a href="roadmap.html" class="btn btn-primary">View Full Roadmap â†’</a>
+                <a href="roadmap.html" class="btn btn-primary">View Full Roadmap &rarr;</a>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
     <section class="cta-section">
         <div class="container">
             <div class="cta-card">
                 <h2>Ready to Build AI Agents?</h2>
                 <p>Start your 12-week journey today. 1-2 hours per day is all you need.</p>
-                <a href="studyplan.html" class="btn btn-primary btn-lg">ðŸ“… See Study Plan</a>
+                <a href="studyplan.html" class="btn btn-primary btn-lg">&#128197; See Study Plan</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <span class="logo-icon">ðŸ¤–</span>
+                    <span class="logo-icon">&#129302;</span>
                     <span class="logo-text">Agent Mentor</span>
                     <p>Your Personal AI Agent Developer Learning Coach</p>
                 </div>
@@ -198,15 +188,16 @@ def research_agent(query):
                         <h4>Practice</h4>
                         <a href="quiz.html">Quizzes</a>
                         <a href="progress.html">Progress</a>
+                        <a href="playground.html">Playground</a>
                     </div>
                     <div class="footer-col">
-                        <h4>Connect</h4>
-                        <a href="https://github.com/amitsingupalli/agent-mentor" target="_blank">GitHub</a>
+                        <h4>GitHub</h4>
+                        <a href="https://github.com/amitsingupalli/Testing-" target="_blank">Repository</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Built with â¤ï¸ for aspiring AI Agent Developers</p>
+                <p>Built with pride for aspiring AI Agent Developers</p>
             </div>
         </div>
     </footer>
