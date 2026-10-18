@@ -1,0 +1,2684 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agent Mentor - Interactive AI Agent Development Quizzes and Assessments across 15 structured levels.">
+    <title>Assessment Quiz | Agent Mentor - AI Agent Developer Platform</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Prism.js Syntax Highlighting CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+
+    <!-- Project Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/quiz.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Embedded Resilient Theme & Quiz Styles -->
+    <style>
+        /* Base Design Tokens & Fallbacks */
+        :root {
+            --bg-primary: #0b0f19;
+            --bg-secondary: #111827;
+            --bg-card: #1e293b;
+            --bg-card-hover: #26334d;
+            --border-color: rgba(255, 255, 255, 0.09);
+            --border-highlight: rgba(56, 189, 248, 0.4);
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --accent-cyan: #38bdf8;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --accent-green: #10b981;
+            --accent-yellow: #f59e0b;
+            --accent-red: #ef4444;
+            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+            --radius-md: 10px;
+            --radius-lg: 16px;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-highlight: rgba(59, 130, 246, 0.4);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .navbar-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 800;
+            font-size: 1.35rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-icon-wrap {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #0284c7, #6366f1);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+        }
+
+        .brand-text-gradient {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+        }
+
+        .nav-link {
+            padding: 0.5rem 0.9rem;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.92rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--accent-cyan);
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .theme-btn, .mobile-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .theme-btn:hover, .mobile-toggle-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--accent-cyan);
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle-btn {
+            display: none;
+        }
+
+        /* Main Container */
+        .main-wrapper {
+            flex: 1;
+            padding: 2rem 1.5rem 4rem;
+            max-width: 1080px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Breadcrumb Navigation */
+        .breadcrumbs-bar {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .breadcrumbs-bar a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .breadcrumbs-bar a:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Quiz Banner & Meta Header */
+        .quiz-header-card {
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.8) 0%, rgba(17, 24, 39, 0.95) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2rem 2.25rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quiz-header-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+        }
+
+        .quiz-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .quiz-level-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.85rem;
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .topic-selector-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .topic-select-dropdown {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.45rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            outline: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .topic-select-dropdown:focus {
+            border-color: var(--accent-cyan);
+        }
+
+        .quiz-main-title {
+            font-size: 1.85rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 780px;
+        }
+
+        .quiz-meta-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.25rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .quiz-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .quiz-meta-item i {
+            color: var(--accent-cyan);
+        }
+
+        /* Quiz Stage Area */
+        .quiz-stage-container {
+            position: relative;
+        }
+
+        /* Progress Header */
+        .quiz-progress-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-progress-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .q-counter-badge {
+            color: var(--text-primary);
+        }
+
+        .q-counter-badge span {
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+        }
+
+        .progress-percent-label {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .progress-track {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 999px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-accent);
+            border-radius: 999px;
+            transition: width 0.4s ease;
+            width: 0%;
+        }
+
+        /* Question Card */
+        .question-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2.25rem;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .question-meta-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .category-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent-purple);
+            background: rgba(139, 92, 246, 0.12);
+            padding: 0.25rem 0.75rem;
+            border-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .difficulty-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .question-title-text {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.45;
+            margin-bottom: 1.25rem;
+        }
+
+        /* Code Snippet Block */
+        .code-container {
+            margin: 1.25rem 0 1.75rem;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+        }
+
+        .code-header {
+            background: #182030;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .copy-code-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .copy-code-btn:hover {
+            color: var(--accent-cyan);
+        }
+
+        .code-container pre {
+            margin: 0 !important;
+            padding: 1.25rem !important;
+            font-family: 'Fira Code', monospace !important;
+            font-size: 0.88rem !important;
+            background: #0f172a !important;
+            overflow-x: auto;
+        }
+
+        /* Options Group */
+        .options-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            margin-top: 1.5rem;
+        }
+
+        .option-item {
+            position: relative;
+        }
+
+        .option-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.15rem 1.25rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: var(--transition);
+            user-select: none;
+        }
+
+        .option-label:hover {
+            background: var(--bg-card-hover);
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateX(4px);
+        }
+
+        /* Hidden standard radio */
+        .option-input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Custom Radio Badge */
+        .option-letter-badge {
+            width: 32px;
+            height: 32px;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: var(--transition);
+        }
+
+        .option-text-wrap {
+            flex: 1;
+            font-size: 0.98rem;
+            color: var(--text-primary);
+            padding-top: 3px;
+            line-height: 1.45;
+        }
+
+        /* Checked Radio State */
+        .option-input:checked + .option-label {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+        }
+
+        .option-input:checked + .option-label .option-letter-badge {
+            background: var(--accent-cyan);
+            color: #0b0f19;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 2px 8px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Focus outline for accessibility */
+        .option-input:focus-visible + .option-label {
+            outline: 2px solid var(--accent-cyan);
+            outline-offset: 2px;
+        }
+
+        /* Navigation & Controls */
+        .quiz-controls-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .ctrl-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid transparent;
+            text-decoration: none;
+        }
+
+        .ctrl-btn-prev {
+            background: var(--bg-card);
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .ctrl-btn-prev:hover:not(:disabled) {
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+            transform: translateX(-3px);
+        }
+
+        .ctrl-btn-next {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+        }
+
+        .ctrl-btn-next:hover:not(:disabled) {
+            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5);
+            transform: translateX(3px);
+        }
+
+        .ctrl-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none !important;
+            box-shadow: none !important;
+        }
+
+        /* Jump tracker dots */
+        .question-tracker-pills {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+
+        .tracker-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .tracker-dot.active {
+            background: var(--accent-cyan);
+            transform: scale(1.3);
+            box-shadow: 0 0 8px var(--accent-cyan);
+        }
+
+        .tracker-dot.answered {
+            background: var(--accent-green);
+        }
+
+        /* Results Screen */
+        .results-section {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-summary-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .results-celebrate-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 1rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.25rem;
+        }
+
+        .results-celebrate-badge.passed {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .results-celebrate-badge.failed {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .results-headline {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .results-subtext {
+            color: var(--text-secondary);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Radial Progress Gauge */
+        .gauge-wrapper {
+            position: relative;
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .gauge-svg {
+            transform: rotate(-90deg);
+            width: 170px;
+            height: 170px;
+        }
+
+        .gauge-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.08);
+            stroke-width: 12;
+        }
+
+        .gauge-progress {
+            fill: none;
+            stroke-width: 12;
+            stroke-linecap: round;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gauge-inner-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gauge-percentage-number {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+        }
+
+        .gauge-score-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+            font-weight: 600;
+        }
+
+        /* Results Stats Grid */
+        .results-stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.25rem;
+            max-width: 720px;
+            margin: 2rem auto;
+        }
+
+        .stat-metric-box {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .stat-metric-val {
+            font-size: 1.45rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-metric-lbl {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Results Action Buttons */
+        .results-actions-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn-retake {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(2, 132, 199, 0.35);
+        }
+
+        .btn-retake:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5);
+        }
+
+        .btn-topics {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .btn-topics:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+        }
+
+        /* Detailed Question Breakdown */
+        .breakdown-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2.25rem;
+            box-shadow: var(--shadow-card);
+        }
+
+        .breakdown-header-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.75rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .breakdown-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-tabs-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .filter-tab-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 0.4rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-tab-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        /* Review Item */
+        .review-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .review-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-item.is-correct {
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .review-item.is-incorrect {
+            border-left: 4px solid var(--accent-red);
+        }
+
+        .review-status-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .review-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+        }
+
+        .review-badge.correct {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+        }
+
+        .review-badge.incorrect {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .review-q-num {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .review-question-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.45;
+        }
+
+        .review-answers-box {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-ans-pill {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.7rem 0.9rem;
+            border-radius: 8px;
+            font-size: 0.88rem;
+        }
+
+        .review-ans-pill.user-ans {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .review-ans-pill.user-ans.incorrect {
+            background: rgba(239, 68, 68, 0.08);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
+        .review-ans-pill.correct-ans {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #6ee7b7;
+        }
+
+        .review-ans-pill .pill-label {
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            padding-top: 2px;
+            min-width: 90px;
+        }
+
+        .explanation-box {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 0.9rem 1.1rem;
+            font-size: 0.87rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        .explanation-box strong {
+            color: var(--accent-cyan);
+            display: block;
+            margin-bottom: 0.25rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Loading / Error States */
+        .state-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 4rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+        }
+
+        .state-spinner {
+            width: 48px;
+            height: 48px;
+            border: 4px solid rgba(56, 189, 248, 0.2);
+            border-top-color: var(--accent-cyan);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .state-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .state-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            max-width: 500px;
+            margin: 0 auto 1.5rem;
+        }
+
+        /* Footer */
+        .site-footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 1.5rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand-col p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            line-height: 1.6;
+            max-width: 360px;
+        }
+
+        .footer-col-title {
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.25rem;
+        }
+
+        .footer-links-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .footer-link:hover {
+            color: var(--accent-cyan);
+            transform: translateX(3px);
+        }
+
+        .footer-bottom-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social-link {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .footer-social-link:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .mobile-toggle-btn {
+                display: flex;
+            }
+
+            .nav-menu.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--bg-secondary);
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem 1.5rem;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            }
+
+            .main-wrapper {
+                padding: 1.5rem 1rem 3rem;
+            }
+
+            .question-card {
+                padding: 1.5rem;
+            }
+
+            .quiz-header-card {
+                padding: 1.5rem;
+            }
+
+            .quiz-main-title {
+                font-size: 1.45rem;
+            }
+
+            .quiz-controls-row {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .ctrl-btn {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .question-tracker-pills {
+                justify-content: center;
+                margin-bottom: 0.5rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Site Header / Navbar -->
+    <header class="site-header">
+        <div class="navbar-container">
+            <a href="index.html" class="brand-logo" aria-label="Agent Mentor Home">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <span>Agent<span class="brand-text-gradient">Mentor</span></span>
+            </a>
+
+            <!-- Desktop & Mobile Navigation Links -->
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="topics.html" class="nav-link"><i class="fa-solid fa-layer-group"></i> Topics</a></li>
+                    <li><a href="roadmap.html" class="nav-link"><i class="fa-solid fa-route"></i> Roadmap</a></li>
+                    <li><a href="studyplan.html" class="nav-link"><i class="fa-solid fa-calendar-check"></i> Study Plan</a></li>
+                    <li><a href="quiz.html" class="nav-link active"><i class="fa-solid fa-circle-question"></i> Quizzes</a></li>
+                    <li><a href="progress.html" class="nav-link"><i class="fa-solid fa-chart-line"></i> Progress</a></li>
+                </ul>
+            </nav>
+
+            <!-- Navbar Actions -->
+            <div class="nav-actions">
+                <button type="button" id="theme-toggle" class="theme-btn" aria-label="Toggle Dark/Light Theme" title="Toggle Theme">
+                    <i class="fa-solid fa-moon" id="theme-icon"></i>
+                </button>
+                <button type="button" id="mobile-menu-toggle" class="mobile-toggle-btn" aria-label="Toggle navigation menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Layout -->
+    <main class="main-wrapper">
+        <!-- Breadcrumb Navigation -->
+        <nav class="breadcrumbs-bar" aria-label="Breadcrumbs">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+            <span>/</span>
+            <a href="topics.html">Topics</a>
+            <span>/</span>
+            <span id="breadcrumb-topic">Python Assessment</span>
+        </nav>
+
+        <!-- Quiz Header Banner -->
+        <header class="quiz-header-card" id="quiz-header">
+            <div class="quiz-header-top">
+                <div class="quiz-level-pill" id="quiz-level-badge">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span id="level-text">Level 01: Foundation</span>
+                </div>
+                <div class="topic-selector-container">
+                    <label for="topic-picker" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Switch Topic:</label>
+                    <select id="topic-picker" class="topic-select-dropdown" aria-label="Select Quiz Topic">
+                        <option value="python">Level 1: Python for Agents</option>
+                        <option value="prompt-engineering">Level 2: Prompt Engineering</option>
+                        <option value="structured-outputs">Level 3: Structured Outputs</option>
+                        <option value="function-calling">Level 4: Function Calling</option>
+                        <option value="embeddings-vector-db">Level 5: Vector DBs & Embeddings</option>
+                        <option value="rag">Level 6: Agentic RAG</option>
+                        <option value="react-agents">Level 7: ReAct Framework</option>
+                        <option value="memory-context">Level 8: Agent Memory & State</option>
+                        <option value="langchain">Level 9: LangChain Ecosystem</option>
+                        <option value="langgraph">Level 10: LangGraph State Machines</option>
+                        <option value="multi-agent">Level 11: Multi-Agent & CrewAI</option>
+                        <option value="autogen">Level 12: AutoGen Swarms</option>
+                        <option value="custom-tools">Level 13: Tool Creation & APIs</option>
+                        <option value="eval-langsmith">Level 14: Evaluation & LangSmith</option>
+                        <option value="production-guardrails">Level 15: Production & Guardrails</option>
+                    </select>
+                </div>
+            </div>
+
+            <h1 class="quiz-main-title" id="quiz-title">Python for AI Agents Assessment</h1>
+            <p class="quiz-description" id="quiz-description">
+                Evaluate your core Python competencies essential for building production-grade autonomous agent systems, including Pydantic models, async loops, and typing.
+            </p>
+
+            <div class="quiz-meta-grid">
+                <div class="quiz-meta-item">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span id="meta-question-count">10 Questions</span>
+                </div>
+                <div class="quiz-meta-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span id="meta-duration">~12 Minutes</span>
+                </div>
+                <div class="quiz-meta-item">
+                    <i class="fa-solid fa-bullseye"></i>
+                    <span id="meta-passing-score">70% Required to Pass</span>
+                </div>
+                <div class="quiz-meta-item">
+                    <i class="fa-solid fa-award"></i>
+                    <span>+150 XP Reward</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Quiz Stage Container -->
+        <section class="quiz-stage-container" id="quiz-stage">
+            
+            <!-- Loading Indicator -->
+            <div id="quiz-loading-view" class="state-container" style="display: none;">
+                <div class="state-spinner"></div>
+                <h2 class="state-title">Loading Assessment...</h2>
+                <p class="state-desc">Fetching quiz curriculum questions and initializing validation runtime.</p>
+            </div>
+
+            <!-- Error / Missing State -->
+            <div id="quiz-error-view" class="state-container" style="display: none;">
+                <i class="fa-solid fa-triangle-exclamation" style="font-size: 2.5rem; color: var(--accent-yellow); margin-bottom: 1rem;"></i>
+                <h2 class="state-title">Quiz Data Unavailable</h2>
+                <p class="state-desc" id="error-message">We couldn't locate questions for this topic. Please choose another level below.</p>
+                <a href="topics.html" class="ctrl-btn ctrl-btn-next" style="display: inline-flex;">
+                    <i class="fa-solid fa-arrow-left"></i> Browse All Topics
+                </a>
+            </div>
+
+            <!-- Active Question Interaction Stage -->
+            <div id="quiz-active-view">
+                <!-- Progress Header -->
+                <div class="quiz-progress-section">
+                    <div class="quiz-progress-meta">
+                        <div class="q-counter-badge">
+                            Question <span id="current-q-num">1</span> of <span id="total-q-num">10</span>
+                        </div>
+                        <div class="progress-percent-label" id="progress-percent">0% Completed</div>
+                    </div>
+                    <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="10">
+                        <div class="progress-fill" id="progress-bar-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Main Question Card -->
+                <article class="question-card" id="question-card">
+                    <div class="question-meta-bar">
+                        <span class="category-tag" id="q-category">Core Concepts</span>
+                        <span class="difficulty-tag" id="q-difficulty">Level 1 Assessment</span>
+                    </div>
+
+                    <h2 class="question-title-text" id="question-text">Loading question text...</h2>
+
+                    <!-- Code Snippet Area (Populated dynamically when question contains code) -->
+                    <div class="code-container" id="code-snippet-box" style="display: none;">
+                        <div class="code-header">
+                            <span id="code-lang-label"><i class="fa-brands fa-python"></i> python</span>
+                            <button type="button" class="copy-code-btn" id="copy-code-btn">
+                                <i class="fa-regular fa-copy"></i> Copy
+                            </button>
+                        </div>
+                        <pre><code id="code-content" class="language-python"></code></pre>
+                    </div>
+
+                    <!-- 4 Multiple Choice Options Form -->
+                    <form id="quiz-options-form" class="options-list" aria-label="Question Options">
+                        <!-- Options generated dynamically -->
+                    </form>
+
+                    <!-- Interactive Bottom Controls Row -->
+                    <div class="quiz-controls-row">
+                        <button type="button" class="ctrl-btn ctrl-btn-prev" id="prev-question-btn" disabled>
+                            <i class="fa-solid fa-arrow-left"></i> Previous
+                        </button>
+
+                        <div class="question-tracker-pills" id="tracker-pills" aria-label="Question Quick Navigator">
+                            <!-- Tracker dots generated dynamically -->
+                        </div>
+
+                        <button type="button" class="ctrl-btn ctrl-btn-next" id="next-question-btn" disabled>
+                            <span id="next-btn-text">Next Question</span> <i class="fa-solid fa-arrow-right" id="next-btn-icon"></i>
+                        </button>
+                    </div>
+                </article>
+            </div>
+
+            <!-- Quiz Results Screen (Revealed upon finishing) -->
+            <div id="quiz-results-view" class="results-section">
+                <!-- Summary Card -->
+                <div class="results-summary-card">
+                    <div class="results-celebrate-badge passed" id="results-badge">
+                        <i class="fa-solid fa-circle-check"></i> Passed & Certified
+                    </div>
+
+                    <h2 class="results-headline" id="results-title">Mastery Achieved! 🎉</h2>
+                    <p class="results-subtext" id="results-subtext">
+                        You demonstrated deep comprehension of the topic and successfully validated your core agent developer capabilities.
+                    </p>
+
+                    <!-- Circular Score Gauge -->
+                    <div class="gauge-wrapper">
+                        <svg class="gauge-svg" viewBox="0 0 160 160">
+                            <circle class="gauge-bg" cx="80" cy="80" r="66" />
+                            <circle class="gauge-progress" id="gauge-circle" cx="80" cy="80" r="66" />
+                        </svg>
+                        <div class="gauge-inner-content">
+                            <span class="gauge-percentage-number" id="results-percentage">80%</span>
+                            <span class="gauge-score-label" id="results-fraction">8 of 10</span>
+                        </div>
+                    </div>
+
+                    <!-- Metrics Grid -->
+                    <div class="results-stats-row">
+                        <div class="stat-metric-box">
+                            <div class="stat-metric-val" id="stat-accuracy" style="color: var(--accent-cyan);">80%</div>
+                            <div class="stat-metric-lbl">Accuracy Rate</div>
+                        </div>
+                        <div class="stat-metric-box">
+                            <div class="stat-metric-val" id="stat-xp" style="color: var(--accent-purple);">+150 XP</div>
+                            <div class="stat-metric-lbl">Experience Earned</div>
+                        </div>
+                        <div class="stat-metric-box">
+                            <div class="stat-metric-val" id="stat-time-spent" style="color: var(--accent-green);">3m 42s</div>
+                            <div class="stat-metric-lbl">Time Elapsed</div>
+                        </div>
+                    </div>
+
+                    <!-- Action Controls -->
+                    <div class="results-actions-wrap">
+                        <button type="button" class="ctrl-btn btn-retake" id="retake-quiz-btn">
+                            <i class="fa-solid fa-rotate-right"></i> Retake Quiz
+                        </button>
+                        <a href="topics.html" class="ctrl-btn btn-topics">
+                            <i class="fa-solid fa-list-ul"></i> Back to Topics
+                        </a>
+                        <a href="roadmap.html" class="ctrl-btn btn-topics">
+                            <i class="fa-solid fa-map"></i> View Roadmap
+                        </a>
+                        <a href="progress.html" class="ctrl-btn btn-topics">
+                            <i class="fa-solid fa-chart-pie"></i> View Progress
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Detailed Answers & Explanations Breakdown -->
+                <div class="breakdown-card">
+                    <div class="breakdown-header-bar">
+                        <h3 class="breakdown-title">
+                            <i class="fa-solid fa-square-check" style="color: var(--accent-cyan);"></i>
+                            Detailed Question Breakdown & Explanations
+                        </h3>
+                        <div class="filter-tabs-group" role="tablist">
+                            <button type="button" class="filter-tab-btn active" data-filter="all" id="filter-all-btn">All (10)</button>
+                            <button type="button" class="filter-tab-btn" data-filter="correct" id="filter-correct-btn">Correct (8)</button>
+                            <button type="button" class="filter-tab-btn" data-filter="incorrect" id="filter-incorrect-btn">Incorrect (2)</button>
+                        </div>
+                    </div>
+
+                    <div class="review-list" id="review-list-container">
+                        <!-- Filled dynamically -->
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Brand Summary -->
+                <div class="footer-brand-col">
+                    <a href="index.html" class="brand-logo" style="display: inline-flex;">
+                        <div class="logo-icon-wrap" style="width: 32px; height: 32px; font-size: 0.95rem;">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <span>Agent<span class="brand-text-gradient">Mentor</span></span>
+                    </a>
+                    <p>
+                        The structured developer learning platform designed to take you from foundational Python to building production-ready autonomous multi-agent swarms across 15 structured mastery levels.
+                    </p>
+                </div>
+
+                <!-- Navigation Links -->
+                <div>
+                    <h4 class="footer-col-title">Curriculum</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="topics.html" class="footer-link">All 15 Levels</a></li>
+                        <li><a href="roadmap.html" class="footer-link">Interactive Roadmap</a></li>
+                        <li><a href="studyplan.html" class="footer-link">Personalized Study Plan</a></li>
+                        <li><a href="quiz.html" class="footer-link">Assessment Quizzes</a></li>
+                        <li><a href="progress.html" class="footer-link">Progress & Certifications</a></li>
+                    </ul>
+                </div>
+
+                <!-- Core Technologies -->
+                <div>
+                    <h4 class="footer-col-title">Agent Tech</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="topics.html?topic=react-agents" class="footer-link">ReAct Framework</a></li>
+                        <li><a href="topics.html?topic=langgraph" class="footer-link">LangGraph State Machines</a></li>
+                        <li><a href="topics.html?topic=multi-agent" class="footer-link">CrewAI Systems</a></li>
+                        <li><a href="topics.html?topic=autogen" class="footer-link">Microsoft AutoGen</a></li>
+                        <li><a href="topics.html?topic=rag" class="footer-link">Agentic RAG & Vector DBs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources & Tools -->
+                <div>
+                    <h4 class="footer-col-title">Community & Docs</h4>
+                    <ul class="footer-links-list">
+                        <li><a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub Repository</a></li>
+                        <li><a href="https://docs.langchain.com" target="_blank" rel="noopener noreferrer" class="footer-link">LangChain Documentation</a></li>
+                        <li><a href="https://python.langchain.com/docs/langgraph" target="_blank" rel="noopener noreferrer" class="footer-link">LangGraph Docs</a></li>
+                        <li><a href="https://docs.crewai.com" target="_blank" rel="noopener noreferrer" class="footer-link">CrewAI Official Docs</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom-bar">
+                <p>&copy; 2026 Agent Mentor Platform. Built for autonomous AI agent developers worldwide.</p>
+                <div class="footer-social-icons">
+                    <a href="#" class="footer-social-link" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Prism.js CDN & Components for Syntax Highlighting -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+
+    <!-- External Project Scripts -->
+    <script src="js/app.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/progress.js"></script>
+
+    <!-- Quiz Engine & Interactive Script -->
+    <script>
+        (function() {
+            'use strict';
+
+            /* =========================================================================
+               1. TOPIC METADATA & FALLBACK COMPREHENSIVE CURRICULUM QUESTIONS
+               Ensures full resilience even when offline or before backend JSONs exist.
+               ========================================================================= */
+            const TOPIC_REGISTRY = {
+                'python': {
+                    title: 'Python for AI Agents Assessment',
+                    level: 'Level 01: Foundation',
+                    description: 'Test your Python proficiency for building AI agents, including typing, Pydantic schemas, async programming, and generators.',
+                    duration: '~10 Minutes',
+                    passingScore: 70,
+                    xp: 150,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Pydantic & Validation',
+                            difficulty: 'Intermediate',
+                            question: 'In modern agent frameworks like LangChain and LangGraph, why is Pydantic BaseModel preferred over standard Python dictionaries for tool inputs and outputs?',
+                            code: 'from pydantic import BaseModel, Field\n\nclass SearchInput(BaseModel):\n    query: str = Field(description="Search keywords")\n    max_results: int = Field(default=5, ge=1, le=20)',
+                            options: [
+                                'Pydantic compiles Python into native C binaries for 10x faster execution speed.',
+                                'Pydantic generates JSON schemas for LLM function calling and validates runtime inputs automatically.',
+                                'Pydantic prevents the Python garbage collector from destroying agent state dictionaries.',
+                                'Pydantic automatically encrypts all memory buffers during LLM API roundtrips.'
+                            ],
+                            answer: 1,
+                            explanation: 'LLM tool calling relies on JSON Schema definitions. Pydantic dynamically generates strict JSON schemas that the LLM consumes, and at runtime validates the generated arguments against typed constraints.'
+                        },
+                        {
+                            id: 2,
+                            category: 'Async Programming',
+                            difficulty: 'Intermediate',
+                            question: 'When building high-throughput multi-agent swarms, which pattern is ideal for running parallel tool calls (e.g., fetching 3 web pages simultaneously)?',
+                            code: 'import asyncio\n\nasync def fetch_urls(urls):\n    # Which expression executes all requests concurrently?\n    tasks = [fetch_page(url) for url in urls]\n    return await asyncio.gather(*tasks)',
+                            options: [
+                                'Using time.sleep() inside a standard for-loop to throttle requests',
+                                'Executing asyncio.gather(*tasks) to run coroutines concurrently in an event loop',
+                                'Using threading.Thread with daemon=False on each URL sequentially',
+                                'Calling asyncio.run() once inside each iteration of a list comprehension'
+                            ],
+                            answer: 1,
+                            explanation: '`asyncio.gather(*tasks)` concurrently schedules and awaits multiple coroutines on a single event loop thread, providing non-blocking I/O ideal for network-bound LLM and tool operations.'
+                        },
+                        {
+                            id: 3,
+                            category: 'Generators & Streaming',
+                            difficulty: 'Intermediate',
+                            question: 'What is the key benefit of implementing agent execution steps using Python generators with the `yield` statement?',
+                            code: 'async def stream_agent_steps(prompt: str):\n    async for chunk in llm.astream(prompt):\n        yield chunk',
+                            options: [
+                                'It allows the client UI to stream token responses immediately rather than waiting for the complete LLM completion.',
+                                'It prevents any exceptions from ever being raised inside async functions.',
+                                'It converts standard string tokens into high-dimensional vector embeddings on the fly.',
+                                'It stores all tokens permanently in a persistent SQLite database.'
+                            ],
+                            answer: 0,
+                            explanation: 'Streaming tokens and agent reasoning steps via async generators (`yield`) reduces perceived latency (Time to First Token) and delivers interactive UX in modern AI applications.'
+                        },
+                        {
+                            id: 4,
+                            category: 'Type Annotations',
+                            difficulty: 'Beginner',
+                            question: 'In TypedDict used in LangGraph state definitions, what does `Annotated[list, operator.add]` specify?',
+                            code: 'from typing import TypedDict, Annotated\nimport operator\n\nclass AgentState(TypedDict):\n    messages: Annotated[list, operator.add]',
+                            options: [
+                                'It restricts the list to only integer numbers and mathematical operations.',
+                                'It defines a reducer function specifying that new messages should be appended rather than overwriting existing messages.',
+                                'It sorts all messages in alphabetical order before invoking nodes.',
+                                'It prevents any node from adding more than one message per execution loop.'
+                            ],
+                            answer: 1,
+                            explanation: 'In LangGraph, `Annotated[Type, reducer_function]` specifies how state keys are merged. `operator.add` appends new items to the existing list instead of overwriting it.'
+                        },
+                        {
+                            id: 5,
+                            category: 'Exception Handling',
+                            difficulty: 'Advanced',
+                            question: 'How should an agent tool handle runtime exceptions (e.g., API timeouts or 404 errors) to prevent crashing the agent loop?',
+                            code: 'def execute_agent_tool(query: str) -> str:\n    try:\n        return api_client.search(query)\n    except Exception as e:\n        return f"Error executing tool: {str(e)}. Please try an alternative approach."',
+                            options: [
+                                'Immediately invoke sys.exit(1) to terminate the entire Python process.',
+                                'Catch the error and return an informative error message string back to the LLM so it can reflect and recover.',
+                                'Silently return None so the LLM assumes the search succeeded with zero results.',
+                                'Raise an unhandled RuntimeError to force the hosting web server to restart.'
+                            ],
+                            answer: 1,
+                            explanation: 'Returning the error message as an observation string allows the LLM to inspect the failure, adjust its strategy, self-correct, or invoke a fallback tool without crashing the workflow.'
+                        }
+                    ]
+                },
+                'prompt-engineering': {
+                    title: 'Prompt Engineering & LLM APIs Assessment',
+                    level: 'Level 02: Prompt Engineering',
+                    description: 'Assess techniques in Few-Shot Prompting, Chain of Thought (CoT), System Instructions, and token budgeting for autonomous agents.',
+                    duration: '~10 Minutes',
+                    passingScore: 70,
+                    xp: 160,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Reasoning Techniques',
+                            difficulty: 'Intermediate',
+                            question: 'Why does Chain-of-Thought (CoT) prompting significantly improve multi-step agent planning accuracy?',
+                            code: '# CoT Prompt Pattern\n"Think step by step. First examine the constraints, then propose your solution, and finally output your final answer."',
+                            options: [
+                                'It forces the LLM to write hidden Python files to disk before answering.',
+                                'It generates intermediate reasoning tokens that condition subsequent token probabilities, allowing step-by-step logic.',
+                                'It reduces the total number of tokens consumed by 50%.',
+                                'It automatically bypasses the model provider content moderation filter.'
+                            ],
+                            answer: 1,
+                            explanation: 'Autoregressive language models predict each next token based on previous tokens. Generating intermediate reasoning steps gives the model "thinking space" to compute accurate conclusions.'
+                        },
+                        {
+                            id: 2,
+                            category: 'Few-Shot Prompting',
+                            difficulty: 'Beginner',
+                            question: 'When should Few-Shot examples be provided in an agent system prompt?',
+                            options: [
+                                'Only when fine-tuning model weights with backpropagation.',
+                                'When teaching the agent specific formatting conventions, domain reasoning patterns, or edge-case handling.',
+                                'When attempting to run the model without an internet connection.',
+                                'To replace temperature parameters in model inference calls.'
+                            ],
+                            answer: 1,
+                            explanation: 'Few-shot in-context examples guide the model on exact output syntax, structure, tone, and decision logic without requiring weight fine-tuning.'
+                        },
+                        {
+                            id: 3,
+                            category: 'Context Window Management',
+                            difficulty: 'Advanced',
+                            question: 'What is the primary risk of "Lost in the Middle" phenomenon in large context windows?',
+                            options: [
+                                'The model fails to start if context exceeds 4096 tokens.',
+                                'Information placed in the middle of long prompts has lower retrieval accuracy than info at the very beginning or end.',
+                                'The API automatically truncates the middle 30% of the user prompt without notification.',
+                                'Vector embeddings lose all cosine similarity when stored in middle clusters.'
+                            ],
+                            answer: 1,
+                            explanation: 'Research demonstrates that frontier LLMs have high recall at the start (primacy) and end (recency) of context windows, but lower attention recall for facts buried in the middle.'
+                        }
+                    ]
+                },
+                'structured-outputs': {
+                    title: 'Structured Outputs & Pydantic Assessment',
+                    level: 'Level 03: Structured Outputs',
+                    description: 'Test schemas, JSON mode, Instructor library, and deterministic data extraction for agent pipelines.',
+                    duration: '~10 Minutes',
+                    passingScore: 70,
+                    xp: 175,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'JSON Schema Extraction',
+                            difficulty: 'Intermediate',
+                            question: 'What is the main advantage of OpenAI / Anthropic native Structured Outputs compared to generic JSON mode?',
+                            code: 'client.beta.chat.completions.parse(\n    model="gpt-4o",\n    messages=[{"role": "user", "content": text}],\n    response_format=AgentDecisionSchema\n)',
+                            options: [
+                                'Generic JSON mode guarantees 100% adherence to Pydantic schemas, while Structured Outputs do not.',
+                                'Structured Outputs use constrained grammar decoding to mathematically guarantee schema compliance with zero schema violations.',
+                                'Structured Outputs allow arbitrary markdown and image generation inside raw JSON strings.',
+                                'Structured Outputs execute the generated code inside a secure Docker container.'
+                            ],
+                            answer: 1,
+                            explanation: 'Native Structured Outputs use constrained grammar decoding (sampling only valid tokens per the grammar) ensuring 100% adherence to the supplied JSON schema.'
+                        }
+                    ]
+                },
+                'function-calling': {
+                    title: 'Function Calling & Tool Execution Assessment',
+                    level: 'Level 04: Tool Calling',
+                    description: 'Evaluate tool definition schemas, parallel tool calls, validation, and execution sandboxing.',
+                    duration: '~10 Minutes',
+                    passingScore: 70,
+                    xp: 180,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Tool Calling Lifecycle',
+                            difficulty: 'Intermediate',
+                            question: 'What is the exact sequence of events when an LLM uses a tool in an agent loop?',
+                            options: [
+                                'LLM executes Python code -> LLM reads database -> LLM returns answer.',
+                                'User prompt -> LLM returns tool_calls object -> Application executes tool locally -> Application sends tool result back to LLM -> LLM generates final response.',
+                                'Application sends prompt -> Database runs LLM -> Server terminates.',
+                                'User prompt -> LLM compiles C binary -> Tool executes in browser.'
+                            ],
+                            answer: 1,
+                            explanation: 'The LLM itself never directly executes code or APIs. It outputs structured intent (`tool_calls`). The host application executes the tool and passes the result back as a `tool` role message.'
+                        }
+                    ]
+                },
+                'embeddings-vector-db': {
+                    title: 'Vector Databases & Embeddings Assessment',
+                    level: 'Level 05: Vector Search',
+                    description: 'Test your understanding of dense embeddings, cosine similarity, HNSW indexing, and vector stores.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 190,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Similarity Metrics',
+                            difficulty: 'Intermediate',
+                            question: 'When comparing normalized semantic embedding vectors, what metric is calculated by the dot product of two vectors?',
+                            options: [
+                                'Manhattan Distance',
+                                'Cosine Similarity',
+                                'Hamming Distance',
+                                'Jaccard Index'
+                            ],
+                            answer: 1,
+                            explanation: 'For unit-normalized vectors (magnitude = 1), the dot product is mathematically equivalent to the cosine similarity, measuring the angular closeness in embedding space.'
+                        }
+                    ]
+                },
+                'rag': {
+                    title: 'Agentic RAG & Hybrid Retrieval Assessment',
+                    level: 'Level 06: Knowledge Retrieval',
+                    description: 'Assess routing, self-correction, query expansion, re-ranking, and parent-child retrieval architectures.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 200,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Agentic RAG',
+                            difficulty: 'Intermediate',
+                            question: 'How does Agentic RAG differ fundamentally from naive/standard RAG pipelines?',
+                            options: [
+                                'Agentic RAG only works on raw HTML web pages, not PDFs.',
+                                'Agentic RAG allows the model to dynamically formulate queries, inspect retrieval quality, re-write queries, and decide when more search is needed.',
+                                'Standard RAG does not use vector databases, whereas Agentic RAG does.',
+                                'Agentic RAG removes the need for embedding models.'
+                            ],
+                            answer: 1,
+                            explanation: 'Unlike static linear standard RAG (retrieve -> generate), Agentic RAG introduces iterative decision loops: evaluating retrieved documents, generating sub-queries, and self-correcting.'
+                        }
+                    ]
+                },
+                'react-agents': {
+                    title: 'ReAct Agent Framework Assessment',
+                    level: 'Level 07: Reasoning & Acting',
+                    description: 'Evaluate Thought-Action-Observation loops, stopping conditions, and hallucination prevention.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 210,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'ReAct Loop',
+                            difficulty: 'Intermediate',
+                            question: 'What are the three core repeating phases of the ReAct prompting and execution paradigm?',
+                            code: 'Thought: I need to check the current temperature in Berlin.\nAction: weather_lookup[Berlin]\nObservation: 18°C, partly cloudy.\nThought: I now have the answer.',
+                            options: [
+                                'Encode, Embed, Cluster',
+                                'Thought (Reasoning), Action (Tool Call), Observation (Environment Feedback)',
+                                'Train, Validate, Test',
+                                'Prompt, Temperature, Top_P'
+                            ],
+                            answer: 1,
+                            explanation: 'ReAct pairs reasoning traces ("Thought") with task-specific actions ("Action") and incorporates the environment feedback ("Observation") into continuing logic.'
+                        }
+                    ]
+                },
+                'memory-context': {
+                    title: 'Agent Memory & Context Assessment',
+                    level: 'Level 08: Memory Systems',
+                    description: 'Test short-term, episodic, semantic, and procedural memory implementations for long-running agents.',
+                    duration: '~10 Minutes',
+                    passingScore: 70,
+                    xp: 220,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Memory Architectures',
+                            difficulty: 'Advanced',
+                            question: 'Which memory type is best suited for an agent remembering a user’s permanent preferences and past project decisions across different chat sessions?',
+                            options: [
+                                'Short-term buffer memory holding the last 5 messages in RAM',
+                                'Long-term Semantic / Episodic Memory backed by a vector database or key-value store with semantic retrieval',
+                                'Temporary system environment variables in Python',
+                                'CPU L3 hardware cache registers'
+                            ],
+                            answer: 1,
+                            explanation: 'Persistent episodic & semantic memory stored externally (e.g. MemGPT, Zep, or Vector DB) persists across session boundaries and is retrieved dynamically via relevance queries.'
+                        }
+                    ]
+                },
+                'langchain': {
+                    title: 'LangChain Ecosystem Assessment',
+                    level: 'Level 09: Frameworks',
+                    description: 'Evaluate LCEL (LangChain Expression Language), runnables, callbacks, and integrations.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 230,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'LCEL Syntax',
+                            difficulty: 'Intermediate',
+                            question: 'What does the pipe operator `|` represent in LangChain Expression Language (LCEL)?',
+                            code: 'chain = prompt_template | chat_model | StrOutputParser()',
+                            options: [
+                                'Bitwise OR evaluation between Python integers',
+                                'Chaining Runnables together, passing the output of the left component as input to the right component',
+                                'Writing standard output to a Linux terminal file',
+                                'Parallel multiprocessing across multiple CPU cores'
+                            ],
+                            answer: 1,
+                            explanation: 'In LCEL, `|` composes `Runnable` objects into an executable pipeline, providing unified support for streaming, batching, async execution, and tracing.'
+                        }
+                    ]
+                },
+                'langgraph': {
+                    title: 'LangGraph & State Machines Assessment',
+                    level: 'Level 10: State Graphs',
+                    description: 'Test state schemas, conditional edges, human-in-the-loop checkpoints, and cyclic graphs.',
+                    duration: '~15 Minutes',
+                    passingScore: 70,
+                    xp: 250,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Graph Architecture',
+                            difficulty: 'Advanced',
+                            question: 'Why is LangGraph superior to traditional DAG (Directed Acyclic Graph) pipeline runners for agentic workflows?',
+                            options: [
+                                'LangGraph supports cyclical execution loops, enabling agents to reason, act, observe, and loop back until completion.',
+                                'LangGraph only runs in frontend JavaScript and does not require Python.',
+                                'DAG pipelines do not support LLMs.',
+                                'LangGraph deletes state automatically after every node to conserve memory.'
+                            ],
+                            answer: 0,
+                            explanation: 'Autonomous agents fundamentally require cycles (loops) to reflect, retry tools, and self-correct. LangGraph was built specifically as a cyclic graph system with checkpointed persistence.'
+                        },
+                        {
+                            id: 2,
+                            category: 'State Persistence',
+                            difficulty: 'Advanced',
+                            question: 'What feature of LangGraph enables Human-in-the-Loop approval before an agent executes a sensitive tool (e.g., executing financial transfers)?',
+                            code: 'workflow.compile(checkpointer=MemorySaver(), interrupt_before=["execute_payment"])',
+                            options: [
+                                'Hardcoded time.sleep(60)',
+                                'Checkpointers combined with `interrupt_before` or `interrupt_after` breakpoints that pause graph execution until resumed',
+                                'Sending an unhandled exception to abort execution',
+                                'Forcing the model temperature to zero'
+                            ],
+                            answer: 1,
+                            explanation: 'LangGraph checkpointers save complete thread state to storage, and `interrupt_before` halts the graph before the specified node so humans can review, edit state, and resume.'
+                        }
+                    ]
+                },
+                'multi-agent': {
+                    title: 'Multi-Agent Systems & CrewAI Assessment',
+                    level: 'Level 11: Multi-Agent Systems',
+                    description: 'Assess role playing, delegation, sequential vs hierarchical processes, and team collaboration.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 260,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Agent Roleplay',
+                            difficulty: 'Intermediate',
+                            question: 'In CrewAI, what three attributes are essential when defining specialized agents?',
+                            code: 'researcher = Agent(\n    role="Senior Market Analyst",\n    goal="Uncover emerging AI trends in 2026",\n    backstory="You are an expert Wall Street analyst known for rigorous data synthesis."\n)',
+                            options: [
+                                'IP address, port number, SSL certificate',
+                                'Role, Goal, and Backstory',
+                                'SQL username, password, database name',
+                                'Width, height, aspect ratio'
+                            ],
+                            answer: 1,
+                            explanation: 'In CrewAI, specifying Role, Goal, and Backstory conditions the LLM persona, keeping agents specialized and preventing goal drift during multi-agent collaboration.'
+                        }
+                    ]
+                },
+                'autogen': {
+                    title: 'AutoGen & Collaborative Swarms Assessment',
+                    level: 'Level 12: AutoGen Swarms',
+                    description: 'Test conversational agent patterns, group chats, code execution sandboxes, and termination criteria.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 270,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Conversational Agents',
+                            difficulty: 'Intermediate',
+                            question: 'How do AutoGen agents primarily collaborate to solve complex engineering tasks?',
+                            options: [
+                                'By sharing a single global GPU tensor memory array',
+                                'Through multi-turn conversational message passing between specialized agents and a GroupChatManager',
+                                'By compiling C++ shared libraries in real time',
+                                'Through manual human intervention on every single word'
+                            ],
+                            answer: 1,
+                            explanation: 'Microsoft AutoGen models problem solving as multi-turn conversations between customizable agents (AssistantAgent, UserProxyAgent, etc.) coordinated by chat managers.'
+                        }
+                    ]
+                },
+                'custom-tools': {
+                    title: 'Custom Tools & API Integration Assessment',
+                    level: 'Level 13: Tool Engineering',
+                    description: 'Evaluate rate limiting, OAuth authentication, sandbox environments, and OpenAPI specs for agents.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 280,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Security & Sandboxing',
+                            difficulty: 'Advanced',
+                            question: 'When allowing an AI agent to execute arbitrary code or shell commands, what is the safest production practice?',
+                            options: [
+                                'Running the commands directly as root on the production host server',
+                                'Executing inside an isolated container/sandbox (e.g. gVisor, Docker, or firecracker microVM) with strict resource limits and network isolation',
+                                'Disabling system firewalls to speed up socket connections',
+                                'Renaming bash.exe to python.exe'
+                            ],
+                            answer: 1,
+                            explanation: 'Untrusted code execution from LLMs must always occur in restricted sandboxes (microVMs or gVisor containers) with strict timeouts, zero root privileges, and controlled network egress.'
+                        }
+                    ]
+                },
+                'eval-langsmith': {
+                    title: 'Evaluation, Tracing & LangSmith Assessment',
+                    level: 'Level 14: Observability',
+                    description: 'Assess LLM-as-a-Judge, latency tracing, token cost accounting, and benchmark datasets.',
+                    duration: '~12 Minutes',
+                    passingScore: 70,
+                    xp: 290,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'LLM Observability',
+                            difficulty: 'Intermediate',
+                            question: 'What is the primary function of tracing platforms like LangSmith, Arize Phoenix, or Langfuse?',
+                            options: [
+                                'To draw vector graphics in the browser canvas',
+                                'To record exact prompt inputs, intermediate tool calls, latency, token spend, and execution trees for debugging and evaluation',
+                                'To replace OpenAI models with local mini models',
+                                'To automatically write code without any user prompt'
+                            ],
+                            answer: 1,
+                            explanation: 'Tracing captures the full call tree of compound AI systems, logging every prompt, tool execution, token usage, and latency metric for debugging and regression testing.'
+                        }
+                    ]
+                },
+                'production-guardrails': {
+                    title: 'Production Deployment & Guardrails Assessment',
+                    level: 'Level 15: Production & Safety',
+                    description: 'Evaluate NeMo Guardrails, prompt injection mitigation, red-teaming, rate limits, and SLA uptime.',
+                    duration: '~15 Minutes',
+                    passingScore: 70,
+                    xp: 300,
+                    questions: [
+                        {
+                            id: 1,
+                            category: 'Security & Guardrails',
+                            difficulty: 'Advanced',
+                            question: 'Which technique is most effective against indirect prompt injection attacks (where malicious instructions are hidden inside external data like retrieved web pages)?',
+                            options: [
+                                'Increasing the model temperature to 1.5',
+                                'Separating untrusted data using strict delimiter boundaries, input sanitization classifiers, and dual-LLM supervisor guardrails',
+                                'Removing all system prompts from the application',
+                                'Storing the prompt in clear text on the user clipboard'
+                            ],
+                            answer: 1,
+                            explanation: 'Indirect prompt injections require defense in depth: clear semantic tagging/delimiters, secondary evaluator guardrails (like Llama Guard or NeMo), and least-privilege tool access.'
+                        }
+                    ]
+                }
+            };
+
+            /* =========================================================================
+               2. QUIZ RUNTIME STATE
+               ========================================================================= */
+            const state = {
+                topicKey: 'python',
+                quizInfo: null,
+                questions: [],
+                currentIndex: 0,
+                userAnswers: {},     // { questionIndex: selectedOptionIndex }
+                startTime: null,
+                elapsedSeconds: 0,
+                timerInterval: null,
+                filterMode: 'all'
+            };
+
+            /* =========================================================================
+               3. DOM ELEMENT REFERENCES
+               ========================================================================= */
+            const dom = {
+                // Header & Breadcrumb
+                breadcrumbTopic: document.getElementById('breadcrumb-topic'),
+                levelBadge: document.getElementById('quiz-level-badge'),
+                levelText: document.getElementById('level-text'),
+                topicPicker: document.getElementById('topic-picker'),
+                quizTitle: document.getElementById('quiz-title'),
+                quizDescription: document.getElementById('quiz-description'),
+                metaQuestionCount: document.getElementById('meta-question-count'),
+                metaDuration: document.getElementById('meta-duration'),
+                metaPassingScore: document.getElementById('meta-passing-score'),
+
+                // Views
+                loadingView: document.getElementById('quiz-loading-view'),
+                errorView: document.getElementById('quiz-error-view'),
+                errorMessage: document.getElementById('error-message'),
+                activeView: document.getElementById('quiz-active-view'),
+                resultsView: document.getElementById('quiz-results-view'),
+
+                // Active Question View
+                currentQNum: document.getElementById('current-q-num'),
+                totalQNum: document.getElementById('total-q-num'),
+                progressPercent: document.getElementById('progress-percent'),
+                progressBarFill: document.getElementById('progress-bar-fill'),
+                questionCard: document.getElementById('question-card'),
+                qCategory: document.getElementById('q-category'),
+                qDifficulty: document.getElementById('q-difficulty'),
+                questionText: document.getElementById('question-text'),
+                codeSnippetBox: document.getElementById('code-snippet-box'),
+                codeContent: document.getElementById('code-content'),
+                codeLangLabel: document.getElementById('code-lang-label'),
+                copyCodeBtn: document.getElementById('copy-code-btn'),
+                optionsForm: document.getElementById('quiz-options-form'),
+                prevBtn: document.getElementById('prev-question-btn'),
+                nextBtn: document.getElementById('next-question-btn'),
+                nextBtnText: document.getElementById('next-btn-text'),
+                nextBtnIcon: document.getElementById('next-btn-icon'),
+                trackerPills: document.getElementById('tracker-pills'),
+
+                // Results View
+                resultsBadge: document.getElementById('results-badge'),
+                resultsTitle: document.getElementById('results-title'),
+                resultsSubtext: document.getElementById('results-subtext'),
+                gaugeCircle: document.getElementById('gauge-circle'),
+                resultsPercentage: document.getElementById('results-percentage'),
+                resultsFraction: document.getElementById('results-fraction'),
+                statAccuracy: document.getElementById('stat-accuracy'),
+                statXp: document.getElementById('stat-xp'),
+                statTimeSpent: document.getElementById('stat-time-spent'),
+                retakeBtn: document.getElementById('retake-quiz-btn'),
+                reviewContainer: document.getElementById('review-list-container'),
+                filterAllBtn: document.getElementById('filter-all-btn'),
+                filterCorrectBtn: document.getElementById('filter-correct-btn'),
+                filterIncorrectBtn: document.getElementById('filter-incorrect-btn'),
+
+                // Global Controls
+                themeToggle: document.getElementById('theme-toggle'),
+                themeIcon: document.getElementById('theme-icon'),
+                mobileToggle: document.getElementById('mobile-menu-toggle'),
+                navMenu: document.getElementById('nav-menu')
+            };
+
+            /* =========================================================================
+               4. INITIALIZATION & DATA LOADING
+               ========================================================================= */
+            function init() {
+                setupThemeAndNav();
+                setupEventListeners();
+
+                // Read ?topic=X from URL
+                const params = new URLSearchParams(window.location.search);
+                const requestedTopic = (params.get('topic') || 'python').toLowerCase().trim();
+                
+                state.topicKey = requestedTopic;
+                if (dom.topicPicker) {
+                    dom.topicPicker.value = requestedTopic;
+                    if (!dom.topicPicker.value) {
+                        // If not in standard dropdown, add it dynamically
+                        const newOption = document.createElement('option');
+                        newOption.value = requestedTopic;
+                        newOption.textContent = `Topic: ${requestedTopic.toUpperCase()}`;
+                        dom.topicPicker.appendChild(newOption);
+                        dom.topicPicker.value = requestedTopic;
+                    }
+                }
+
+                loadQuizData(requestedTopic);
+            }
+
+            /**
+             * Asynchronously fetches quiz JSON with graceful fallback
+             */
+            async function loadQuizData(topicKey) {
+                showView('loading');
+
+                let loadedData = null;
+
+                // 1. Try to fetch external data file: data/quizzes/{topic}-quiz.json
+                try {
+                    const response = await fetch(`data/quizzes/${topicKey}-quiz.json`);
+                    if (response.ok) {
+                        loadedData = await response.json();
+                    }
+                } catch (err) {
+                    console.log(`[Quiz] Note: Could not fetch remote data/quizzes/${topicKey}-quiz.json, falling back to registered data.`);
+                }
+
+                // 2. If not found, try alternative file name: data/quizzes/{topic}.json
+                if (!loadedData) {
+                    try {
+                        const response = await fetch(`data/quizzes/${topicKey}.json`);
+                        if (response.ok) {
+                            loadedData = await response.json();
+                        }
+                    } catch (err) {
+                        // ignore and proceed to registry fallback
+                    }
+                }
+
+                // 3. Fallback to embedded topic registry if fetch was unsuccessful
+                if (!loadedData && TOPIC_REGISTRY[topicKey]) {
+                    loadedData = TOPIC_REGISTRY[topicKey];
+                }
+
+                // 4. Default generic fallback if topic is unknown
+                if (!loadedData) {
+                    // Try 'python' as safe default
+                    if (TOPIC_REGISTRY['python']) {
+                        console.warn(`[Quiz] Unknown topic '${topicKey}', defaulting to Python.`);
+                        loadedData = TOPIC_REGISTRY['python'];
+                        state.topicKey = 'python';
+                    } else {
+                        showView('error', `Quiz assessment for "${topicKey}" is currently being prepared. Please select another module.`);
+                        return;
+                    }
+                }
+
+                // Prepare state
+                state.quizInfo = loadedData;
+                state.questions = Array.isArray(loadedData.questions) ? loadedData.questions : [];
+                state.currentIndex = 0;
+                state.userAnswers = {};
+                state.startTime = Date.now();
+
+                if (state.questions.length === 0) {
+                    showView('error', `No questions found for ${loadedData.title || topicKey}.`);
+                    return;
+                }
+
+                // Populate Meta UI
+                updateHeaderInfo();
+                createTrackerPills();
+                renderQuestion(0);
+                showView('active');
+
+                // Start timer
+                if (state.timerInterval) clearInterval(state.timerInterval);
+                state.timerInterval = setInterval(() => {
+                    state.elapsedSeconds = Math.floor((Date.now() - state.startTime) / 1000);
+                }, 1000);
+            }
+
+            function updateHeaderInfo() {
+                const info = state.quizInfo;
+                if (!info) return;
+
+                if (dom.breadcrumbTopic) dom.breadcrumbTopic.textContent = info.title || 'Assessment';
+                if (dom.quizTitle) dom.quizTitle.textContent = info.title || 'Agent Assessment';
+                if (dom.quizDescription) dom.quizDescription.textContent = info.description || 'Test your knowledge on autonomous agent architectures.';
+                if (dom.levelText) dom.levelText.textContent = info.level || 'Assessment Level';
+                if (dom.metaQuestionCount) dom.metaQuestionCount.textContent = `${state.questions.length} Questions`;
+                if (dom.metaDuration) dom.metaDuration.textContent = info.duration || `~${Math.max(5, state.questions.length * 2)} Mins`;
+                if (dom.metaPassingScore) dom.metaPassingScore.textContent = `${info.passingScore || 70}% Required to Pass`;
+                if (dom.totalQNum) dom.totalQNum.textContent = state.questions.length;
+            }
+
+            /* =========================================================================
+               5. QUESTION RENDERING & INTERACTION
+               ========================================================================= */
+            function renderQuestion(index) {
+                if (index < 0 || index >= state.questions.length) return;
+
+                state.currentIndex = index;
+                const q = state.questions[index];
+
+                // Update Progress Header
+                if (dom.currentQNum) dom.currentQNum.textContent = index + 1;
+                const percent = Math.round(((index + 1) / state.questions.length) * 100);
+                if (dom.progressPercent) dom.progressPercent.textContent = `${percent}% Completed`;
+                if (dom.progressBarFill) dom.progressBarFill.style.width = `${percent}%`;
+
+                // Update Question Text & Meta
+                if (dom.qCategory) dom.qCategory.textContent = q.category || 'General';
+                if (dom.qDifficulty) dom.qDifficulty.textContent = q.difficulty || `Level ${state.quizInfo?.level || 1}`;
+                if (dom.questionText) dom.questionText.textContent = q.question;
+
+                // Code Snippet Rendering
+                if (q.code && q.code.trim().length > 0) {
+                    dom.codeSnippetBox.style.display = 'block';
+                    dom.codeContent.textContent = q.code;
+                    
+                    // Re-highlight using Prism.js if present
+                    if (window.Prism) {
+                        Prism.highlightElement(dom.codeContent);
+                    }
+                } else {
+                    dom.codeSnippetBox.style.display = 'none';
+                    dom.codeContent.textContent = '';
+                }
+
+                // Render Options
+                dom.optionsForm.innerHTML = '';
+                const letters = ['A', 'B', 'C', 'D', 'E', 'F'];
+
+                q.options.forEach((optText, optIdx) => {
+                    const optId = `opt-${index}-${optIdx}`;
+                    const isSelected = state.userAnswers[index] === optIdx;
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'option-item';
+
+                    itemDiv.innerHTML = `
+                        <input type="radio" 
+                               name="quiz_option" 
+                               id="${optId}" 
+                               value="${optIdx}" 
+                               class="option-input" 
+                               ${isSelected ? 'checked' : ''} 
+                               aria-label="Option ${letters[optIdx]}: ${optText}">
+                        <label for="${optId}" class="option-label">
+                            <span class="option-letter-badge">${letters[optIdx]}</span>
+                            <span class="option-text-wrap">${escapeHtml(optText)}</span>
+                        </label>
+                    `;
+
+                    // Handle selection event
+                    const radio = itemDiv.querySelector('input');
+                    radio.addEventListener('change', () => {
+                        handleOptionSelect(optIdx);
+                    });
+
+                    dom.optionsForm.appendChild(itemDiv);
+                });
+
+                // Update Control Buttons
+                dom.prevBtn.disabled = (index === 0);
+
+                const hasAnswer = (state.userAnswers[index] !== undefined);
+                dom.nextBtn.disabled = !hasAnswer;
+
+                if (index === state.questions.length - 1) {
+                    dom.nextBtnText.textContent = 'Submit & View Results';
+                    dom.nextBtnIcon.className = 'fa-solid fa-flag-checkered';
+                } else {
+                    dom.nextBtnText.textContent = 'Next Question';
+                    dom.nextBtnIcon.className = 'fa-solid fa-arrow-right';
+                }
+
+                updateTrackerPills();
+            }
+
+            function handleOptionSelect(optionIndex) {
+                state.userAnswers[state.currentIndex] = optionIndex;
+                dom.nextBtn.disabled = false;
+                updateTrackerPills();
+            }
+
+            function createTrackerPills() {
+                dom.trackerPills.innerHTML = '';
+                state.questions.forEach((_, idx) => {
+                    const dot = document.createElement('div');
+                    dot.className = 'tracker-dot';
+                    dot.title = `Go to question ${idx + 1}`;
+                    dot.setAttribute('aria-label', `Question ${idx + 1}`);
+                    dot.addEventListener('click', () => {
+                        renderQuestion(idx);
+                    });
+                    dom.trackerPills.appendChild(dot);
+                });
+            }
+
+            function updateTrackerPills() {
+                const dots = dom.trackerPills.querySelectorAll('.tracker-dot');
+                dots.forEach((dot, idx) => {
+                    dot.classList.remove('active', 'answered');
+                    if (idx === state.currentIndex) {
+                        dot.classList.add('active');
+                    } else if (state.userAnswers[idx] !== undefined) {
+                        dot.classList.add('answered');
+                    }
+                });
+            }
+
+            /* =========================================================================
+               6. RESULTS & EVALUATION
+               ========================================================================= */
+            function evaluateAndShowResults() {
+                if (state.timerInterval) clearInterval(state.timerInterval);
+
+                const total = state.questions.length;
+                let correctCount = 0;
+
+                state.questions.forEach((q, idx) => {
+                    const userAns = state.userAnswers[idx];
+                    // Normalize answer index (in case json uses letter or string)
+                    let correctAns = q.answer;
+                    if (typeof correctAns === 'string') {
+                        const letterMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+                        if (letterMap[correctAns.toLowerCase()] !== undefined) {
+                            correctAns = letterMap[correctAns.toLowerCase()];
+                        } else {
+                            correctAns = q.options.findIndex(o => o.trim().toLowerCase() === correctAns.trim().toLowerCase());
+                        }
+                    }
+
+                    if (userAns !== undefined && userAns === correctAns) {
+                        correctCount++;
+                    }
+                });
+
+                const percentage = Math.round((correctCount / total) * 100);
+                const passThreshold = state.quizInfo?.passingScore || 70;
+                const isPassed = percentage >= passThreshold;
+
+                // Update UI Summary Elements
+                dom.resultsFraction.textContent = `${correctCount} of ${total}`;
+                dom.resultsPercentage.textContent = `${percentage}%`;
+                dom.statAccuracy.textContent = `${percentage}%`;
+                
+                // Formatted Time Spent
+                const minutes = Math.floor(state.elapsedSeconds / 60);
+                const seconds = state.elapsedSeconds % 60;
+                dom.statTimeSpent.textContent = `${minutes}m ${seconds < 10 ? '0' : ''}${seconds}s`;
+
+                // Calculate Awarded XP
+                const baseXP = state.quizInfo?.xp || 150;
+                const earnedXP = isPassed ? baseXP : Math.round(baseXP * (percentage / 100));
+                dom.statXp.textContent = `+${earnedXP} XP`;
+
+                // Badge & Celebration Feedback
+                if (isPassed) {
+                    dom.resultsBadge.className = 'results-celebrate-badge passed';
+                    dom.resultsBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Mastery Passed';
+                    dom.resultsTitle.textContent = percentage === 100 ? 'Flawless 100% Score! 🚀' : 'Mastery Achieved! 🎉';
+                    dom.resultsSubtext.textContent = `Impressive! You passed with ${percentage}%. You have demonstrated competence for ${state.quizInfo?.level || 'this level'}.`;
+                    dom.gaugeCircle.style.stroke = 'var(--accent-green)';
+                } else {
+                    dom.resultsBadge.className = 'results-celebrate-badge failed';
+                    dom.resultsBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Needs Review';
+                    dom.resultsTitle.textContent = 'Keep Leveling Up! 💪';
+                    dom.resultsSubtext.textContent = `You scored ${percentage}%. A passing grade of ${passThreshold}% is required to unlock this level badge. Review explanations below and retake!`;
+                    dom.gaugeCircle.style.stroke = percentage >= 50 ? 'var(--accent-yellow)' : 'var(--accent-red)';
+                }
+
+                // Animate Circular Gauge
+                // Stroke circumference for r=66 is 2 * PI * 66 ~= 414.69
+                const circumference = 2 * Math.PI * 66;
+                dom.gaugeCircle.style.strokeDasharray = circumference;
+                const offset = circumference - (percentage / 100) * circumference;
+                setTimeout(() => {
+                    dom.gaugeCircle.style.strokeDashoffset = offset;
+                }, 100);
+
+                // Save to ProgressManager
+                saveCompletionToProgressManager({
+                    topic: state.topicKey,
+                    topicTitle: state.quizInfo?.title || state.topicKey,
+                    score: correctCount,
+                    total: total,
+                    percentage: percentage,
+                    passed: isPassed,
+                    xpEarned: earnedXP,
+                    timeSpentSeconds: state.elapsedSeconds
+                });
+
+                // Render Detailed Explanations
+                renderDetailedReview();
+
+                // Switch to Results View
+                showView('results');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            function saveCompletionToProgressManager(result) {
+                console.log('[Quiz Engine] Saving quiz results:', result);
+
+                // 1. Try global ProgressManager if initialized
+                if (window.ProgressManager) {
+                    try {
+                        if (typeof ProgressManager.saveQuizResult === 'function') {
+                            ProgressManager.saveQuizResult(result.topic, result.score, result.total, result.percentage);
+                        } else if (typeof ProgressManager.recordQuiz === 'function') {
+                            ProgressManager.recordQuiz(result.topic, result.score, result.total, result.percentage);
+                        } else if (typeof ProgressManager.completeQuiz === 'function') {
+                            ProgressManager.completeQuiz(result.topic, result.score, result.total);
+                        } else if (typeof ProgressManager.saveProgress === 'function') {
+                            ProgressManager.saveProgress({ type: 'quiz', ...result });
+                        }
+                    } catch (e) {
+                        console.warn('[Quiz Engine] ProgressManager invocation error:', e);
+                    }
+                }
+
+                // 2. Resilient fallback to LocalStorage for full persistence
+                try {
+                    const storageKey = 'agent_mentor_quiz_history';
+                    const history = JSON.parse(localStorage.getItem(storageKey) || '{}');
+                    history[result.topic] = {
+                        ...result,
+                        timestamp: new Date().toISOString()
+                    };
+                    localStorage.setItem(storageKey, JSON.stringify(history));
+
+                    // Dispatch custom event for dashboard or progress.html
+                    window.dispatchEvent(new CustomEvent('agentQuizCompleted', { detail: result }));
+                } catch (e) {
+                    console.error('[Quiz Engine] LocalStorage write error:', e);
+                }
+            }
+
+            function renderDetailedReview() {
+                dom.reviewContainer.innerHTML = '';
+                const letters = ['A', 'B', 'C', 'D', 'E'];
+
+                let correctCount = 0;
+                let incorrectCount = 0;
+
+                state.questions.forEach((q, idx) => {
+                    const userAns = state.userAnswers[idx];
+                    
+                    // Normalize correct answer
+                    let correctAns = q.answer;
+                    if (typeof correctAns === 'string') {
+                        const letterMap = { 'a': 0, 'b': 1, 'c': 2, 'd': 3 };
+                        if (letterMap[correctAns.toLowerCase()] !== undefined) {
+                            correctAns = letterMap[correctAns.toLowerCase()];
+                        } else {
+                            correctAns = q.options.findIndex(o => o.trim().toLowerCase() === correctAns.trim().toLowerCase());
+                        }
+                    }
+
+                    const isCorrect = (userAns !== undefined && userAns === correctAns);
+                    if (isCorrect) correctCount++; else incorrectCount++;
+
+                    const userAnsText = userAns !== undefined ? `${letters[userAns]}. ${q.options[userAns]}` : 'No answer selected';
+                    const correctAnsText = `${letters[correctAns]}. ${q.options[correctAns]}`;
+
+                    const reviewCard = document.createElement('div');
+                    reviewCard.className = `review-item ${isCorrect ? 'is-correct' : 'is-incorrect'}`;
+                    reviewCard.dataset.type = isCorrect ? 'correct' : 'incorrect';
+
+                    reviewCard.innerHTML = `
+                        <div class="review-status-row">
+                            <span class="review-q-num">Question ${idx + 1} of ${state.questions.length}</span>
+                            <span class="review-badge ${isCorrect ? 'correct' : 'incorrect'}">
+                                <i class="fa-solid ${isCorrect ? 'fa-check' : 'fa-xmark'}"></i>
+                                ${isCorrect ? 'Correct Answer' : 'Incorrect'}
+                            </span>
+                        </div>
+                        <h4 class="review-question-text">${escapeHtml(q.question)}</h4>
+
+                        ${q.code ? `
+                            <div class="code-container" style="margin: 0.75rem 0 1rem;">
+                                <pre><code class="language-python">${escapeHtml(q.code)}</code></pre>
+                            </div>
+                        ` : ''}
+
+                        <div class="review-answers-box">
+                            <div class="review-ans-pill user-ans ${isCorrect ? '' : 'incorrect'}">
+                                <span class="pill-label">Your Answer:</span>
+                                <span>${escapeHtml(userAnsText)}</span>
+                            </div>
+                            ${!isCorrect ? `
+                                <div class="review-ans-pill correct-ans">
+                                    <span class="pill-label">Correct:</span>
+                                    <span>${escapeHtml(correctAnsText)}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <div class="explanation-box">
+                            <strong><i class="fa-solid fa-lightbulb"></i> Technical Explanation</strong>
+                            <p>${escapeHtml(q.explanation || 'No explanation provided for this question.')}</p>
+                        </div>
+                    `;
+
+                    dom.reviewContainer.appendChild(reviewCard);
+                });
+
+                // Update filter tab counts
+                dom.filterAllBtn.textContent = `All (${state.questions.length})`;
+                dom.filterCorrectBtn.textContent = `Correct (${correctCount})`;
+                dom.filterIncorrectBtn.textContent = `Incorrect (${incorrectCount})`;
+
+                // Highlight code blocks in review items
+                if (window.Prism) {
+                    Prism.highlightAllUnder(dom.reviewContainer);
+                }
+            }
+
+            function filterReviewItems(filter) {
+                state.filterMode = filter;
+
+                [dom.filterAllBtn, dom.filterCorrectBtn, dom.filterIncorrectBtn].forEach(btn => btn.classList.remove('active'));
+                if (filter === 'all') dom.filterAllBtn.classList.add('active');
+                if (filter === 'correct') dom.filterCorrectBtn.classList.add('active');
+                if (filter === 'incorrect') dom.filterIncorrectBtn.classList.add('active');
+
+                const items = dom.reviewContainer.querySelectorAll('.review-item');
+                items.forEach(item => {
+                    if (filter === 'all' || item.dataset.type === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }
+
+            /* =========================================================================
+               7. EVENT LISTENERS & USER CONTROLS
+               ========================================================================= */
+            function setupEventListeners() {
+                // Next Button
+                dom.nextBtn.addEventListener('click', () => {
+                    if (state.currentIndex === state.questions.length - 1) {
+                        evaluateAndShowResults();
+                    } else {
+                        renderQuestion(state.currentIndex + 1);
+                    }
+                });
+
+                // Previous Button
+                dom.prevBtn.addEventListener('click', () => {
+                    if (state.currentIndex > 0) {
+                        renderQuestion(state.currentIndex - 1);
+                    }
+                });
+
+                // Retake Quiz
+                dom.retakeBtn.addEventListener('click', () => {
+                    state.userAnswers = {};
+                    state.startTime = Date.now();
+                    showView('active');
+                    renderQuestion(0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+
+                // Topic Switcher Dropdown
+                dom.topicPicker.addEventListener('change', (e) => {
+                    const selected = e.target.value;
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('topic', selected);
+                    window.history.pushState({}, '', url);
+                    state.topicKey = selected;
+                    loadQuizData(selected);
+                });
+
+                // Breakdown Filter Buttons
+                dom.filterAllBtn.addEventListener('click', () => filterReviewItems('all'));
+                dom.filterCorrectBtn.addEventListener('click', () => filterReviewItems('correct'));
+                dom.filterIncorrectBtn.addEventListener('click', () => filterReviewItems('incorrect'));
+
+                // Copy Code Snippet
+                dom.copyCodeBtn.addEventListener('click', () => {
+                    const code = dom.codeContent.textContent;
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText(code).then(() => {
+                            dom.copyCodeBtn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                            setTimeout(() => {
+                                dom.copyCodeBtn.innerHTML = '<i class="fa-regular fa-copy"></i> Copy';
+                            }, 2000);
+                        });
+                    }
+                });
+
+                // Keyboard Navigation Shortcuts
+                window.addEventListener('keydown', (e) => {
+                    // Ignore if typing in an input
+                    if (e.target.tagName === 'INPUT' && e.target.type !== 'radio') return;
+
+                    // 1-4 keys to select options
+                    if (['1', '2', '3', '4'].includes(e.key)) {
+                        const optIndex = parseInt(e.key, 10) - 1;
+                        const radios = dom.optionsForm.querySelectorAll('.option-input');
+                        if (radios[optIndex]) {
+                            radios[optIndex].checked = true;
+                            handleOptionSelect(optIndex);
+                        }
+                    }
+
+                    // Enter key advances if next button is enabled
+                    if (e.key === 'Enter' && !dom.nextBtn.disabled && dom.activeView.style.display !== 'none') {
+                        dom.nextBtn.click();
+                    }
+                });
+            }
+
+            function setupThemeAndNav() {
+                // Theme Toggle Handler
+                const savedTheme = localStorage.getItem('agent_mentor_theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                updateThemeIcon(savedTheme);
+
+                if (dom.themeToggle) {
+                    dom.themeToggle.addEventListener('click', () => {
+                        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+                        const next = current === 'dark' ? 'light' : 'dark';
+                        document.documentElement.setAttribute('data-theme', next);
+                        localStorage.setItem('agent_mentor_theme', next);
+                        updateThemeIcon(next);
+                    });
+                }
+
+                // Mobile Navigation Hamburger Toggle
+                if (dom.mobileToggle && dom.navMenu) {
+                    dom.mobileToggle.addEventListener('click', () => {
+                        dom.navMenu.classList.toggle('mobile-open');
+                    });
+                }
+            }
+
+            function updateThemeIcon(theme) {
+                if (!dom.themeIcon) return;
+                if (theme === 'light') {
+                    dom.themeIcon.className = 'fa-solid fa-sun';
+                } else {
+                    dom.themeIcon.className = 'fa-solid fa-moon';
+                }
+            }
+
+            /* =========================================================================
+               8. HELPER UTILITIES
+               ========================================================================= */
+            function showView(viewName, errorMsg) {
+                dom.loadingView.style.display = (viewName === 'loading') ? 'block' : 'none';
+                dom.errorView.style.display = (viewName === 'error') ? 'block' : 'none';
+                dom.activeView.style.display = (viewName === 'active') ? 'block' : 'none';
+                dom.resultsView.style.display = (viewName === 'results') ? 'block' : 'none';
+
+                if (viewName === 'error' && errorMsg && dom.errorMessage) {
+                    dom.errorMessage.textContent = errorMsg;
+                }
+            }
+
+            function escapeHtml(text) {
+                if (!text) return '';
+                const map = {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                };
+                return text.toString().replace(/[&<>"']/g, m => map[m]);
+            }
+
+            // Self bootstrap
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+        })();
+    </script>
+</body>
+</html>
