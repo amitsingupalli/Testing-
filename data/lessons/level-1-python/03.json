@@ -1,0 +1,42 @@
+﻿{
+  "id": "1-03",
+  "level": 1,
+  "lesson": 3,
+  "title": "Strings, Prompt Templates & Token Estimation",
+  "duration": "50 mins",
+  "why": "LLMs operate entirely on text and tokens. Mastering Python f-strings, string formatting, multiline prompts, and character-to-token heuristics is essential for constructing reliable prompts without overflowing context windows.",
+  "objectives": [
+    "Format multi-line system prompts with f-strings",
+    "Sanitize user inputs to prevent accidental prompt injection",
+    "Estimate tokens using the 1 token ~= 4 characters rule"
+  ],
+  "concept": "Prompts are dynamically composed by injecting user queries, retrieved RAG context, and available tool descriptions. Clean string manipulation ensures clear boundary delimiters between system instructions and untrusted user input.",
+  "code": [
+    {
+      "filename": "prompt_builder.py",
+      "language": "python",
+      "content": "def build_system_prompt(role: str, user_input: str, context: str = '') -> str:\n    \"\"\"Constructs safe structured prompt for LLM consumption.\"\"\"\n    # Sanitize inputs by stripping dangling delimiters\n    cleaned_input = user_input.strip()\n    \n    prompt = f\"\"\"### SYSTEM INSTRUCTIONS\nYou are an AI assistant specialized in: {role}.\n\n### RETRIEVED CONTEXT\n{context or 'No external context provided.'}\n\n### USER QUERY\n{cleaned_input}\n\n### ASSISTANT RESPONSE:\n\"\"\"\n    return prompt\n\ndef estimate_tokens(text: str) -> int:\n    # General heuristic: ~4 characters per token in English\n    return max(1, len(text) // 4)\n\nquery = 'How do autonomous agents plan actions?'\np = build_system_prompt('AI Architect', query, 'Agents use ReAct cycles.')\nprint(p)\nprint(f'Estimated Tokens: {estimate_tokens(p)}')\n"
+    }
+  ],
+  "practice": {
+    "description": "Write a prompt formatter that takes a list of tool names and descriptions and renders a bulleted markdown string for the system prompt.",
+    "hint": "Use '\\n'.join([f'- {t}: {d}' for t, d in tools.items()])"
+  },
+  "project": {
+    "description": "Context Window Guard",
+    "requirements": [
+      "Accept a maximum token limit (e.g. 2000 tokens)",
+      "Truncate the oldest context messages if total estimated tokens exceed the limit"
+    ]
+  },
+  "checklist": [
+    "Used f-strings with multiline docstrings cleanly",
+    "Implemented token estimation heuristic",
+    "Built modular prompt generation functions"
+  ],
+  "mistakes": [
+    "Concatenating strings with + repeatedly in loops instead of join()",
+    "Hardcoding raw user input directly into system instructions without separation delimiters"
+  ],
+  "next": "Lesson 04: Lists, Sets & Dictionaries for Message History"
+}
