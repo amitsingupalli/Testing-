@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-07",
+  "level": 1,
+  "lesson": 7,
+  "title": "Exception Handling & Graceful Error Recovery",
+  "duration": "50 mins",
+  "why": "Tools fail frequently: network timeouts, invalid JSON responses, missing database keys. If your tool crashes with an uncaught exception, your whole agent crashes. Instead, you must catch errors and feed them back to the LLM so it can retry with new parameters.",
+  "objectives": [
+    "Catch specific exceptions rather than bare except:",
+    "Convert runtime errors into informative error messages for the LLM",
+    "Implement retry loops with exponential backoff"
+  ],
+  "concept": "In agent design, exceptions are not fatal errors; they are observations. When a tool fails, returning 'Error: Invalid date format. Please use YYYY-MM-DD.' allows the LLM to self-correct on the next step.",
+  "code": [
+    {
+      "filename": "resilient_tool.py",
+      "language": "python",
+      "content": "import time\nimport logging\n\ndef safe_tool_executor(tool_func, **kwargs) -> str:\n    \"\"\"Executes a tool safely and returns a string observation for the agent.\"\"\"\n    try:\n        result = tool_func(**kwargs)\n        return f'SUCCESS: {result}'\n    except KeyError as e:\n        return f'OBSERVATION ERROR: Missing expected parameter: {e}. Please correct your parameters.'\n    except TimeoutError:\n        return 'OBSERVATION ERROR: Tool timed out while contacting external API. Try an alternative tool or query.'\n    except Exception as e:\n        logging.error(f'Unexpected error: {e}')\n        return f'OBSERVATION ERROR: Tool execution failed due to: {type(e).__name__}: {str(e)}'\n\ndef divide_tool(a: float, b: float) -> float:\n    if b == 0:\n        raise ZeroDivisionError('Cannot divide by zero.')\n    return a / b\n\nprint(safe_tool_executor(divide_tool, a=10, b=0))\nprint(safe_tool_executor(divide_tool, a=10, b=2))\n"
+    }
+  ],
+  "practice": {
+    "description": "Wrap an HTTP request function in a try-except block that handles equests.exceptions.ConnectionError and returns an actionable LLM prompt string.",
+    "hint": "Catch ConnectionError and return a message asking the agent to verify network connectivity."
+  },
+  "project": {
+    "description": "Self-Healing Tool Runner",
+    "requirements": [
+      "Simulate flaky tool that fails 50% of the time",
+      "Implement automatic retry mechanism up to 3 times before returning observation failure"
+    ]
+  },
+  "checklist": [
+    "Understood why tools must return error strings instead of crashing",
+    "Implemented clean try/except/finally blocks",
+    "Added logging for production observability"
+  ],
+  "mistakes": [
+    "Silently passing exceptions (except: pass), leaving the agent confused with None values"
+  ],
+  "next": "Lesson 08: File Handling: JSON, CSV & Markdown Parsing"
+}
