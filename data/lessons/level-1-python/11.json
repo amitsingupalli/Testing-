@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-12",
+  "level": 1,
+  "lesson": 12,
+  "title": "Networking with HTTPX & Calling Real APIs",
+  "duration": "55 mins",
+  "why": "LLM SDKs (OpenAI, Anthropic, Gemini) are built on top of HTTPX. Knowing how to configure headers, handle streaming responses, and manage connection pools enables you to build custom API tools and debug communication errors.",
+  "objectives": [
+    "Make sync and async requests with httpx",
+    "Stream tokens in real-time from LLM endpoints",
+    "Manage request headers, bearer tokens, and timeout configurations"
+  ],
+  "concept": "httpx is modern, supporting both synchronous and asynchronous modes, HTTP/2, and native streaming.",
+  "code": [
+    {
+      "filename": "api_client.py",
+      "language": "python",
+      "content": "import httpx\nimport asyncio\n\nasync def fetch_weather_tool(city: str) -> dict:\n    url = 'https://api.open-meteo.com/v1/forecast'\n    params = {'latitude': 28.6139, 'longitude': 77.2090, 'current_weather': 'true'}\n    \n    async with httpx.AsyncClient(timeout=10.0) as client:\n        response = await client.get(url, params=params)\n        response.raise_for_status()\n        data = response.json()\n        return {\n            'city': city,\n            'temperature': data['current_weather']['temperature'],\n            'windspeed': data['current_weather']['windspeed']\n        }\n\nasync def main():\n    weather = await fetch_weather_tool('New Delhi')\n    print('ðŸŒ¤ï¸ Live Weather Observation:', weather)\n\nif __name__ == '__main__':\n    asyncio.run(main())\n"
+    }
+  ],
+  "practice": {
+    "description": "Write an async HTTPX call that posts a JSON payload to https://httpbin.org/post and inspects response status code.",
+    "hint": "Use wait client.post(url, json={'query': 'test'})."
+  },
+  "project": {
+    "description": "Live Currency Converter Tool for Agents",
+    "requirements": [
+      "Fetch real-time currency conversion rates via free public API",
+      "Return standardized string observation formatted for LLM consumption"
+    ]
+  },
+  "checklist": [
+    "Used httpx.AsyncClient with context managers",
+    "Handled HTTP status codes with aise_for_status()",
+    "Configured timeouts to prevent hangs"
+  ],
+  "mistakes": [
+    "Instantiating a new httpx.Client() for every single request instead of reusing a persistent client session"
+  ],
+  "next": "Lesson 13: Secrets Management & Environment Variables"
+}
