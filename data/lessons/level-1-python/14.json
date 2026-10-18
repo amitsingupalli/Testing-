@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-14",
+  "level": 1,
+  "lesson": 14,
+  "title": "Regex for Parsing Markdown & Raw LLM Outputs",
+  "duration": "45 mins",
+  "why": "LLMs often wrap JSON in markdown blocks ( `json ... ` ) or append conversational chatter before/after structured outputs. Regular expressions allow you to extract the clean payload with precision.",
+  "objectives": [
+    "Extract code blocks from markdown responses",
+    "Parse tool call signatures from unstructured text",
+    "Sanitize sensitive tokens or PII from user inputs"
+  ],
+  "concept": "When models fail to provide clean JSON, regex extraction is your first and most reliable line of defense before calling json.loads().",
+  "code": [
+    {
+      "filename": "llm_parser.py",
+      "language": "python",
+      "content": "import re\nimport json\n\ndef extract_json_from_llm_response(text: str) -> dict:\n    \"\"\"Extracts and parses JSON object embedded inside markdown or text.\"\"\"\n    # Pattern to match json code blocks or raw bracketed json\n    pattern = r'`(?:json)?\\s*([\\{\\[].*?[\\}\\]])\\s*`'\n    match = re.search(pattern, text, re.DOTALL)\n    \n    raw_json = match.group(1) if match else text.strip()\n    try:\n        return json.loads(raw_json)\n    except json.JSONDecodeError:\n        # Fallback search for first { to last }\n        curly_match = re.search(r'\\{.*\\}', text, re.DOTALL)\n        if curly_match:\n            return json.loads(curly_match.group(0))\n        raise ValueError('Could not parse valid JSON from LLM output.')\n\nraw_output = '''Sure, here is your tool call:\n`json\n{\n  \"tool\": \"search_weather\",\n  \"params\": {\"city\": \"Bengaluru\"}\n}\n`\nLet me know if you need anything else!'''\n\nparsed = extract_json_from_llm_response(raw_output)\nprint('Successfully parsed:', parsed)\n"
+    }
+  ],
+  "practice": {
+    "description": "Write a regex that extracts all URLs cited inside an LLM's final markdown response.",
+    "hint": "Use pattern 'https?://[^\\s\\)\\]]+'."
+  },
+  "project": {
+    "description": "ReAct Thought-Action-Observation Parser",
+    "requirements": [
+      "Extract Thought:, Action:, Action Input: from legacy ReAct prompt responses",
+      "Transform extracted segments into an executable Python dictionary"
+    ]
+  },
+  "checklist": [
+    "Extracted markdown-fenced code blocks reliably",
+    "Handled whitespace and multi-line DOTALL parsing",
+    "Cleaned extracted payloads prior to downstream JSON decoding"
+  ],
+  "mistakes": [
+    "Assuming LLMs will always output strictly valid JSON without preamble text"
+  ],
+  "next": "Lesson 15: Observability, Logging & Debugging Agent Traces"
+}
