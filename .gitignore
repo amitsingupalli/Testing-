@@ -1,0 +1,8 @@
+﻿# .gitignore for Agent Mentor
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+.env
+.vscode/
+.idea/
