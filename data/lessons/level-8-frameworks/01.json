@@ -1,0 +1,42 @@
+﻿{
+  "id": "8-01",
+  "level": 8,
+  "lesson": 1,
+  "title": "LangGraph: Cyclical Graphs & Multi-Step Agent Workflows",
+  "duration": "60 mins",
+  "why": "Standard LangChain chains are strictly linear (Directed Acyclic Graphs). Real-world agents require cyclic execution loops, conditional branching, human approval gates, and state persistence. LangGraph is the production standard for controllable agent workflows.",
+  "objectives": [
+    "Model agents as StateGraph nodes and edges",
+    "Implement conditional edges for tool routing",
+    "Persist checkpoints for human-in-the-loop (HITL) approval"
+  ],
+  "concept": "In LangGraph, state flows through nodes. Nodes are Python functions that modify state. Edges determine which node runs next based on current state attributes.",
+  "code": [
+    {
+      "filename": "langgraph_concept.py",
+      "language": "python",
+      "content": "from typing import TypedDict, Annotated, Literal\nimport operator\n\nclass AgentState(TypedDict):\n    messages: list[str]\n    next_step: str\n\ndef agent_node(state: AgentState) -> dict:\n    print('ðŸ¤– Agent node reasoning over state...')\n    # Decide whether to call tool or end\n    if len(state['messages']) > 2:\n        return {'next_step': 'end'}\n    return {'next_step': 'tools'}\n\ndef should_continue(state: AgentState) -> Literal['tools', '__end__']:\n    if state['next_step'] == 'end':\n        return '__end__'\n    return 'tools'\n\nprint('LangGraph state flow model defined successfully.')\n"
+    }
+  ],
+  "practice": {
+    "description": "Define a conditional routing function that checks if an agent output contains the word 'APPROVED' and routes to 'deploy_node' or 'revision_node'.",
+    "hint": "Check 'APPROVED' in state['last_message']."
+  },
+  "project": {
+    "description": "Multi-Step LangGraph Code Review Agent",
+    "requirements": [
+      "Node 1: Static linter check",
+      "Node 2: Security audit agent",
+      "Node 3: Final synthesizer with conditional human approval edge"
+    ]
+  },
+  "checklist": [
+    "Defined TypedDict agent state schemas",
+    "Implemented conditional branching edges",
+    "Understood state checkpointing and human-in-the-loop mechanisms"
+  ],
+  "mistakes": [
+    "Creating infinite cycles without conditional edges that guarantee termination"
+  ],
+  "next": "Level 9: Multi-Agent Systems, MCP & Team Orchestration"
+}
