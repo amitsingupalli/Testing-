@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-08",
+  "level": 1,
+  "lesson": 8,
+  "title": "File Handling: JSON, CSV & Document Ingestion",
+  "duration": "55 mins",
+  "why": "Agents read and write local files: loading prompt templates from markdown, reading datasets from CSV, caching responses in JSON, and writing final reports to disk.",
+  "objectives": [
+    "Read and write JSON files safely with atomic writes",
+    "Parse CSV datasets and extract rows for LLM context",
+    "Use pathlib for cross-platform file navigation"
+  ],
+  "concept": "Modern agent architectures favor pathlib.Path over os.path because it works uniformly across Windows, Linux, and macOS without path separator errors.",
+  "code": [
+    {
+      "filename": "document_loader.py",
+      "language": "python",
+      "content": "import json\nfrom pathlib import Path\n\ndef load_agent_config(config_path: Path) -> dict:\n    if not config_path.exists():\n        raise FileNotFoundError(f'Config not found at {config_path}')\n    with config_path.open('r', encoding='utf-8') as f:\n        return json.load(f)\n\ndef save_agent_memory(data: dict, out_path: Path):\n    out_path.parent.mkdir(parents=True, exist_ok=True)\n    with out_path.open('w', encoding='utf-8') as f:\n        json.dump(data, f, indent=2, ensure_ascii=False)\n\ncfg_file = Path('workspace/agent_config.json')\nsave_agent_memory({'version': '1.0', 'active_agent': 'ResearchBot'}, cfg_file)\nprint('Saved config successfully:', load_agent_config(cfg_file))\n"
+    }
+  ],
+  "practice": {
+    "description": "Write a Python function that reads a CSV file of user feedback and converts it into a list of dictionaries ready for LLM sentiment analysis.",
+    "hint": "Use Python built-in csv.DictReader."
+  },
+  "project": {
+    "description": "Knowledge File Aggregator",
+    "requirements": [
+      "Scan a directory for all .txt and .md files",
+      "Combine their contents with metadata headers for ingestion into a RAG vectorizer"
+    ]
+  },
+  "checklist": [
+    "Used pathlib.Path for all file path manipulations",
+    "Handled UTF-8 encoding properly to support emojis and multilingual prompts",
+    "Structured reusable JSON cache loaders"
+  ],
+  "mistakes": [
+    "Opening files without specifying encoding='utf-8' causing crashes on Windows"
+  ],
+  "next": "Lesson 09: Object-Oriented Programming: Designing Agents & Tools"
+}
