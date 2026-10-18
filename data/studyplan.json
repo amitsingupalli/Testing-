@@ -1,0 +1,187 @@
+﻿{
+  "title": "12-Week AI Agent Developer Study Plan",
+  "hoursPerDay": "1-2 hours",
+  "totalWeeks": 12,
+  "weeks": [
+    {
+      "week": 1,
+      "title": "Python Foundations & Setup",
+      "levels": [0, 1],
+      "project": "CLI Calculator with input validation",
+      "days": {
+        "mon": "Install Python 3.11+, VS Code, create first venv",
+        "tue": "Variables, data types, operators, type conversion",
+        "wed": "Strings: formatting, methods, slicing",
+        "thu": "Lists, tuples, sets: operations and methods",
+        "fri": "Dictionaries: CRUD, nesting, comprehensions",
+        "sat": "Conditionals and loops: if/elif/else, for, while",
+        "sun": "Practice: Build CLI calculator project"
+      }
+    },
+    {
+      "week": 2,
+      "title": "Python Functions & OOP",
+      "levels": [1],
+      "project": "File Organizer Script",
+      "days": {
+        "mon": "Functions: parameters, return values, scope",
+        "tue": "Lambda functions, map, filter, comprehensions",
+        "wed": "Decorators and closures",
+        "thu": "Exception handling: try/except/finally",
+        "fri": "File handling: read/write TXT, JSON, CSV",
+        "sat": "OOP: classes, objects, __init__, methods",
+        "sun": "Practice: Build file organizer project"
+      }
+    },
+    {
+      "week": 3,
+      "title": "Advanced Python & Git",
+      "levels": [1, 2],
+      "project": "Python Project on GitHub",
+      "days": {
+        "mon": "Inheritance, encapsulation, polymorphism",
+        "tue": "Modules, packages, imports, __name__",
+        "wed": "Type hints and Pydantic models",
+        "thu": "Async/await and asyncio basics",
+        "fri": "Git basics: init, add, commit, push",
+        "sat": "GitHub: repos, branches, pull requests",
+        "sun": "Practice: Push a structured Python project to GitHub"
+      }
+    },
+    {
+      "week": 4,
+      "title": "APIs & Web Communication",
+      "levels": [3],
+      "project": "Weather API CLI App",
+      "days": {
+        "mon": "HTTP fundamentals: methods, status codes, headers",
+        "tue": "Making requests with the requests library",
+        "wed": "httpx for async HTTP calls",
+        "thu": "JSON parsing and data extraction",
+        "fri": "API authentication: keys, tokens, OAuth basics",
+        "sat": "Environment variables and .env files",
+        "sun": "Practice: Build Weather API CLI app"
+      }
+    },
+    {
+      "week": 5,
+      "title": "LLM Fundamentals",
+      "levels": [4],
+      "project": "Prompt Engineering Playbook",
+      "days": {
+        "mon": "How LLMs work: transformers, attention, training",
+        "tue": "Tokenization and context windows",
+        "wed": "Temperature, top-p, and other parameters",
+        "thu": "Prompt engineering: zero-shot, few-shot",
+        "fri": "Chain-of-thought and structured prompting",
+        "sat": "System prompts and role design",
+        "sun": "Practice: Create prompt engineering playbook"
+      }
+    },
+    {
+      "week": 6,
+      "title": "LLM APIs & Tool Calling",
+      "levels": [5],
+      "project": "AI Chat Assistant with Tools",
+      "days": {
+        "mon": "OpenAI API: chat completions, models",
+        "tue": "Google Gemini API setup and usage",
+        "wed": "Anthropic Claude API",
+        "thu": "Ollama: running local LLMs",
+        "fri": "Function/tool calling with OpenAI",
+        "sat": "Structured outputs with Pydantic",
+        "sun": "Practice: Build AI chat assistant with 3+ tools"
+      }
+    },
+    {
+      "week": 7,
+      "title": "RAG & Vector Databases",
+      "levels": [6],
+      "project": "PDF Knowledge Assistant",
+      "days": {
+        "mon": "Text embeddings: what they are, how they work",
+        "tue": "Document chunking strategies",
+        "wed": "ChromaDB: setup, indexing, querying",
+        "thu": "FAISS for similarity search",
+        "fri": "Building a complete RAG pipeline",
+        "sat": "Advanced RAG: hybrid search, reranking",
+        "sun": "Practice: Build PDF Knowledge Assistant"
+      }
+    },
+    {
+      "week": 8,
+      "title": "AI Agent Architecture",
+      "levels": [7],
+      "project": "Research Agent from Scratch",
+      "days": {
+        "mon": "What is an AI agent vs a chatbot",
+        "tue": "The ReAct pattern: Reason + Act",
+        "wed": "Agent memory: short-term, long-term, episodic",
+        "thu": "Planning and reasoning strategies",
+        "fri": "Tool integration and execution",
+        "sat": "Building an agent loop from scratch",
+        "sun": "Practice: Build a Research Agent"
+      }
+    },
+    {
+      "week": 9,
+      "title": "Agent Frameworks",
+      "levels": [8],
+      "project": "Multi-Tool Agent with LangGraph",
+      "days": {
+        "mon": "LangChain basics: chains, prompts, output parsers",
+        "tue": "LangChain agents and tool integration",
+        "wed": "LangGraph: state machines for agents",
+        "thu": "LangGraph: multi-step agent workflows",
+        "fri": "CrewAI: multi-agent teams",
+        "sat": "OpenAI Agents SDK overview",
+        "sun": "Practice: Build multi-tool agent with LangGraph"
+      }
+    },
+    {
+      "week": 10,
+      "title": "Multi-Agent & FastAPI",
+      "levels": [9, 10],
+      "project": "Agent API Server",
+      "days": {
+        "mon": "Multi-agent communication patterns",
+        "tue": "Model Context Protocol (MCP)",
+        "wed": "Human-in-the-loop patterns",
+        "thu": "FastAPI basics: routes, models, validation",
+        "fri": "JWT authentication for APIs",
+        "sat": "PostgreSQL with SQLAlchemy",
+        "sun": "Practice: Build an Agent API Server"
+      }
+    },
+    {
+      "week": 11,
+      "title": "Deployment & Frontend",
+      "levels": [11, 12],
+      "project": "Deployed Chat UI",
+      "days": {
+        "mon": "Docker basics: images, containers, Dockerfile",
+        "tue": "Docker Compose for multi-service apps",
+        "wed": "Cloud deployment (Railway/Render/AWS)",
+        "thu": "LangSmith/Langfuse for tracing",
+        "fri": "React basics for chat interfaces",
+        "sat": "Building a chat UI with streaming",
+        "sun": "Practice: Deploy a chat UI for your agent"
+      }
+    },
+    {
+      "week": 12,
+      "title": "Safety, Portfolio & Career",
+      "levels": [13, 14],
+      "project": "Portfolio Website + 3 Showcase Projects",
+      "days": {
+        "mon": "Prompt injection defense techniques",
+        "tue": "Guardrails and content filtering",
+        "wed": "Agent testing and evaluation (RAGAS, DeepEval)",
+        "thu": "Portfolio website creation",
+        "fri": "3 showcase projects: RAG bot, research agent, multi-agent system",
+        "sat": "Interview preparation and common questions",
+        "sun": "Final review: career roadmap and next steps"
+      }
+    }
+  ]
+}
