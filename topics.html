@@ -1,0 +1,1974 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore all learning topics on Agent Mentor - from Python foundations to advanced multi-agent orchestration systems. Master AI Agent Engineering across 15 progressive levels.">
+  <meta name="keywords" content="AI Agents, LLM, Python, LangChain, LangGraph, CrewAI, Prompt Engineering, RAG, Multi-Agent Systems, FastAPI, Docker">
+  <meta name="author" content="Agent Mentor">
+  <title>Choose Your Topic | Agent Mentor - AI Agent Developer Platform</title>
+
+  <!-- Google Fonts Preconnect & Inter / JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Core Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Self-contained production-grade fallback styles for dark/light themes -->
+  <style>
+    :root {
+      --bg-primary: #0a0e17;
+      --bg-secondary: #0f172a;
+      --bg-tertiary: #1e293b;
+      --bg-card: #131b2e;
+      --bg-card-hover: #1a2540;
+      --bg-card-rgb: 19, 27, 46;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-color-hover: rgba(56, 189, 248, 0.4);
+      --border-active: #38bdf8;
+      
+      --accent-cyan: #00f2fe;
+      --accent-blue: #38bdf8;
+      --accent-indigo: #6366f1;
+      --accent-purple: #8b5cf6;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      --nav-height: 72px;
+      --container-max: 1280px;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+      
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.45);
+      --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.2);
+      
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.25s ease;
+      --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #f8fafc;
+      --bg-secondary: #f1f5f9;
+      --bg-tertiary: #e2e8f0;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f8fafc;
+      --bg-card-rgb: 255, 255, 255;
+      --border-color: rgba(0, 0, 0, 0.08);
+      --border-color-hover: rgba(14, 165, 233, 0.4);
+      --border-active: #0284c7;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #94a3b8;
+      
+      --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+      --shadow-glow: 0 0 25px rgba(2, 132, 199, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background grid pattern */
+    .bg-grid-overlay {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 100% 40%, rgba(56, 189, 248, 0.08) 0%, transparent 50%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ==========================================================================
+       NAVIGATION BAR
+       ========================================================================== */
+    .navbar {
+      height: var(--nav-height);
+      background: rgba(10, 14, 23, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-color);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      transition: background var(--transition-normal), border-color var(--transition-normal);
+    }
+
+    [data-theme="light"] .navbar {
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-primary);
+      font-weight: 800;
+      font-size: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-brand .brand-icon {
+      font-size: 1.6rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(56, 189, 248, 0.2));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.25);
+    }
+
+    .brand-text span {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      transition: color var(--transition-fast);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-link.active {
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+      border-radius: var(--radius-full);
+      box-shadow: 0 0 8px var(--accent-blue);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .btn-icon {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      transition: all var(--transition-fast);
+    }
+
+    .btn-icon:hover {
+      color: var(--text-primary);
+      border-color: var(--border-color-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      padding: 9px 18px;
+      border-radius: var(--radius-md);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.3);
+      transition: all var(--transition-fast);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.45);
+      color: #ffffff;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      background: transparent;
+      border: none;
+      color: var(--text-primary);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 6px;
+    }
+
+    /* ==========================================================================
+       HERO HEADER SECTION
+       ========================================================================== */
+    .hero-section {
+      padding: 56px 0 36px;
+      text-align: center;
+      position: relative;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 6px 16px;
+      border-radius: var(--radius-full);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+    }
+
+    .hero-title {
+      font-size: 3rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero-title .gradient-text {
+      background: linear-gradient(135deg, #ffffff 20%, #38bdf8 70%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    [data-theme="light"] .hero-title .gradient-text {
+      background: linear-gradient(135deg, #0f172a 20%, #0284c7 70%, #4f46e5 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 0 auto 32px;
+      color: var(--text-secondary);
+      font-size: 1.125rem;
+      line-height: 1.6;
+    }
+
+    .hero-stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .stat-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .stat-chip strong {
+      color: var(--text-primary);
+      font-weight: 700;
+    }
+
+    /* ==========================================================================
+       SEARCH & FILTER TOOLBAR
+       ========================================================================== */
+    .filter-toolbar {
+      background: rgba(19, 27, 46, 0.7);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      margin-bottom: 36px;
+      box-shadow: var(--shadow-md);
+      transition: border-color var(--transition-fast);
+    }
+
+    [data-theme="light"] .filter-toolbar {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .filter-primary-row {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 42px 12px 44px;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+      background: var(--bg-primary);
+    }
+
+    .search-clear-btn {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: none;
+      padding: 4px;
+      line-height: 1;
+    }
+
+    .search-clear-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .kbd-shortcut {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      pointer-events: none;
+    }
+
+    .select-wrapper {
+      position: relative;
+      min-width: 180px;
+    }
+
+    .filter-select {
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 12px 38px 12px 16px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      outline: none;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-select:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15);
+    }
+
+    .select-arrow {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* Category pills & Status row */
+    .filter-secondary-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+    }
+
+    .pill-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .pill-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .pill-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--border-color-hover);
+    }
+
+    .pill-btn.active {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-blue);
+      color: var(--accent-blue);
+      font-weight: 600;
+    }
+
+    .results-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .results-count {
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .reset-filter-btn {
+      background: none;
+      border: none;
+      color: var(--accent-rose);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .reset-filter-btn:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       TOPIC CARDS GRID
+       ========================================================================== */
+    .topics-grid-section {
+      padding-bottom: 80px;
+    }
+
+    .topics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .topic-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      transition: all var(--transition-smooth);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    .topic-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-color-hover);
+      box-shadow: var(--shadow-lg), var(--shadow-glow);
+      background: var(--bg-card-hover);
+    }
+
+    .topic-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+
+    .card-icon-wrapper {
+      width: 52px;
+      height: 52px;
+      border-radius: var(--radius-md);
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.85rem;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--transition-fast);
+    }
+
+    .topic-card:hover .card-icon-wrapper {
+      transform: scale(1.08);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .card-badges {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .badge-level {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      color: #a5b4fc;
+    }
+
+    .badge-status {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      border: 1px solid transparent;
+    }
+
+    .badge-status.badge-success {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.3);
+      color: #34d399;
+    }
+
+    .badge-status.badge-info {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.3);
+      color: #38bdf8;
+    }
+
+    .badge-status.badge-warning {
+      background: rgba(245, 158, 11, 0.12);
+      border-color: rgba(245, 158, 11, 0.3);
+      color: #fbbf24;
+    }
+
+    .badge-status.badge-danger {
+      background: rgba(244, 63, 94, 0.12);
+      border-color: rgba(244, 63, 94, 0.3);
+      color: #fb7185;
+    }
+
+    .badge-status.badge-primary {
+      background: rgba(139, 92, 246, 0.12);
+      border-color: rgba(139, 92, 246, 0.3);
+      color: #c084fc;
+    }
+
+    .card-body {
+      margin-bottom: 20px;
+    }
+
+    .topic-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .topic-desc {
+      color: var(--text-secondary);
+      font-size: 0.8875rem;
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.7em;
+    }
+
+    .card-footer {
+      border-top: 1px solid var(--border-color);
+      padding-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .lesson-count {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .lesson-count-icon {
+      color: var(--accent-blue);
+      font-size: 0.95rem;
+    }
+
+    .card-action-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: gap var(--transition-fast), color var(--transition-fast);
+    }
+
+    .topic-card:hover .card-action-link {
+      color: var(--accent-cyan);
+      gap: 9px;
+    }
+
+    .card-action-link svg {
+      transition: transform var(--transition-fast);
+    }
+
+    .topic-card:hover .card-action-link svg {
+      transform: translateX(3px);
+    }
+
+    /* Empty state */
+    .empty-state {
+      display: none;
+      text-align: center;
+      padding: 64px 20px;
+      grid-column: 1 / -1;
+      background: var(--bg-card);
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-lg);
+    }
+
+    .empty-state-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      opacity: 0.8;
+    }
+
+    .empty-state-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .empty-state-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      max-width: 420px;
+      margin: 0 auto 20px;
+    }
+
+    /* ==========================================================================
+       FOOTER
+       ========================================================================== */
+    .footer {
+      margin-top: auto;
+      background: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      padding: 64px 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand-col p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 14px;
+      max-width: 340px;
+      line-height: 1.6;
+    }
+
+    .footer-social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .footer-social-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: all var(--transition-fast);
+    }
+
+    .footer-social-btn:hover {
+      color: var(--accent-blue);
+      border-color: var(--border-color-hover);
+      transform: translateY(-2px);
+    }
+
+    .footer-heading {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      transition: color var(--transition-fast);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-blue);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border-color);
+      padding-top: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-muted);
+      font-size: 0.8125rem;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-bottom-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .footer-bottom-links a:hover {
+      color: var(--text-secondary);
+    }
+
+    /* Mobile Drawer */
+    .mobile-menu-drawer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(10, 14, 23, 0.96);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 32px 24px;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .mobile-menu-drawer.open {
+      display: flex;
+    }
+
+    .mobile-drawer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+
+    .mobile-nav-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .mobile-nav-links a {
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+
+    .mobile-nav-links a.active {
+      color: var(--accent-blue);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE BREAKPOINTS
+       ========================================================================== */
+    @media (max-width: 1024px) {
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .mobile-menu-toggle {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 2.25rem;
+      }
+
+      .hero-description {
+        font-size: 1rem;
+      }
+
+      .topics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-primary-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .filter-secondary-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .kbd-shortcut {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Ambient background effect -->
+  <div class="bg-grid-overlay" aria-hidden="true"></div>
+
+  <!-- ========================================================================
+       GLOBAL NAVBAR (Matches index.html)
+       ======================================================================== -->
+  <header class="navbar" role="banner">
+    <div class="nav-container">
+      <a href="index.html" class="nav-brand" aria-label="Agent Mentor Home">
+        <span class="brand-icon">🤖</span>
+        <span class="brand-text">Agent<span>Mentor</span></span>
+      </a>
+
+      <nav aria-label="Primary Navigation">
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="topics.html" class="nav-link active" aria-current="page">Topics</a></li>
+          <li><a href="roadmap.html" class="nav-link">Roadmap</a></li>
+          <li><a href="studyplan.html" class="nav-link">Study Plan</a></li>
+          <li><a href="progress.html" class="nav-link">Progress</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme toggle button -->
+        <button id="themeToggleBtn" class="btn-icon" aria-label="Toggle light or dark theme" title="Toggle Theme">
+          <span id="themeIcon">🌙</span>
+        </button>
+
+        <!-- CTA to first lesson -->
+        <a href="lesson.html?topic=python&lesson=1" class="btn-primary nav-cta">
+          <span>Start Learning</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuOpenBtn" class="mobile-menu-toggle" aria-label="Open mobile navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobileMenuDrawer" class="mobile-menu-drawer" role="dialog" aria-modal="true" aria-label="Mobile Navigation">
+    <div class="mobile-drawer-header">
+      <div class="nav-brand">
+        <span class="brand-icon">🤖</span>
+        <span class="brand-text">Agent<span>Mentor</span></span>
+      </div>
+      <button id="mobileMenuCloseBtn" class="btn-icon" aria-label="Close mobile menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="topics.html" class="active">Topics (All 16)</a></li>
+      <li><a href="roadmap.html">Roadmap (15 Levels)</a></li>
+      <li><a href="studyplan.html">Study Plan</a></li>
+      <li><a href="progress.html">Progress Tracker</a></li>
+    </ul>
+    <div style="margin-top: 24px;">
+      <a href="lesson.html?topic=python&lesson=1" class="btn-primary" style="width: 100%; justify-content: center;">Start Learning Now</a>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       MAIN CONTENT CONTAINER
+       ======================================================================== -->
+  <main class="container" id="main-content">
+
+    <!-- HERO HEADER: Choose Your Topic -->
+    <section class="hero-section">
+      <div class="hero-badge">
+        <span>✨ Structured Learning Roadmap</span>
+      </div>
+      <h1 class="hero-title">
+        Choose Your <span class="gradient-text">Topic</span>
+      </h1>
+      <p class="hero-description">
+        Master modern AI Agent Development step by step. From core Python to autonomous multi-agent orchestration, select any domain to dive into hands-on lessons, code repositories, and interactive exercises.
+      </p>
+
+      <div class="hero-stats-row">
+        <div class="stat-chip">
+          <span>📚</span>
+          <span><strong>16</strong> Topics</span>
+        </div>
+        <div class="stat-chip">
+          <span>🏆</span>
+          <span><strong>15</strong> Mastery Levels</span>
+        </div>
+        <div class="stat-chip">
+          <span>⚡</span>
+          <span><strong>75</strong> Hands-On Lessons</span>
+        </div>
+        <div class="stat-chip">
+          <span>🛠️</span>
+          <span><strong>100%</strong> Production Ready</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH & FILTER TOOLBAR -->
+    <section class="filter-toolbar" aria-label="Search and filter topics">
+      <div class="filter-primary-row">
+        <!-- Live Search Input Box -->
+        <div class="search-input-wrapper">
+          <span class="search-icon" aria-hidden="true">🔍</span>
+          <input 
+            type="search" 
+            id="topicSearchInput" 
+            class="search-input" 
+            placeholder="Search topics, frameworks, skills (e.g., Python, RAG, CrewAI)..." 
+            aria-label="Search topics"
+            autocomplete="off"
+            spellcheck="false"
+          >
+          <span class="kbd-shortcut" title="Press / to focus search">/</span>
+          <button id="searchClearBtn" class="search-clear-btn" aria-label="Clear search input">✕</button>
+        </div>
+
+        <!-- Filter by Level Dropdown -->
+        <div class="select-wrapper">
+          <select id="levelFilterSelect" class="filter-select" aria-label="Filter by Level">
+            <option value="all">All Levels (1 – 13)</option>
+            <option value="1">Level 1: Python Core</option>
+            <option value="2">Level 2: Git & Version Control</option>
+            <option value="3">Level 3: APIs & HTTP</option>
+            <option value="4">Level 4: LLMs & Prompting</option>
+            <option value="5">Level 5: Model APIs & SDKs</option>
+            <option value="6">Level 6: RAG & Vector DBs</option>
+            <option value="7">Level 7: Agent Architecture</option>
+            <option value="8">Level 8: Agent Frameworks</option>
+            <option value="9">Level 9: Multi-Agent Systems</option>
+            <option value="10">Level 10: FastAPI Backends</option>
+            <option value="11">Level 11: Docker & Containers</option>
+            <option value="12">Level 12: React/Next.js UI</option>
+            <option value="13">Level 13: AI Safety & Guardrails</option>
+          </select>
+          <span class="select-arrow" aria-hidden="true">▼</span>
+        </div>
+
+        <!-- Sort By Dropdown -->
+        <div class="select-wrapper">
+          <select id="sortSelect" class="filter-select" aria-label="Sort topics">
+            <option value="level-asc">Sort: Level (Ascending)</option>
+            <option value="level-desc">Sort: Level (Descending)</option>
+            <option value="lessons-desc">Sort: Most Lessons</option>
+            <option value="name-asc">Sort: Name (A – Z)</option>
+          </select>
+          <span class="select-arrow" aria-hidden="true">▼</span>
+        </div>
+      </div>
+
+      <!-- Quick Category Pills and Counter -->
+      <div class="filter-secondary-row">
+        <div class="pill-group" role="group" aria-label="Filter by domain category">
+          <button class="pill-btn active" data-category="all">All Categories</button>
+          <button class="pill-btn" data-category="foundations">Foundations (L1-3)</button>
+          <button class="pill-btn" data-category="core-ai">Core AI & LLMs (L4-7)</button>
+          <button class="pill-btn" data-category="frameworks">Frameworks (L8)</button>
+          <button class="pill-btn" data-category="systems">Systems & DevOps (L9-11)</button>
+          <button class="pill-btn" data-category="fullstack">UI & Safety (L12-13)</button>
+        </div>
+
+        <div class="results-meta">
+          <span id="resultsCount" class="results-count">Showing 16 of 16 topics</span>
+          <button id="resetFiltersBtn" class="reset-filter-btn">Reset Filters</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOPIC CARDS RESPONSIVE GRID -->
+    <section class="topics-grid-section" aria-label="Learning Topics Grid">
+      <div class="topics-grid" id="topicsGrid">
+
+        <!-- 1. Python -->
+        <article class="topic-card" data-topic="python" data-level="1" data-category="foundations" data-lessons="17" data-name="Python">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🐍</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 1</span>
+                <span class="badge-status badge-success">Core Skill</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">Python</h2>
+              <p class="topic-desc">Core language for AI agents: master async/await, modern OOP, typing, and essential libraries for building autonomous software.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>17 lessons</span>
+            </div>
+            <a href="lesson.html?topic=python&lesson=1" class="card-action-link" aria-label="Start Python lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 2. Git & GitHub -->
+        <article class="topic-card" data-topic="git" data-level="2" data-category="foundations" data-lessons="5" data-name="Git & GitHub">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🔀</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 2</span>
+                <span class="badge-status badge-info">Tooling</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">Git & GitHub</h2>
+              <p class="topic-desc">Version control and collaboration: maintain clean repos, manage PR workflows, and automate agent testing with GitHub Actions.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>5 lessons</span>
+            </div>
+            <a href="lesson.html?topic=git&lesson=1" class="card-action-link" aria-label="Start Git and GitHub lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 3. APIs & HTTP -->
+        <article class="topic-card" data-topic="apis" data-level="3" data-category="foundations" data-lessons="6" data-name="APIs & HTTP">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🌐</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 3</span>
+                <span class="badge-status badge-info">Networking</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">APIs & HTTP</h2>
+              <p class="topic-desc">Connect to any service: understand REST architectures, JSON serialization, bearer auth, streaming endpoints, and webhooks.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>6 lessons</span>
+            </div>
+            <a href="lesson.html?topic=apis&lesson=1" class="card-action-link" aria-label="Start APIs and HTTP lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 4. LLM Fundamentals -->
+        <article class="topic-card" data-topic="llm-fundamentals" data-level="4" data-category="core-ai" data-lessons="5" data-name="LLM Fundamentals">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🧠</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 4</span>
+                <span class="badge-status badge-warning">Popular</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">LLM Fundamentals</h2>
+              <p class="topic-desc">Understand how LLMs work: transformer architecture, byte-pair tokenization, context limits, logits, and temperature sampling.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>5 lessons</span>
+            </div>
+            <a href="lesson.html?topic=llm-fundamentals&lesson=1" class="card-action-link" aria-label="Start LLM Fundamentals lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 5. Prompt Engineering -->
+        <article class="topic-card" data-topic="prompt-engineering" data-level="4" data-category="core-ai" data-lessons="4" data-name="Prompt Engineering">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">✍️</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 4</span>
+                <span class="badge-status badge-success">High Impact</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">Prompt Engineering</h2>
+              <p class="topic-desc">Craft effective prompts: utilize chain-of-thought, few-shot examples, structured JSON schema outputs, and robust system roles.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>4 lessons</span>
+            </div>
+            <a href="lesson.html?topic=prompt-engineering&lesson=1" class="card-action-link" aria-label="Start Prompt Engineering lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 6. LLM APIs -->
+        <article class="topic-card" data-topic="llm-apis" data-level="5" data-category="core-ai" data-lessons="6" data-name="LLM APIs">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🔧</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 5</span>
+                <span class="badge-status badge-primary">Hands-on</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">LLM APIs</h2>
+              <p class="topic-desc">Build with OpenAI, Gemini, Claude: integrate frontier model SDKs, tool-calling interfaces, vision models, and local Ollama nodes.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>6 lessons</span>
+            </div>
+            <a href="lesson.html?topic=llm-apis&lesson=1" class="card-action-link" aria-label="Start LLM APIs lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 7. RAG -->
+        <article class="topic-card" data-topic="rag" data-level="6" data-category="core-ai" data-lessons="6" data-name="RAG">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">📚</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 6</span>
+                <span class="badge-status badge-warning">Essential</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">RAG</h2>
+              <p class="topic-desc">Retrieval Augmented Generation: implement semantic vector search, chunking heuristics, embeddings, and reranking pipelines.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>6 lessons</span>
+            </div>
+            <a href="lesson.html?topic=rag&lesson=1" class="card-action-link" aria-label="Start RAG lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 8. Agent Architecture -->
+        <article class="topic-card" data-topic="agent-architecture" data-level="7" data-category="core-ai" data-lessons="5" data-name="Agent Architecture">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🏗️</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 7</span>
+                <span class="badge-status badge-primary">Core Architecture</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">Agent Architecture</h2>
+              <p class="topic-desc">Design intelligent agents: implement ReAct loops, planning mechanisms, short/long-term memory buffers, and tool executors.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>5 lessons</span>
+            </div>
+            <a href="lesson.html?topic=agent-architecture&lesson=1" class="card-action-link" aria-label="Start Agent Architecture lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 9. LangChain -->
+        <article class="topic-card" data-topic="langchain" data-level="8" data-category="frameworks" data-lessons="4" data-name="LangChain">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">⛓️</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 8</span>
+                <span class="badge-status badge-info">Popular Framework</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">LangChain</h2>
+              <p class="topic-desc">Popular agent framework: build production chains using LCEL, off-the-shelf agents, prompt templates, and custom tool bindings.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>4 lessons</span>
+            </div>
+            <a href="lesson.html?topic=langchain&lesson=1" class="card-action-link" aria-label="Start LangChain lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 10. LangGraph -->
+        <article class="topic-card" data-topic="langgraph" data-level="8" data-category="frameworks" data-lessons="4" data-name="LangGraph">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">📊</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 8</span>
+                <span class="badge-status badge-warning">Featured</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">LangGraph</h2>
+              <p class="topic-desc">Graph-based agent workflows: build cyclic stateful flows, conditional branching nodes, checkpoints, and human-in-the-loop gates.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>4 lessons</span>
+            </div>
+            <a href="lesson.html?topic=langgraph&lesson=1" class="card-action-link" aria-label="Start LangGraph lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 11. CrewAI -->
+        <article class="topic-card" data-topic="crewai" data-level="8" data-category="frameworks" data-lessons="3" data-name="CrewAI">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">👥</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 8</span>
+                <span class="badge-status badge-info">Multi-Agent</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">CrewAI</h2>
+              <p class="topic-desc">Multi-agent collaboration: orchestrate crews of specialized autonomous personas with role-delegation, goal alignment, and tasks.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>3 lessons</span>
+            </div>
+            <a href="lesson.html?topic=crewai&lesson=1" class="card-action-link" aria-label="Start CrewAI lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 12. Multi-Agent Systems -->
+        <article class="topic-card" data-topic="multi-agent" data-level="9" data-category="systems" data-lessons="4" data-name="Multi-Agent Systems">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🤝</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 9</span>
+                <span class="badge-status badge-danger">Advanced</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">Multi-Agent Systems</h2>
+              <p class="topic-desc">Orchestration patterns: design supervisor topologies, agent-to-agent message buses, consensus mechanisms, and dynamic swarm routines.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>4 lessons</span>
+            </div>
+            <a href="lesson.html?topic=multi-agent&lesson=1" class="card-action-link" aria-label="Start Multi-Agent Systems lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 13. FastAPI -->
+        <article class="topic-card" data-topic="fastapi" data-level="10" data-category="systems" data-lessons="5" data-name="FastAPI">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">⚡</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 10</span>
+                <span class="badge-status badge-success">Production</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">FastAPI</h2>
+              <p class="topic-desc">Build agent backends: expose asynchronous REST endpoints, Server-Sent Events (SSE) for streaming answers, and bidirectional WebSockets.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>5 lessons</span>
+            </div>
+            <a href="lesson.html?topic=fastapi&lesson=1" class="card-action-link" aria-label="Start FastAPI lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 14. Docker -->
+        <article class="topic-card" data-topic="docker" data-level="11" data-category="systems" data-lessons="3" data-name="Docker">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🐳</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 11</span>
+                <span class="badge-status badge-info">DevOps</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">Docker</h2>
+              <p class="topic-desc">Containerize agents: package your AI agents, isolate untrusted tool execution sandboxes, and run multi-service Compose clusters.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>3 lessons</span>
+            </div>
+            <a href="lesson.html?topic=docker&lesson=1" class="card-action-link" aria-label="Start Docker lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 15. React/Next.js -->
+        <article class="topic-card" data-topic="react-nextjs" data-level="12" data-category="fullstack" data-lessons="4" data-name="React/Next.js">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🎨</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 12</span>
+                <span class="badge-status badge-primary">Full-Stack</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">React/Next.js</h2>
+              <p class="topic-desc">Build agent frontends: create interactive real-time chat interfaces, step-by-step reasoning visualizers, and responsive dashboards.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>4 lessons</span>
+            </div>
+            <a href="lesson.html?topic=react-nextjs&lesson=1" class="card-action-link" aria-label="Start React and Next.js lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- 16. AI Safety -->
+        <article class="topic-card" data-topic="ai-safety" data-level="13" data-category="fullstack" data-lessons="4" data-name="AI Safety">
+          <div>
+            <div class="card-top">
+              <div class="card-icon-wrapper" aria-hidden="true">🛡️</div>
+              <div class="card-badges">
+                <span class="badge-level">Level 13</span>
+                <span class="badge-status badge-danger">Crucial</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <h2 class="topic-title">AI Safety</h2>
+              <p class="topic-desc">Security and guardrails: safeguard agents against prompt injection attacks, malicious tool calls, data exfiltration, and toxic drift.</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="lesson-count">
+              <span class="lesson-count-icon">📖</span>
+              <span>4 lessons</span>
+            </div>
+            <a href="lesson.html?topic=ai-safety&lesson=1" class="card-action-link" aria-label="Start AI Safety lessons">
+              <span>Start Topic</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Empty State (Shown when no cards match search/filter) -->
+        <div id="topicsEmptyState" class="empty-state" role="status">
+          <div class="empty-state-icon">🔍</div>
+          <h3 class="empty-state-title">No matching topics found</h3>
+          <p class="empty-state-text">We couldn't find any topics matching your search or filter settings. Try adjusting your query or resetting filters.</p>
+          <button id="emptyStateResetBtn" class="btn-primary" style="margin: 0 auto;">Reset All Filters</button>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       FOOTER (Matches index.html)
+       ======================================================================== -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand-col">
+          <a href="index.html" class="nav-brand" aria-label="Agent Mentor Home">
+            <span class="brand-icon">🤖</span>
+            <span class="brand-text">Agent<span>Mentor</span></span>
+          </a>
+          <p>
+            A personal AI Agent Developer learning platform. Master autonomous agent architecture, LLM engineering, and multi-agent coordination across 15 structured mastery levels.
+          </p>
+          <div class="footer-social-links" aria-label="Social and repository links">
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="GitHub Repository" title="GitHub">🐙</a>
+            <a href="https://discord.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Discord Community" title="Discord">💬</a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="Twitter / X" title="X / Twitter">🐦</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="footer-social-btn" aria-label="YouTube Channel" title="YouTube">📺</a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Learning Paths</h4>
+          <ul class="footer-links">
+            <li><a href="lesson.html?topic=python&lesson=1">Python for Agents</a></li>
+            <li><a href="lesson.html?topic=rag&lesson=1">RAG Systems</a></li>
+            <li><a href="lesson.html?topic=agent-architecture&lesson=1">Agent Architecture</a></li>
+            <li><a href="lesson.html?topic=langgraph&lesson=1">LangGraph Workflows</a></li>
+            <li><a href="lesson.html?topic=multi-agent&lesson=1">Multi-Agent Systems</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Platform</h4>
+          <ul class="footer-links">
+            <li><a href="topics.html">All 16 Topics</a></li>
+            <li><a href="roadmap.html">15-Level Roadmap</a></li>
+            <li><a href="studyplan.html">Custom Study Plan</a></li>
+            <li><a href="progress.html">Progress Tracker</a></li>
+            <li><a href="quiz.html">Knowledge Checks</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#docs">API Documentation</a></li>
+            <li><a href="#cheatsheets">Agent Cheat Sheets</a></li>
+            <li><a href="#patterns">Design Patterns</a></li>
+            <li><a href="#safety">AI Safety Guidelines</a></li>
+            <li><a href="#community">Community Forum</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          &copy; 2026 Agent Mentor. Designed for aspiring AI Agent Engineers.
+        </div>
+        <div class="footer-bottom-links">
+          <a href="#privacy">Privacy Policy</a>
+          <a href="#terms">Terms of Service</a>
+          <a href="#cookies">Cookie Policy</a>
+          <a href="#status">System Status</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       EXTERNAL SCRIPTS
+       ======================================================================== -->
+  <script src="js/theme.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- ========================================================================
+       SELF-CONTAINED INTERACTIVE LOGIC (Filtering, Sorting, Theme Fallback)
+       ======================================================================== -->
+  <script>
+    (function () {
+      'use strict';
+
+      // DOM Elements
+      const searchInput = document.getElementById('topicSearchInput');
+      const searchClearBtn = document.getElementById('searchClearBtn');
+      const levelSelect = document.getElementById('levelFilterSelect');
+      const sortSelect = document.getElementById('sortSelect');
+      const pillButtons = document.querySelectorAll('.pill-btn');
+      const resultsCountEl = document.getElementById('resultsCount');
+      const resetFiltersBtn = document.getElementById('resetFiltersBtn');
+      const emptyStateEl = document.getElementById('topicsEmptyState');
+      const emptyStateResetBtn = document.getElementById('emptyStateResetBtn');
+      const topicsGrid = document.getElementById('topicsGrid');
+      const cards = Array.from(topicsGrid.querySelectorAll('.topic-card'));
+      const totalCount = cards.length;
+
+      // Theme toggle support
+      const themeToggleBtn = document.getElementById('themeToggleBtn');
+      const themeIcon = document.getElementById('themeIcon');
+
+      function initTheme() {
+        const savedTheme = localStorage.getItem('agent_mentor_theme') || 
+          (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        applyTheme(savedTheme);
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        if (themeIcon) {
+          themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
+        }
+        localStorage.setItem('agent_mentor_theme', theme);
+      }
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+          const current = document.documentElement.getAttribute('data-theme') || 'dark';
+          applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+      }
+
+      initTheme();
+
+      // Mobile Menu Drawer
+      const mobileOpenBtn = document.getElementById('mobileMenuOpenBtn');
+      const mobileCloseBtn = document.getElementById('mobileMenuCloseBtn');
+      const mobileDrawer = document.getElementById('mobileMenuDrawer');
+
+      if (mobileOpenBtn && mobileDrawer) {
+        mobileOpenBtn.addEventListener('click', () => {
+          mobileDrawer.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        });
+      }
+
+      if (mobileCloseBtn && mobileDrawer) {
+        mobileCloseBtn.addEventListener('click', () => {
+          mobileDrawer.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      }
+
+      // Filter State
+      let currentCategory = 'all';
+      let currentLevel = 'all';
+      let searchQuery = '';
+
+      function filterAndSortCards() {
+        const query = searchQuery.toLowerCase().trim();
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+          const name = (card.getAttribute('data-name') || '').toLowerCase();
+          const desc = card.querySelector('.topic-desc')?.textContent.toLowerCase() || '';
+          const level = card.getAttribute('data-level');
+          const category = card.getAttribute('data-category');
+
+          // Match query
+          const matchesQuery = !query || name.includes(query) || desc.includes(query) || (`level ${level}`).includes(query);
+
+          // Match level
+          const matchesLevel = currentLevel === 'all' || level === currentLevel;
+
+          // Match category
+          let matchesCategory = false;
+          if (currentCategory === 'all') {
+            matchesCategory = true;
+          } else if (currentCategory === 'foundations') {
+            matchesCategory = ['1', '2', '3'].includes(level);
+          } else if (currentCategory === 'core-ai') {
+            matchesCategory = ['4', '5', '6', '7'].includes(level);
+          } else if (currentCategory === 'frameworks') {
+            matchesCategory = ['8'].includes(level);
+          } else if (currentCategory === 'systems') {
+            matchesCategory = ['9', '10', '11'].includes(level);
+          } else if (currentCategory === 'fullstack') {
+            matchesCategory = ['12', '13', '14', '15'].includes(level);
+          }
+
+          if (matchesQuery && matchesLevel && matchesCategory) {
+            card.style.display = 'flex';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Update count & empty state
+        resultsCountEl.textContent = `Showing ${visibleCount} of ${totalCount} topics`;
+        
+        const isFiltered = query.length > 0 || currentLevel !== 'all' || currentCategory !== 'all';
+        resetFiltersBtn.style.display = isFiltered ? 'inline-flex' : 'none';
+
+        if (visibleCount === 0) {
+          emptyStateEl.style.display = 'block';
+        } else {
+          emptyStateEl.style.display = 'none';
+        }
+
+        // Sort displayed cards
+        sortCards(sortSelect.value);
+      }
+
+      function sortCards(mode) {
+        const sorted = [...cards].sort((a, b) => {
+          const levelA = parseInt(a.getAttribute('data-level'), 10) || 0;
+          const levelB = parseInt(b.getAttribute('data-level'), 10) || 0;
+          const lessonsA = parseInt(a.getAttribute('data-lessons'), 10) || 0;
+          const lessonsB = parseInt(b.getAttribute('data-lessons'), 10) || 0;
+          const nameA = a.getAttribute('data-name') || '';
+          const nameB = b.getAttribute('data-name') || '';
+
+          switch (mode) {
+            case 'level-desc':
+              return levelB - levelA;
+            case 'lessons-desc':
+              return lessonsB - lessonsA;
+            case 'name-asc':
+              return nameA.localeCompare(nameB);
+            case 'level-asc':
+            default:
+              return levelA - levelB;
+          }
+        });
+
+        sorted.forEach(card => {
+          topicsGrid.appendChild(card);
+        });
+        // Keep empty state at end
+        topicsGrid.appendChild(emptyStateEl);
+      }
+
+      function resetAllFilters() {
+        searchQuery = '';
+        currentLevel = 'all';
+        currentCategory = 'all';
+
+        if (searchInput) {
+          searchInput.value = '';
+          searchClearBtn.style.display = 'none';
+        }
+        if (levelSelect) levelSelect.value = 'all';
+        if (sortSelect) sortSelect.value = 'level-asc';
+
+        pillButtons.forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-category') === 'all');
+        });
+
+        filterAndSortCards();
+      }
+
+      // Event listeners
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = e.target.value;
+          searchClearBtn.style.display = searchQuery ? 'block' : 'none';
+          filterAndSortCards();
+        });
+      }
+
+      if (searchClearBtn) {
+        searchClearBtn.addEventListener('click', () => {
+          searchInput.value = '';
+          searchQuery = '';
+          searchClearBtn.style.display = 'none';
+          searchInput.focus();
+          filterAndSortCards();
+        });
+      }
+
+      if (levelSelect) {
+        levelSelect.addEventListener('change', (e) => {
+          currentLevel = e.target.value;
+          filterAndSortCards();
+        });
+      }
+
+      if (sortSelect) {
+        sortSelect.addEventListener('change', (e) => {
+          sortCards(e.target.value);
+        });
+      }
+
+      pillButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          pillButtons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          currentCategory = btn.getAttribute('data-category');
+          filterAndSortCards();
+        });
+      });
+
+      if (resetFiltersBtn) {
+        resetFiltersBtn.addEventListener('click', resetAllFilters);
+      }
+
+      if (emptyStateResetBtn) {
+        emptyStateResetBtn.addEventListener('click', resetAllFilters);
+      }
+
+      // Keyboard shortcut for '/' to focus search
+      window.addEventListener('keydown', (e) => {
+        if (e.key === '/' && document.activeElement !== searchInput && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+          e.preventDefault();
+          searchInput.focus();
+        }
+        if (e.key === 'Escape' && document.activeElement === searchInput) {
+          searchInput.blur();
+        }
+      });
+
+      // Synchronize with URL search parameters (e.g., ?level=4 or ?search=rag)
+      const urlParams = new URLSearchParams(window.location.search);
+      const paramLevel = urlParams.get('level');
+      const paramSearch = urlParams.get('search');
+      const paramCategory = urlParams.get('category');
+
+      if (paramLevel && levelSelect) {
+        levelSelect.value = paramLevel;
+        currentLevel = paramLevel;
+      }
+      if (paramSearch && searchInput) {
+        searchInput.value = paramSearch;
+        searchQuery = paramSearch;
+        searchClearBtn.style.display = 'block';
+      }
+      if (paramCategory) {
+        currentCategory = paramCategory;
+        pillButtons.forEach(b => {
+          b.classList.toggle('active', b.getAttribute('data-category') === paramCategory);
+        });
+      }
+
+      filterAndSortCards();
+    })();
+  </script>
+</body>
+</html>
