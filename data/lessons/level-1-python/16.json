@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-16",
+  "level": 1,
+  "lesson": 16,
+  "title": "Unit Testing Agent Tools with Pytest & Mocks",
+  "duration": "55 mins",
+  "why": "You must not make live calls to paid LLM APIs during automated test runs. Testing agent code requires mocking tool responses and verifying edge cases deterministically.",
+  "objectives": [
+    "Write test cases using pytest",
+    "Mock external API calls using unittest.mock",
+    "Assert tool output schemas and error handling"
+  ],
+  "concept": "Mocks simulate API responses instantly without network dependencies or API costs, ensuring rapid CI/CD test runs.",
+  "code": [
+    {
+      "filename": "test_tools.py",
+      "language": "python",
+      "content": "from unittest.mock import patch, MagicMock\nimport pytest\n\ndef fetch_user_data(user_id: int) -> dict:\n    # Imagine this hits a real database or API\n    import requests\n    resp = requests.get(f'https://api.example.com/users/{user_id}')\n    return resp.json()\n\n# Test using pytest and mock\n@patch('requests.get')\ndef test_fetch_user_data(mock_get):\n    mock_response = MagicMock()\n    mock_response.json.return_value = {'id': 42, 'name': 'Aditi Rao', 'role': 'Engineer'}\n    mock_get.return_value = mock_response\n    \n    data = fetch_user_data(42)\n    assert data['id'] == 42\n    assert data['name'] == 'Aditi Rao'\n    mock_get.assert_called_once_with('https://api.example.com/users/42')\n    print('\\nâœ… Pytest mock verified successfully!')\n"
+    }
+  ],
+  "practice": {
+    "description": "Write a test that asserts a ZeroDivisionError is handled and returns a string starting with 'Calc error'.",
+    "hint": "Call the function with bad inputs and check ssert 'Calc error' in result."
+  },
+  "project": {
+    "description": "Comprehensive Agent Tool Test Suite",
+    "requirements": [
+      "Write pytest tests for 3 custom agent tools",
+      "Mock network calls and test both successful execution and timeout error handling"
+    ]
+  },
+  "checklist": [
+    "Set up pytest test files with 	est_ prefix",
+    "Used unittest.mock.patch to intercept network requests",
+    "Asserted input validations and exception recovery"
+  ],
+  "mistakes": [
+    "Running unit tests that hit live LLM endpoints, causing high billing costs and flaky tests"
+  ],
+  "next": "Lesson 17: Production Project Structure for AI Agents"
+}
