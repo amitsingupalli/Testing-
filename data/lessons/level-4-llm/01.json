@@ -1,0 +1,41 @@
+﻿{
+  "id": "4-01",
+  "level": 4,
+  "lesson": 1,
+  "title": "Prompt Engineering & In-Context Steering for Agents",
+  "duration": "50 mins",
+  "why": "System prompts define an agent's persona, operational boundaries, tool availability, and output constraints. Bad prompts lead to hallucinations, runaway loops, and tool misuse.",
+  "objectives": [
+    "Design production-grade system prompts with XML/Markdown delimiters",
+    "Implement Zero-Shot, Few-Shot, and Chain-of-Thought (CoT) steering",
+    "Guard against instruction overrides and prompt leaking"
+  ],
+  "concept": "Modern frontier models respond best to structured delimiters (<instructions>, <context>, <scratchpad>) which clearly separate control logic from dynamic user data.",
+  "code": [
+    {
+      "filename": "prompt_template.py",
+      "language": "python",
+      "content": "AGENT_SYSTEM_PROMPT = \"\"\"\n<role>\nYou are Atlas, an autonomous data verification agent.\n</role>\n\n<guidelines>\n1. Always think in <thought> tags before taking any action.\n2. Only cite facts present in <retrieved_context>.\n3. If you lack information, emit tool_call instead of guessing.\n</guidelines>\n\n<tool_definitions>\n- search_database(query: str): Look up internal financial reports\n- send_slack_alert(channel: str, message: str): Post message to team\n</tool_definitions>\n\"\"\"\n\nprint('System Prompt Template loaded with delimiters.')\n"
+    }
+  ],
+  "practice": {
+    "description": "Craft an agent prompt that forces the model to output a strict 3-step verification checklist before answering the query.",
+    "hint": "Specify <checklist> tags inside the guidelines block."
+  },
+  "project": {
+    "description": "Prompt Evaluation Benchmarker",
+    "requirements": [
+      "Test 3 variations of system prompts against 5 tricky reasoning questions",
+      "Track adherence to output format constraints"
+    ]
+  },
+  "checklist": [
+    "Used XML/Markdown delimiters for structure",
+    "Prevented role confusion between system and user inputs",
+    "Enforced step-by-step reasoning constraints"
+  ],
+  "mistakes": [
+    "Writing vague prompts like 'Be a smart assistant' without operational bounds"
+  ],
+  "next": "Level 5: LLM APIs, Function Calling & Structured Outputs"
+}
