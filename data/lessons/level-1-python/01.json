@@ -1,0 +1,50 @@
+﻿{
+  "id": "1-01",
+  "level": 1,
+  "lesson": 1,
+  "title": "Setup & Python Fundamentals for AI Agents",
+  "duration": "45 mins",
+  "why": "Every autonomous AI agent starts with Python scripts interacting with OS processes, shell commands, virtual environments, and package managers. You need an isolated environment so dependencies like Pydantic, LangChain, or OpenAI SDK don't collide.",
+  "objectives": [
+    "Install and verify Python 3.11+",
+    "Set up fast virtual environments using venv or uv",
+    "Configure environment variables and dependency managers",
+    "Execute your first tool-calling test harness script"
+  ],
+  "concept": "**Why UV over standard PIP?**\nuv is an extremely fast Python package manager written in Rust. When developing multi-agent systems with dozens of libraries, uv installs packages up to 10-100x faster than standard pip.\n\nVirtual environments isolate project-specific dependencies. Never install agent packages directly into system Python to prevent breaking system tools.",
+  "code": [
+    {
+      "filename": "setup_environment.sh",
+      "language": "bash",
+      "content": "# Check python version\npython --version\n\n# Create virtual environment with uv or python venv\npython -m venv .venv\n\n# Activate on Windows:\n# .venv\\Scripts\\activate\n# Activate on Linux/macOS:\n# source .venv/bin/activate\n\n# Install core agent dependencies\npip install requests pydantic python-dotenv"
+    },
+    {
+      "filename": "agent_boot.py",
+      "language": "python",
+      "content": "import sys\nimport os\n\ndef check_system_readiness():\n    print(f'ðŸ¤– Python Version: {sys.version}')\n    in_venv = sys.prefix != sys.base_prefix\n    print(f'ðŸ”’ Virtual Environment Active: {in_venv}')\n    assert in_venv, 'Warning: You are not running inside a virtual environment!'\n    print('âœ… Agent core environment is ready for deployment.')\n\nif __name__ == '__main__':\n    check_system_readiness()"
+    }
+  ],
+  "practice": {
+    "description": "Create a virtual environment named .venv, activate it, and write a Python script that outputs current python interpreter path and checks if python-dotenv is installed.",
+    "hint": "Use sys.executable to inspect the running python binary path."
+  },
+  "project": {
+    "description": "System Diagnostic Agent CLI",
+    "requirements": [
+      "Check OS name, CPU architecture, and Python runtime version",
+      "Verify availability of environment variables",
+      "Output formatted JSON report ready to be parsed by an LLM"
+    ]
+  },
+  "checklist": [
+    "Installed Python 3.11+",
+    "Created and activated virtual environment",
+    "Understood why venv isolation is required for AI agents",
+    "Successfully executed the diagnostic script"
+  ],
+  "mistakes": [
+    "Installing packages globally without activating the virtual environment",
+    "Using outdated Python versions (< 3.10) that do not support modern type union operators (|)"
+  ],
+  "next": "Lesson 02: Variables, Data Types & Type Hints in Agent State"
+}
