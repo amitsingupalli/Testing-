@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-06",
+  "level": 1,
+  "lesson": 6,
+  "title": "Functions, Docstrings & Tool Registration",
+  "duration": "50 mins",
+  "why": "LLMs cannot execute code on their own; they call functions you provide. The function name, type annotations, and docstring are converted into JSON schema and passed to the LLM.",
+  "objectives": [
+    "Write deterministic, side-effect-aware Python functions",
+    "Write structured docstrings that LLMs can parse",
+    "Build a tool registry pattern with decorators"
+  ],
+  "concept": "The docstring is literally the prompt that tells the LLM when and how to call your function. A poor docstring causes the LLM to hallucinate wrong parameters.",
+  "code": [
+    {
+      "filename": "tool_registry.py",
+      "language": "python",
+      "content": "from typing import Callable, Dict, Any\nimport inspect\n\nTOOL_REGISTRY: Dict[str, Callable] = {}\n\ndef agent_tool(func: Callable) -> Callable:\n    \"\"\"Decorator to register python functions as agent tools.\"\"\"\n    TOOL_REGISTRY[func.__name__] = func\n    return func\n\n@agent_tool\ndef calculate_roi(investment: float, return_amount: float) -> float:\n    \"\"\"\n    Calculate Return on Investment (ROI) percentage.\n    \n    Args:\n        investment: Initial capital invested in USD.\n        return_amount: Total final revenue received in USD.\n        \n    Returns:\n        Calculated ROI percentage as a float.\n    \"\"\"\n    if investment <= 0:\n        raise ValueError('Investment must be greater than zero.')\n    return ((return_amount - investment) / investment) * 100\n\nprint('Registered Tools:', list(TOOL_REGISTRY.keys()))\nresult = TOOL_REGISTRY['calculate_roi'](1000.0, 1500.0)\nprint(f'ROI Result: {result:.1f}%')\n"
+    }
+  ],
+  "practice": {
+    "description": "Write a tool get_stock_quote(symbol: str) with full Google-style docstrings and register it using the @agent_tool decorator.",
+    "hint": "Check inspect.getdoc(calculate_roi) to verify docstring extraction."
+  },
+  "project": {
+    "description": "Dynamic Tool Dispatcher",
+    "requirements": [
+      "Inspect function signatures using Python inspect module",
+      "Automatically map function parameters to an LLM-compatible tool definition schema"
+    ]
+  },
+  "checklist": [
+    "Understood how docstrings drive tool calling in LLMs",
+    "Used decorators to build modular tool registries",
+    "Added defensive parameter validation inside tool bodies"
+  ],
+  "mistakes": [
+    "Missing parameter descriptions in docstrings leading to parameter confusion by the LLM"
+  ],
+  "next": "Lesson 07: Robust Exception Handling in Agent Tool Calls"
+}
