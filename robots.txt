@@ -1,0 +1,4 @@
+﻿# Robots.txt for Agent Mentor
+User-agent: *
+Allow: /
+Sitemap: https://amitsingupalli.github.io/agent-mentor/sitemap.xml
