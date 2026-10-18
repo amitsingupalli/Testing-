@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-15",
+  "level": 1,
+  "lesson": 15,
+  "title": "Observability, Logging & Debugging Agent Traces",
+  "duration": "50 mins",
+  "why": "Debugging multi-step autonomous agents is notoriously tricky because decisions are probabilistic. Structured logging allows you to inspect exact prompt payloads, model parameters, latency, and tool inputs/outputs.",
+  "objectives": [
+    "Configure Python standard logging with structured formats",
+    "Log LLM prompt snapshots, token counts, and execution latency",
+    "Implement log rotation for production servers"
+  ],
+  "concept": "Never rely solely on print() statements. Proper logger levels (DEBUG, INFO, WARNING, ERROR) allow you to silence verbose prompt dumps in production while maintaining full trace visibility in staging.",
+  "code": [
+    {
+      "filename": "agent_logger.py",
+      "language": "python",
+      "content": "import logging\nimport time\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format='%(asctime)s [%(levelname)s] [%(name)s]: %(message)s',\n    handlers=[\n        logging.StreamHandler(),\n        logging.FileHandler('agent_traces.log', encoding='utf-8')\n    ]\n)\nlogger = logging.getLogger('AgentTracer')\n\ndef log_agent_step(step_num: int, model: str, prompt_tokens: int, duration_sec: float):\n    logger.info(f'Step {step_num} | Model: {model} | Prompt Tokens: {prompt_tokens} | Latency: {duration_sec:.2f}s')\n\nlogger.info('Agent runner initialized.')\nstart = time.time()\ntime.sleep(0.5)  # simulate LLM latency\nlog_agent_step(1, 'gpt-4o', 320, time.time() - start)\n"
+    }
+  ],
+  "practice": {
+    "description": "Create a decorator @trace_tool that logs tool execution time and input arguments automatically using logger.debug.",
+    "hint": "Use 	ime.perf_counter() before and after calling unc(*args, **kwargs)."
+  },
+  "project": {
+    "description": "Agent Step Tracer JSON Logger",
+    "requirements": [
+      "Output agent trajectory logs as JSON Lines (JSONL)",
+      "Include timestamp, step ID, tool name, observation, and status"
+    ]
+  },
+  "checklist": [
+    "Configured dual console and file loggers",
+    "Formatted timestamps and log levels",
+    "Recorded latency and token consumption metrics"
+  ],
+  "mistakes": [
+    "Logging sensitive API keys or unmasked PII into plain-text log files"
+  ],
+  "next": "Lesson 16: Unit Testing Tools with Pytest"
+}
