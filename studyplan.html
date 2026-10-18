@@ -1,0 +1,3065 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Master AI Agent Development with our comprehensive 12-Week Study Plan. 1-2 hours daily covering Python, APIs, LLMs, RAG, ReAct agents, LangGraph, FastAPI, and Docker.">
+    <meta name="keywords" content="AI Agent, Study Plan, LangChain, LangGraph, Python, RAG, Vector DB, CrewAI, FastAPI, LLM">
+    <title>12-Week Study Plan | Agent Mentor — AI Agent Developer Platform</title>
+
+    <!-- Platform Stylesheets -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Scoped Study Plan & Platform Fallback Styles -->
+    <style>
+        :root {
+            --bg-base: #090d16;
+            --bg-surface: #0f172a;
+            --bg-surface-elevated: #1e293b;
+            --bg-card: #131c2e;
+            --bg-card-hover: #1a253c;
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --border-focus: rgba(56, 189, 248, 0.5);
+            --text-main: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            --color-primary: #38bdf8;
+            --color-secondary: #818cf8;
+            --color-accent: #c084fc;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --color-danger: #f43f5e;
+            --gradient-accent: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            --gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.6) 0%, rgba(15, 23, 42, 0.9) 100%);
+            --shadow-card: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.2);
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-display: 'Plus Jakarta Sans', var(--font-sans);
+            --font-mono: 'Fira Code', monospace;
+            --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        [data-theme="light"] {
+            --bg-base: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-surface-elevated: #f1f5f9;
+            --bg-card: #ffffff;
+            --bg-card-hover: #f8fafc;
+            --border-subtle: rgba(0, 0, 0, 0.08);
+            --border-focus: rgba(2, 132, 199, 0.5);
+            --text-main: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 0 20px rgba(56, 189, 248, 0.15);
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Ambient Glow Backdrop */
+        .ambient-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1000px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(129, 140, 248, 0.06) 40%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 24px;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(9, 13, 22, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            transition: var(--transition-smooth);
+        }
+
+        [data-theme="light"] .navbar {
+            background: rgba(255, 255, 255, 0.85);
+        }
+
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .brand-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            background: var(--gradient-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-weight: 500;
+            font-size: 0.95rem;
+            padding: 8px 14px;
+            border-radius: 8px;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        [data-theme="light"] .nav-link:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-link.active {
+            color: var(--color-primary);
+            background: rgba(56, 189, 248, 0.1);
+            font-weight: 600;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .theme-toggle-btn {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-size: 1rem;
+        }
+
+        .theme-toggle-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-1px);
+        }
+
+        .header-progress-chip {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            padding: 6px 14px;
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* Hero Header */
+        .hero-section {
+            padding: 64px 0 40px;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            color: var(--color-primary);
+            font-size: 0.88rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            margin: 0 0 18px 0;
+            color: var(--text-main);
+        }
+
+        .hero-title .gradient-text {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 780px;
+            margin: 0 auto 36px;
+            line-height: 1.7;
+        }
+
+        /* Stats Overview */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            text-align: left;
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-card);
+        }
+
+        .stat-icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            font-size: 1.15rem;
+        }
+
+        .stat-card:nth-child(1) .stat-icon-wrapper { background: rgba(56, 189, 248, 0.15); color: var(--color-primary); }
+        .stat-card:nth-child(2) .stat-icon-wrapper { background: rgba(129, 140, 248, 0.15); color: var(--color-secondary); }
+        .stat-card:nth-child(3) .stat-icon-wrapper { background: rgba(192, 132, 252, 0.15); color: var(--color-accent); }
+        .stat-card:nth-child(4) .stat-icon-wrapper { background: rgba(16, 185, 129, 0.15); color: var(--color-success); }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 800;
+            font-family: var(--font-display);
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        /* Overall Progress Tracker Hub */
+        .progress-hub {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 24px 28px;
+            margin-bottom: 44px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .progress-hub-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .progress-hub-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-main);
+        }
+
+        .progress-metric-display {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .progress-metric-display strong {
+            color: var(--color-primary);
+            font-size: 1.1rem;
+        }
+
+        .master-progress-track {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-surface-elevated);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .master-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--gradient-accent);
+            border-radius: var(--radius-full);
+            transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        /* Controls & Filter Bar */
+        .controls-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .phase-filters {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--bg-surface-elevated);
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 7px 14px;
+            border-radius: var(--radius-full);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-main);
+            border-color: rgba(56, 189, 248, 0.4);
+        }
+
+        .filter-btn.active {
+            background: rgba(56, 189, 248, 0.15);
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .action-btns {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-sm-secondary {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            font-weight: 500;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-sm-secondary:hover {
+            border-color: var(--text-muted);
+            color: var(--text-main);
+        }
+
+        /* Study Plan Week Cards Grid / Timeline */
+        .weeks-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            margin-bottom: 64px;
+        }
+
+        .week-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            box-shadow: var(--shadow-card);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .week-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-accent);
+            opacity: 0.4;
+            transition: var(--transition-smooth);
+        }
+
+        .week-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.6);
+        }
+
+        .week-card:hover::before {
+            opacity: 1;
+            width: 6px;
+        }
+
+        .week-card.week-completed {
+            border-color: rgba(16, 185, 129, 0.4);
+        }
+
+        .week-card.week-completed::before {
+            background: var(--color-success);
+            opacity: 1;
+        }
+
+        /* Week Header */
+        .week-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .week-title-area {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .week-meta-badges {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 12px;
+        }
+
+        .badge-week-number {
+            background: var(--gradient-accent);
+            color: #ffffff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            font-family: var(--font-display);
+        }
+
+        .badge-phase {
+            background: rgba(129, 140, 248, 0.12);
+            color: var(--color-secondary);
+            border: 1px solid rgba(129, 140, 248, 0.25);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+        }
+
+        .badge-level {
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--color-primary);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .badge-hours {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--color-warning);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .week-title {
+            font-family: var(--font-display);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin: 0 0 8px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .week-summary {
+            font-size: 0.96rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Week Progress Widget */
+        .week-status-widget {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            min-width: 220px;
+        }
+
+        .week-status-badge {
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .status-not-started {
+            background: rgba(148, 163, 184, 0.1);
+            color: var(--text-muted);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+        }
+
+        .status-in-progress {
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--color-primary);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .status-completed {
+            background: rgba(16, 185, 129, 0.12);
+            color: var(--color-success);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .week-progress-bar-wrap {
+            width: 100%;
+            height: 8px;
+            background: var(--bg-surface-elevated);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+
+        .week-progress-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--color-primary);
+            border-radius: var(--radius-full);
+            transition: width 0.3s ease;
+        }
+
+        .week-progress-text {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        .toggle-week-btn {
+            background: transparent;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .toggle-week-btn:hover {
+            color: var(--text-main);
+            border-color: var(--color-primary);
+        }
+
+        /* Daily Topics Schedule (Mon - Sun) */
+        .schedule-section-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 14px;
+            margin-bottom: 24px;
+        }
+
+        .day-item {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: var(--transition-smooth);
+            position: relative;
+        }
+
+        .day-item:hover {
+            border-color: rgba(56, 189, 248, 0.25);
+            background: var(--bg-card-hover);
+        }
+
+        .day-item.completed-day {
+            border-color: rgba(16, 185, 129, 0.3);
+            background: rgba(16, 185, 129, 0.03);
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .day-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .day-tag {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 5px;
+            background: var(--bg-surface-elevated);
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            letter-spacing: -0.01em;
+        }
+
+        .day-item.completed-day .day-tag {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--color-success);
+        }
+
+        .day-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.35;
+        }
+
+        .day-checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .custom-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border-subtle);
+            border-radius: 6px;
+            background: var(--bg-surface-elevated);
+            cursor: pointer;
+            display: grid;
+            place-content: center;
+            transition: var(--transition-smooth);
+            margin: 0;
+        }
+
+        .custom-checkbox:hover {
+            border-color: var(--color-primary);
+        }
+
+        .custom-checkbox:checked {
+            background: var(--color-success);
+            border-color: var(--color-success);
+        }
+
+        .custom-checkbox:checked::before {
+            content: "✓";
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 900;
+        }
+
+        .day-details {
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            margin: 0;
+            line-height: 1.5;
+            padding-left: 2px;
+        }
+
+        .day-task-code {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: var(--color-primary);
+        }
+
+        /* Milestone Project Showcase Card */
+        .project-showcase {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.95) 100%);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: var(--radius-md);
+            padding: 22px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-showcase::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 100%;
+            background: radial-gradient(circle at right, rgba(56, 189, 248, 0.08), transparent 70%);
+            pointer-events: none;
+        }
+
+        .project-content {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .project-badge-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .badge-project-type {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--color-warning);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 9px;
+            border-radius: var(--radius-full);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .project-name {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 6px 0;
+        }
+
+        .project-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin: 0 0 14px 0;
+            line-height: 1.5;
+        }
+
+        .project-tags {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tech-pill {
+            font-family: var(--font-mono);
+            font-size: 0.74rem;
+            background: var(--bg-surface);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-subtle);
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+
+        .project-cta-area {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+        }
+
+        .btn-view-project {
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--color-primary);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition-smooth);
+        }
+
+        .btn-view-project:hover {
+            background: var(--color-primary);
+            color: #090d16;
+            transform: translateX(2px);
+        }
+
+        /* Study Tips Section */
+        .tips-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            margin-bottom: 64px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .tip-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            transition: var(--transition-smooth);
+        }
+
+        .tip-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .tip-icon {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-bottom: 12px;
+        }
+
+        .tip-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 0 8px 0;
+        }
+
+        .tip-desc {
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-subtle);
+            padding: 64px 0 32px;
+            margin-top: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 16px 0 20px;
+            max-width: 320px;
+        }
+
+        .footer-heading {
+            font-family: var(--font-display);
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0 0 20px 0;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-links a:hover {
+            color: var(--color-primary);
+            transform: translateX(3px);
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-link {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            background: var(--bg-surface-elevated);
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .social-link:hover {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            padding-top: 32px;
+            border-top: 1px solid var(--border-subtle);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .nav-links.mobile-open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--bg-surface);
+                border-bottom: 1px solid var(--border-subtle);
+                padding: 20px;
+                gap: 12px;
+            }
+            .mobile-toggle {
+                display: block;
+            }
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            .week-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .week-status-widget {
+                align-items: flex-start;
+                width: 100%;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .days-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Visual Glow Background -->
+    <div class="ambient-glow" aria-hidden="true"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar" id="main-nav">
+        <div class="container navbar-content">
+            <a href="index.html" class="brand-logo" aria-label="Agent Mentor Home">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-robot"></i>
+                </div>
+                <span>Agent Mentor</span>
+            </a>
+
+            <!-- Navigation Links -->
+            <ul class="nav-links" id="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a></li>
+                <li><a href="index.html#levels" class="nav-link"><i class="fa-solid fa-layer-group"></i> Levels</a></li>
+                <li><a href="studyplan.html" class="nav-link active"><i class="fa-solid fa-calendar-check"></i> Study Plan</a></li>
+                <li><a href="projects.html" class="nav-link"><i class="fa-solid fa-cubes"></i> Projects</a></li>
+                <li><a href="resources.html" class="nav-link"><i class="fa-solid fa-book-bookmark"></i> Resources</a></li>
+            </ul>
+
+            <!-- Actions & Controls -->
+            <div class="nav-actions">
+                <div class="header-progress-chip" title="Your overall study plan completion">
+                    <i class="fa-solid fa-trophy"></i>
+                    <span id="nav-progress-pct">0%</span>
+                </div>
+
+                <button class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle Dark / Light Theme" title="Toggle Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <button class="mobile-toggle" id="mobile-menu-btn" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="container">
+
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-badge">
+                <i class="fa-solid fa-compass-drafting"></i> 12 Weeks • 1–2 Hours Daily • Hands-on Engineering
+            </div>
+            <h1 class="hero-title">
+                Your <span class="gradient-text">12-Week Study Plan</span>
+            </h1>
+            <p class="hero-description">
+                A structured, day-by-day curriculum crafted specifically for 1–2 hours of daily study. Master foundational Python, API protocols, LLM orchestration, RAG architectures, multi-agent coordination, and full-stack cloud deployment.
+            </p>
+
+            <!-- Quick Stats Bar -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper"><i class="fa-solid fa-calendar-days"></i></div>
+                    <div class="stat-value">12 Weeks</div>
+                    <div class="stat-label">84 Daily Lessons (Mon-Sun)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper"><i class="fa-solid fa-stopwatch"></i></div>
+                    <div class="stat-value">1–2 Hours</div>
+                    <div class="stat-label">Manageable Daily Commitment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div class="stat-value">12 Projects</div>
+                    <div class="stat-label">Weekly Production Milestones</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon-wrapper"><i class="fa-solid fa-award"></i></div>
+                    <div class="stat-value">15 Levels</div>
+                    <div class="stat-label">Level 0 Setup to Level 14 Portfolio</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Tracking Control Center -->
+        <section class="progress-hub" aria-label="Global Progress Center">
+            <div class="progress-hub-header">
+                <div class="progress-hub-title">
+                    <i class="fa-solid fa-chart-line" style="color: var(--color-primary);"></i>
+                    <span>Overall Plan Completion</span>
+                </div>
+                <div class="progress-metric-display">
+                    Completed: <strong id="completed-days-count">0</strong> / 84 Days (<strong id="overall-pct">0%</strong>)
+                </div>
+            </div>
+
+            <!-- Master Progress Track -->
+            <div class="master-progress-track">
+                <div class="master-progress-fill" id="master-progress-bar" style="width: 0%;"></div>
+            </div>
+
+            <!-- Filter Tabs & Actions -->
+            <div class="controls-row">
+                <div class="phase-filters" role="tablist">
+                    <button class="filter-btn active" data-filter="all">All 12 Weeks</button>
+                    <button class="filter-btn" data-filter="phase1">Phase 1: Foundations (W1-3)</button>
+                    <button class="filter-btn" data-filter="phase2">Phase 2: LLM & AI Core (W4-7)</button>
+                    <button class="filter-btn" data-filter="phase3">Phase 3: Autonomous Agents (W8-10)</button>
+                    <button class="filter-btn" data-filter="phase4">Phase 4: Production & Capstone (W11-12)</button>
+                </div>
+
+                <div class="action-btns">
+                    <button class="btn-sm-secondary" id="btn-expand-all"><i class="fa-solid fa-arrows-up-down"></i> Expand All</button>
+                    <button class="btn-sm-secondary" id="btn-reset-progress"><i class="fa-solid fa-rotate-left"></i> Reset Progress</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 12-Week Curriculum Schedule -->
+        <section class="weeks-container" id="study-plan-weeks">
+
+            <!-- WEEK 1 -->
+            <article class="week-card" data-week="1" data-phase="phase1">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 01</span>
+                            <span class="badge-phase">Phase 1: Foundations</span>
+                            <span class="badge-level"><i class="fa-solid fa-code"></i> Level 0 + Level 1</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 10–12 Hours</span>
+                        </div>
+                        <h2 class="week-title">Setup & Python Core Fundamentals</h2>
+                        <p class="week-summary">Configure a pristine developer workstation and master core Python syntax, primitive types, loops, collections, and defensive error handling.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-1"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-1"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-1">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(1)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-1">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 1</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="1" data-week="1">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Environment Setup & Python Tooling</h3>
+                        <p class="day-details">Install Python 3.12+, configure VS Code / PyCharm, initialize virtual environments with <span class="day-task-code">python -m venv .venv</span>, and configure terminal CLI basics.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-2">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 2</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="2" data-week="1">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Data Types & String Manipulation</h3>
+                        <p class="day-details">Explore integers, floats, booleans, string operations, slicing, escape characters, f-strings, and type casting with interactive REPL exercises.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-3">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 3</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="3" data-week="1">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Lists & Tuples Deep Dive</h3>
+                        <p class="day-details">Mutable vs immutable sequences, indexing, slicing, list methods (<span class="day-task-code">append, extend, pop</span>), unpacking, and list comprehensions.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-4">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 4</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="4" data-week="1">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Dictionaries & Sets</h3>
+                        <p class="day-details">Key-value lookups, hashability, dictionary methods, nested structures, set operations (<span class="day-task-code">union, intersection</span>), and lookup complexity.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-5">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 5</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="5" data-week="1">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Control Flow & Iteration Loops</h3>
+                        <p class="day-details">Conditional branching with <span class="day-task-code">if/elif/else</span>, <span class="day-task-code">while</span> loops, <span class="day-task-code">for</span> loops with <span class="day-task-code">enumerate()</span> and <span class="day-task-code">zip()</span>, and loop controls.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-6">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 6</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="6" data-week="1">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: CLI Calculator</h3>
+                        <p class="day-details">Architect and code an interactive command-line calculator with arithmetic parsing, running calculation history, and robust error handling.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-7">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 7</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="7" data-week="1">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Review, Refactoring & Weekly Retro</h3>
+                        <p class="day-details">Refactor your calculator code, add docstrings, test zero-division edge cases, commit to local git, and plan out Week 2 goals.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 1</span>
+                        </div>
+                        <h4 class="project-name">Interactive CLI Calculator with History Log</h4>
+                        <p class="project-desc">A full-featured terminal calculation engine supporting multi-step operations, memory storage, operation logging, and graceful error recovery.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">Python 3.12</span>
+                            <span class="tech-pill">CLI Control</span>
+                            <span class="tech-pill">Data Structures</span>
+                            <span class="tech-pill">Exception Handling</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#cli-calculator" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 2 -->
+            <article class="week-card" data-week="2" data-phase="phase1">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 02</span>
+                            <span class="badge-phase">Phase 1: Foundations</span>
+                            <span class="badge-level"><i class="fa-solid fa-code"></i> Level 1</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 11–13 Hours</span>
+                        </div>
+                        <h2 class="week-title">Functions, OOP & File Handling</h2>
+                        <p class="week-summary">Transition to modular software architecture: functional composition, object-oriented domain modeling, and parsing JSON, CSV, and text files.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-2"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-2"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-2">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(2)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-8">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 8</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="8" data-week="2">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Functions & Parameter Ergonomics</h3>
+                        <p class="day-details">Default arguments, variable arguments with <span class="day-task-code">*args</span> and <span class="day-task-code">**kwargs</span>, scope hierarchy (LEGB), lambdas, and pure functions.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-9">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 9</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="9" data-week="2">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Object-Oriented Programming (OOP) I</h3>
+                        <p class="day-details">Classes, objects, constructor <span class="day-task-code">__init__</span>, instance variables, self binding, methods, and encapsulated helper functions.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-10">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 10</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="10" data-week="2">
+                            </label>
+                        </div>
+                        <h3 class="day-title">OOP II: Inheritance & Dunder Methods</h3>
+                        <p class="day-details">Subclassing, polymorphism, <span class="day-task-code">super()</span>, operator overloading, and dunder methods like <span class="day-task-code">__str__, __repr__, __len__</span>.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-11">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 11</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="11" data-week="2">
+                            </label>
+                        </div>
+                        <h3 class="day-title">File I/O & Context Managers</h3>
+                        <p class="day-details">Context managers with <span class="day-task-code">with open()</span>, buffer streaming, text encoding (UTF-8), and modern path handling with <span class="day-task-code">pathlib</span>.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-12">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 12</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="12" data-week="2">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Structured Data: JSON & CSV Serialization</h3>
+                        <p class="day-details">Reading and writing structured data using standard modules <span class="day-task-code">json</span> (<span class="day-task-code">loads/dumps</span>) and <span class="day-task-code">csv.DictReader</span>.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-13">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 13</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="13" data-week="2">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: File Organizer Script</h3>
+                        <p class="day-details">Build a production-grade directory organizer script that classifies clutter into structured folders and produces an audit summary in JSON and CSV.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-14">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 14</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="14" data-week="2">
+                            </label>
+                        </div>
+                        <h3 class="day-title">CLI Flags with Argparse & Code Review</h3>
+                        <p class="day-details">Add dry-run support and path flags using <span class="day-task-code">argparse</span>, document with PEP-257 docstrings, and write unit assertions.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 2</span>
+                        </div>
+                        <h4 class="project-name">Automated File Organizer & Audit Logger</h4>
+                        <p class="project-desc">A safe, robust script that sorts downloads into categorized directories (Docs, Images, Media, Code) and writes audit reports in JSON and CSV.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">OOP</span>
+                            <span class="tech-pill">pathlib</span>
+                            <span class="tech-pill">JSON/CSV</span>
+                            <span class="tech-pill">argparse</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#file-organizer" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 3 -->
+            <article class="week-card" data-week="3" data-phase="phase1">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 03</span>
+                            <span class="badge-phase">Phase 1: Foundations</span>
+                            <span class="badge-level"><i class="fa-solid fa-code"></i> Level 1 + Level 2</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 12–14 Hours</span>
+                        </div>
+                        <h2 class="week-title">Async, Pydantic, Type Hints & Git/GitHub</h2>
+                        <p class="week-summary">Supercharge your code quality with strict type annotations, Pydantic data validation, modern asynchronous coroutines, and professional Git workflows.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-3"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-3"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-3">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(3)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-15">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 15</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="15" data-week="3">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Modern Type Hints & Static Typing</h3>
+                        <p class="day-details">PEP 484 type annotations, <span class="day-task-code">Union, Optional, List, Dict, Callable</span>, generic types, and running static verification with <span class="day-task-code">mypy</span>.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-16">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 16</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="16" data-week="3">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Pydantic V2 Data Validation</h3>
+                        <p class="day-details">Declaring <span class="day-task-code">BaseModel</span>, automatic type coercion, field constraints (<span class="day-task-code">Field(gt=0)</span>), custom validators, and JSON schema dumps.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-17">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 17</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="17" data-week="3">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Git & GitHub Pro Workflows</h3>
+                        <p class="day-details">Branching strategies, atomic commits, conventional commit messages, pull requests, handling merge conflicts, and writing clean <span class="day-task-code">.gitignore</span> files.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-18">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 18</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="18" data-week="3">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Asynchronous Python & Asyncio</h3>
+                        <p class="day-details">The event loop model, coroutines, <span class="day-task-code">async</span> and <span class="day-task-code">await</span> keywords, non-blocking sleeps, and task scheduling with <span class="day-task-code">asyncio.create_task()</span>.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-19">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 19</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="19" data-week="3">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Concurrent Execution with Gather</h3>
+                        <p class="day-details">Orchestrating concurrent asynchronous operations with <span class="day-task-code">asyncio.gather()</span>, exception handling across tasks, and timeout handling with <span class="day-task-code">asyncio.wait_for()</span>.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-20">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 20</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="20" data-week="3">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Async Data Engine</h3>
+                        <p class="day-details">Build a typed asynchronous data processor that consumes mock payloads, validates against Pydantic schemas, and handles batch exports.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-21">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 21</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="21" data-week="3">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Publishing to GitHub & CI Automation</h3>
+                        <p class="day-details">Push the repository to GitHub, configure a GitHub Actions workflow to run <span class="day-task-code">pytest</span> and <span class="day-task-code">mypy</span> on every push, and write a stellar README.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 3</span>
+                        </div>
+                        <h4 class="project-name">Production Python Repository on GitHub with CI</h4>
+                        <p class="project-desc">A typed, asynchronous Python project with automated Pydantic data validation, unit tests with pytest, and automated GitHub Actions CI pipeline.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">Pydantic v2</span>
+                            <span class="tech-pill">Asyncio</span>
+                            <span class="tech-pill">Type Hints</span>
+                            <span class="tech-pill">GitHub Actions CI</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#python-github-repo" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 4 -->
+            <article class="week-card" data-week="4" data-phase="phase2">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 04</span>
+                            <span class="badge-phase">Phase 2: LLM & AI Core</span>
+                            <span class="badge-level"><i class="fa-solid fa-globe"></i> Level 3</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 11–13 Hours</span>
+                        </div>
+                        <h2 class="week-title">APIs, HTTP Networking & Requests/HTTPX</h2>
+                        <p class="week-summary">Master the network backbone that powers all AI agent tools: HTTP protocols, REST endpoints, asynchronous request multiplexing with HTTPX, and error recovery.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-4"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-4"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-4">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(4)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-22">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 22</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="22" data-week="4">
+                            </label>
+                        </div>
+                        <h3 class="day-title">HTTP Protocol & REST Architecture</h3>
+                        <p class="day-details">HTTP request/response structure, headers, verbs (<span class="day-task-code">GET, POST, PUT, DELETE</span>), status codes (2xx, 4xx, 5xx), query parameters, and JSON payloads.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-23">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 23</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="23" data-week="4">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Requests Library Deep Dive</h3>
+                        <p class="day-details">Sending requests with <span class="day-task-code">requests.get/post</span>, persistent sessions (<span class="day-task-code">requests.Session()</span>), setting custom User-Agents, and parsing responses.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-24">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 24</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="24" data-week="4">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Modern Async Networking with HTTPX</h3>
+                        <p class="day-details">Connecting to web APIs with <span class="day-task-code">httpx.AsyncClient</span>, connection pooling, setting request timeouts, and concurrent multi-endpoint fetching.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-25">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 25</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="25" data-week="4">
+                            </label>
+                        </div>
+                        <h3 class="day-title">API Authentication & Environment Secrets</h3>
+                        <p class="day-details">Managing API keys securely via <span class="day-task-code">.env</span> and <span class="day-task-code">python-dotenv</span>, Bearer token authorization, and preventing accidental credential leakage.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-26">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 26</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="26" data-week="4">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Rate Limiting & Exponential Retries</h3>
+                        <p class="day-details">Detecting 429 Too Many Requests, implementing exponential backoff with jitter using <span class="day-task-code">tenacity</span>, and building resilient API clients.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-27">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 27</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="27" data-week="4">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Weather API CLI App</h3>
+                        <p class="day-details">Build an asynchronous CLI application that fetches live weather and 5-day forecasts from OpenWeather API and formats data with rich terminal tables.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-28">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 28</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="28" data-week="4">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Local Caching & Offline Fallbacks</h3>
+                        <p class="day-details">Add a local JSON cache to prevent redundant API calls, implement CLI help flags, and write unit tests with mocked API responses.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 4</span>
+                        </div>
+                        <h4 class="project-name">Async Weather API CLI App with Rich UI</h4>
+                        <p class="project-desc">A blazing-fast terminal weather forecast tool built with HTTPX, Pydantic response models, exponential retries, and color-coded ASCII weather visualization.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">HTTPX Async</span>
+                            <span class="tech-pill">REST APIs</span>
+                            <span class="tech-pill">Tenacity</span>
+                            <span class="tech-pill">Rich Terminal</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#weather-cli" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 5 -->
+            <article class="week-card" data-week="5" data-phase="phase2">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 05</span>
+                            <span class="badge-phase">Phase 2: LLM & AI Core</span>
+                            <span class="badge-level"><i class="fa-solid fa-brain"></i> Level 4</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 12–14 Hours</span>
+                        </div>
+                        <h2 class="week-title">LLM Fundamentals & Prompt Engineering</h2>
+                        <p class="week-summary">Deconstruct how autoregressive transformers generate tokens. Master advanced prompting frameworks: Few-Shot, Chain-of-Thought, ReAct schemas, and jailbreak defense.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-5"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-5"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-5">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(5)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-29">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 29</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="29" data-week="5">
+                            </label>
+                        </div>
+                        <h3 class="day-title">LLM Architecture & Hyperparameters</h3>
+                        <p class="day-details">Next-token prediction, tokenization mechanics (BPE), context window constraints, temperature sampling, Top-P, and frequency/presence penalties.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-30">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 30</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="30" data-week="5">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Zero-Shot & Few-Shot In-Context Learning</h3>
+                        <p class="day-details">Crafting deterministic prompts, role setting, delimiter usage (<span class="day-task-code">###</span>), few-shot exemplar curation, and avoiding format drift.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-31">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 31</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="31" data-week="5">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Reasoning: Chain-of-Thought (CoT)</h3>
+                        <p class="day-details">Zero-shot CoT ("Think step by step"), manual CoT demonstrations, Self-Consistency sampling over multiple reasoning paths, and error introspection.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-32">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 32</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="32" data-week="5">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Directional & ReAct Prompt Architectures</h3>
+                        <p class="day-details">Formulating Thought-Action-Observation loops within prompt templates, step-back prompting, and enforcing rigid JSON/Markdown output formatting.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-33">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 33</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="33" data-week="5">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Prompt Injection Defense & Guardrails</h3>
+                        <p class="day-details">Direct and indirect prompt injection attacks, delimiter isolation, system prompt hardening, and output validation safeguards.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-34">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 34</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="34" data-week="5">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Prompt Engineering Notebook</h3>
+                        <p class="day-details">Build an interactive Jupyter Notebook benchmarking 8 distinct prompting strategies on mathematical, logical, and code generation benchmarks.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-35">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 35</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="35" data-week="5">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Cost, Token & Accuracy Benchmark Analysis</h3>
+                        <p class="day-details">Calculate token economics with <span class="day-task-code">tiktoken</span>, plot accuracy vs token cost trade-offs, and draft an executive prompt engineering guide.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 5</span>
+                        </div>
+                        <h4 class="project-name">Prompt Engineering Evaluation & Benchmark Notebook</h4>
+                        <p class="project-desc">A rigorous comparative evaluation harness running automated benchmarks across Zero-shot, Few-shot, CoT, and ReAct prompt styles with token cost metrics.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">Jupyter</span>
+                            <span class="tech-pill">Prompt Design</span>
+                            <span class="tech-pill">Tiktoken</span>
+                            <span class="tech-pill">Benchmarking</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#prompt-notebook" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 6 -->
+            <article class="week-card" data-week="6" data-phase="phase2">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 06</span>
+                            <span class="badge-phase">Phase 2: LLM & AI Core</span>
+                            <span class="badge-level"><i class="fa-solid fa-terminal"></i> Level 5</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 12–14 Hours</span>
+                        </div>
+                        <h2 class="week-title">Model APIs, Function Calling & Structured Output</h2>
+                        <p class="week-summary">Harness the OpenAI & Google Gemini APIs. Implement guaranteed JSON schemas with Pydantic and native model tool calling to connect LLMs to real-world functions.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-6"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-6"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-6">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(6)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-36">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 36</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="36" data-week="6">
+                            </label>
+                        </div>
+                        <h3 class="day-title">OpenAI & Gemini SDK Mastery</h3>
+                        <p class="day-details">Initializing clients, configuring model aliases (<span class="day-task-code">gpt-4o-mini, gemini-1.5-pro</span>), managing chat message histories, and system instructions.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-37">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 37</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="37" data-week="6">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Token Streaming in Real-Time</h3>
+                        <p class="day-details">Consuming streaming deltas with <span class="day-task-code">stream=True</span>, handling chunk reconstruction, and rendering dynamic typewriters in the terminal.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-38">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 38</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="38" data-week="6">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Structured Outputs with Pydantic Schemas</h3>
+                        <p class="day-details">Enforcing strict JSON schemas via <span class="day-task-code">response_format</span>, guaranteeing zero schema drift, and parsing outputs directly into Pydantic models.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-39">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 39</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="39" data-week="6">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Native Tool / Function Calling Specs</h3>
+                        <p class="day-details">Writing JSON schema definitions for custom Python functions, passing <span class="day-task-code">tools</span> to the model, and extracting tool name and argument payloads.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-40">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 40</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="40" data-week="6">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Multi-Turn Tool Execution Loops</h3>
+                        <p class="day-details">Building the complete invocation lifecycle: execute local tool -> construct <span class="day-task-code">role: tool</span> message -> return result to model -> receive final synthesis.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-41">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 41</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="41" data-week="6">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: AI Chat Assistant with Tools</h3>
+                        <p class="day-details">Construct a terminal AI Chat Assistant equipped with real-time web search, calculation, weather lookup, and file reading capabilities.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-42">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 42</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="42" data-week="6">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Session Persistence & Error Boundaries</h3>
+                        <p class="day-details">Store ongoing conversation states in a local SQLite database, handle failed tool executions gracefully, and add token cost tracking.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 6</span>
+                        </div>
+                        <h4 class="project-name">Autonomous AI Chat Assistant with Function Calling</h4>
+                        <p class="project-desc">A production-ready conversational assistant that autonomously selects and invokes Python tools, executes web searches, and guarantees validated Pydantic outputs.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">OpenAI SDK</span>
+                            <span class="tech-pill">Gemini API</span>
+                            <span class="tech-pill">Function Calling</span>
+                            <span class="tech-pill">Structured Output</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#ai-chat-assistant" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 7 -->
+            <article class="week-card" data-week="7" data-phase="phase2">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 07</span>
+                            <span class="badge-phase">Phase 2: LLM & AI Core</span>
+                            <span class="badge-level"><i class="fa-solid fa-database"></i> Level 6</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 13–15 Hours</span>
+                        </div>
+                        <h2 class="week-title">Embeddings, Vector Databases & RAG Pipeline</h2>
+                        <p class="week-summary">Connect LLMs to private enterprise data. Master vector embeddings, semantic chunking, vector stores (ChromaDB / Qdrant), and retrieval-augmented generation.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-7"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-7"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-7">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(7)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-43">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 43</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="43" data-week="7">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Vector Embeddings & Geometry</h3>
+                        <p class="day-details">Dense vector representations, dimensionality, cosine similarity, Euclidean distance, dot products, and comparing OpenAI vs open HuggingFace embeddings.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-44">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 44</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="44" data-week="7">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Document Parsing & Chunking Strategies</h3>
+                        <p class="day-details">Fixed-size vs recursive character splitting, sliding chunk overlap, Markdown/HTML semantic splitting, and preserving document hierarchy.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-45">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 45</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="45" data-week="7">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Vector Databases with ChromaDB</h3>
+                        <p class="day-details">Setting up ChromaDB, creating collections, inserting vectorized chunks with rich metadata, and running K-Nearest Neighbor similarity queries.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-46">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 46</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="46" data-week="7">
+                            </label>
+                        </div>
+                        <h3 class="day-title">End-to-End RAG Synthesis Pipeline</h3>
+                        <p class="day-details">Assembling the RAG chain: Query -> Vector Search -> Context Injection -> System Prompt Conditioning -> Grounded LLM Response with Source Citations.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-47">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 47</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="47" data-week="7">
+                            </label>
+                        </div>
+                        <h3 class="day-title">RAG Optimization: Re-Ranking & Filtering</h3>
+                        <p class="day-details">Metadata pre-filtering, cross-encoder re-ranking with Cohere/Sentence-Transformers to boost retrieval accuracy, and filtering irrelevant context.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-48">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 48</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="48" data-week="7">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: PDF Knowledge Assistant</h3>
+                        <p class="day-details">Ingest multi-page complex PDFs (whitepapers/technical manuals), index into a vector DB, and answer queries with exact page-level citations.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-49">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 49</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="49" data-week="7">
+                            </label>
+                        </div>
+                        <h3 class="day-title">RAG Triad Evaluation & Hallucination Auditing</h3>
+                        <p class="day-details">Evaluate your RAG pipeline against Context Relevance, Groundedness, and Answer Relevance. Implement fallback prompts when context is missing.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 7</span>
+                        </div>
+                        <h4 class="project-name">PDF Knowledge Assistant with Verified Citations</h4>
+                        <p class="project-desc">A complete document retrieval engine that parses PDF research documents, indexes semantic embeddings in ChromaDB, and delivers cited answers with zero hallucinations.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">ChromaDB</span>
+                            <span class="tech-pill">Vector Embeddings</span>
+                            <span class="tech-pill">pypdf</span>
+                            <span class="tech-pill">RAG Pipeline</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#pdf-assistant" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 8 -->
+            <article class="week-card" data-week="8" data-phase="phase3">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 08</span>
+                            <span class="badge-phase">Phase 3: Autonomous Agents</span>
+                            <span class="badge-level"><i class="fa-solid fa-robot"></i> Level 7</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 13–15 Hours</span>
+                        </div>
+                        <h2 class="week-title">Agent Architecture: ReAct, Memory & Planning</h2>
+                        <p class="week-summary">Build autonomous reasoning loops from first principles. Construct cognitive architectures: ReAct loop, short/long-term memory, sub-goal planning, and self-reflection.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-8"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-8"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-8">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(8)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-50">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 50</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="50" data-week="8">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Cognitive Agent Foundations</h3>
+                        <p class="day-details">Anatomy of an AI agent: Sensor input -> Working memory -> Deliberation engine -> Tool actuators -> Environment feedback loop.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-51">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 51</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="51" data-week="8">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Building the ReAct Loop from Scratch</h3>
+                        <p class="day-details">Implement pure Python Thought-Action-Observation loop without external frameworks; parse regex actions, execute tools, and handle loops cleanly.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-52">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 52</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="52" data-week="8">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Agent Memory: Short-Term & Long-Term</h3>
+                        <p class="day-details">Sliding window conversation buffers, summary buffers for token compression, and vector-backed semantic episodic memory for long-term recall.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-53">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 53</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="53" data-week="8">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Goal Decomposition & Hierarchical Planning</h3>
+                        <p class="day-details">Decomposing broad user requests into sequential DAG task graphs, Plan-and-Solve strategies, and managing dynamic plan revisions.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-54">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 54</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="54" data-week="8">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Self-Reflection & Reflexion Loops</h3>
+                        <p class="day-details">Detecting infinite tool loops, handling tool runtime exceptions, injecting self-critic critique prompts, and autonomous plan adaptation.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-55">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 55</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="55" data-week="8">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Autonomous Research Agent</h3>
+                        <p class="day-details">Build a fully autonomous research agent that accepts complex topics, plans search queries, navigates the web, takes notes, and compiles a comprehensive report.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-56">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 56</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="56" data-week="8">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Report Synthesis & Markdown Publishing</h3>
+                        <p class="day-details">Format synthesized research into publication-ready Markdown with table of contents, executive summary, verified links, and token audit.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 8</span>
+                        </div>
+                        <h4 class="project-name">Autonomous Deep Research Agent with ReAct Engine</h4>
+                        <p class="project-desc">A framework-agnostic research agent written from scratch featuring sub-task planning, dynamic web crawling, self-reflective error recovery, and structured markdown synthesis.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">ReAct Architecture</span>
+                            <span class="tech-pill">Episodic Memory</span>
+                            <span class="tech-pill">Web Search Tool</span>
+                            <span class="tech-pill">Self-Reflection</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#research-agent" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 9 -->
+            <article class="week-card" data-week="9" data-phase="phase3">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 09</span>
+                            <span class="badge-phase">Phase 3: Autonomous Agents</span>
+                            <span class="badge-level"><i class="fa-solid fa-network-wired"></i> Level 8</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 14–16 Hours</span>
+                        </div>
+                        <h2 class="week-title">Agent Frameworks: LangChain, LangGraph & CrewAI</h2>
+                        <p class="week-summary">Level up to enterprise production agent frameworks. Build stateful graph workflows with LangGraph, implement Human-in-the-Loop breakpoints, and assemble multi-agent crews.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-9"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-9"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-9">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(9)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-57">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 57</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="57" data-week="9">
+                            </label>
+                        </div>
+                        <h3 class="day-title">LangChain Expression Language (LCEL)</h3>
+                        <p class="day-details">Runnable protocol, piping operators (<span class="day-task-code">prompt | model | parser</span>), stream processing, and fallback configurations.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-58">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 58</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="58" data-week="9">
+                            </label>
+                        </div>
+                        <h3 class="day-title">LangGraph StateGraph Fundamentals</h3>
+                        <p class="day-details">Defining TypedDict agent state schemas, declaring computational nodes, defining standard edges, and compiling executable cyclical state graphs.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-59">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 59</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="59" data-week="9">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Conditional Routing & Graph Cycles</h3>
+                        <p class="day-details">Implementing conditional routing edges (<span class="day-task-code">should_continue</span>), tool execution nodes, routing decisions, and preventing loop deadlocks.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-60">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 60</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="60" data-week="9">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Human-in-the-Loop (HITL) Breakpoints</h3>
+                        <p class="day-details">Configuring LangGraph interrupts, halting before destructive actions (sending emails, modifying databases), prompting for user approval, and resuming execution.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-61">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 61</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="61" data-week="9">
+                            </label>
+                        </div>
+                        <h3 class="day-title">CrewAI Role-Based Multi-Agent Teams</h3>
+                        <p class="day-details">Declaring role, backstory, and goals for specialized agents; orchestrating sequential and hierarchical task delegation with CrewAI.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-62">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 62</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="62" data-week="9">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Multi-Tool LangGraph Agent</h3>
+                        <p class="day-details">Build a robust multi-tool agent using LangGraph equipped with persistent memory checkpoints, human confirmation approval gates, and error branches.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-63">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 63</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="63" data-week="9">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Time-Travel Debugging & SQLite Checkpoints</h3>
+                        <p class="day-details">Persist agent thread states in SQLite with <span class="day-task-code">SqliteSaver</span>, rewind and inspect intermediate states, and trace execution paths with LangSmith.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 9</span>
+                        </div>
+                        <h4 class="project-name">Stateful Multi-Tool Agent with LangGraph & HITL</h4>
+                        <p class="project-desc">An enterprise-grade stateful agent pipeline with SQLite persistence, human approval gates before executing sensitive external APIs, and full graph observability.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">LangGraph</span>
+                            <span class="tech-pill">StateGraph</span>
+                            <span class="tech-pill">Human-in-the-Loop</span>
+                            <span class="tech-pill">SQLite Checkpoint</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#langgraph-agent" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 10 -->
+            <article class="week-card" data-week="10" data-phase="phase3">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 10</span>
+                            <span class="badge-phase">Phase 3: Autonomous Agents</span>
+                            <span class="badge-level"><i class="fa-solid fa-users-gear"></i> Level 9 + Level 10</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 14–16 Hours</span>
+                        </div>
+                        <h2 class="week-title">Multi-Agent Systems & FastAPI Backend Services</h2>
+                        <p class="week-summary">Orchestrate collaborative teams of specialized agents with supervisor-worker hierarchies. Expose production asynchronous REST APIs with streaming Server-Sent Events (SSE).</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-10"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-10"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-10">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(10)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-64">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 64</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="64" data-week="10">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Multi-Agent Topologies & Handoff Protocols</h3>
+                        <p class="day-details">Supervisor-worker vs peer-to-peer networks, routing agents, handoff tokens, shared state blackboards, and inter-agent contract validation.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-65">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 65</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="65" data-week="10">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Orchestrating a 3-Agent Collaborative Team</h3>
+                        <p class="day-details">Build a multi-agent assembly: Research Agent (gathers data) -> Writer Agent (drafts content) -> Editor/Critic Agent (fact-checks & polishes).</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-66">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 66</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="66" data-week="10">
+                            </label>
+                        </div>
+                        <h3 class="day-title">FastAPI Production Architecture</h3>
+                        <p class="day-details">Declaring async routes, Pydantic request/response validation, dependency injection (<span class="day-task-code">Depends</span>), CORS middleware, and error handlers.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-67">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 67</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="67" data-week="10">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Streaming Agent Thoughts with SSE</h3>
+                        <p class="day-details">Streaming agent reasoning tokens, status updates, and tool call logs over Server-Sent Events (<span class="day-task-code">EventSourceResponse</span>) in real-time.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-68">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 68</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="68" data-week="10">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Async Background Tasks & Job Queuing</h3>
+                        <p class="day-details">Handling long-running agent workflows asynchronously with FastAPI <span class="day-task-code">BackgroundTasks</span>, polling status endpoints, and job ID tokens.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-69">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 69</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="69" data-week="10">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Production Agent API Server</h3>
+                        <p class="day-details">Build a robust FastAPI service wrapping your multi-agent research team, providing real-time SSE streaming of agent thoughts and final markdown reports.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-70">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 70</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="70" data-week="10">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Interactive API Docs & Test Suite</h3>
+                        <p class="day-details">Document with OpenAPI/Swagger UI, add API key authentication headers, and write automated endpoint tests using <span class="day-task-code">pytest</span> and <span class="day-task-code">TestClient</span>.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 10</span>
+                        </div>
+                        <h4 class="project-name">FastAPI Multi-Agent Server with Real-Time SSE</h4>
+                        <p class="project-desc">A scalable backend server exposing asynchronous endpoints for a 3-agent research team with live thought streaming via Server-Sent Events and OpenAPI documentation.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">FastAPI</span>
+                            <span class="tech-pill">Multi-Agent Team</span>
+                            <span class="tech-pill">SSE Streaming</span>
+                            <span class="tech-pill">OpenAPI</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#agent-api-server" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 11 -->
+            <article class="week-card" data-week="11" data-phase="phase4">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 11</span>
+                            <span class="badge-phase">Phase 4: Production & Capstone</span>
+                            <span class="badge-level"><i class="fa-solid fa-box"></i> Level 11 + Level 12</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 14–16 Hours</span>
+                        </div>
+                        <h2 class="week-title">Docker, Cloud Deployment & React Agent UI</h2>
+                        <p class="week-summary">Package your agent systems into production Docker containers. Deploy multi-container architectures to the cloud and connect to an interactive React frontend chat interface.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-11"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-11"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-11">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(11)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-71">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 71</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="71" data-week="11">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Containerization: Dockerfile for Python AI</h3>
+                        <p class="day-details">Multi-stage Docker builds, Alpine/Debian slim base images, non-root security principles, dependency caching, and minimal footprint optimization.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-72">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 72</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="72" data-week="11">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Docker Compose Multi-Container Stack</h3>
+                        <p class="day-details">Orchestrating the full agent ecosystem: FastAPI app + Qdrant Vector DB container + Redis cache with inter-container networking and volume mounts.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-73">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 73</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="73" data-week="11">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Cloud Deployment on Render / Fly.io / AWS</h3>
+                        <p class="day-details">Deploying containerized agents, configuring cloud environment variables, secrets management, health check endpoints, and automatic restarts.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-74">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 74</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="74" data-week="11">
+                            </label>
+                        </div>
+                        <h3 class="day-title">React UI Architecture for Streaming AI</h3>
+                        <p class="day-details">React components for conversational AI: handling Server-Sent Events with <span class="day-task-code">fetch()</span> ReadableStream, managing live token states, and Markdown parsing.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-75">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 75</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="75" data-week="11">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Visualizing Agent Steps & Tool Badges</h3>
+                        <p class="day-details">Building UI components to display agent thoughts, tool execution spinners, collapsible scratchpads, and human-in-the-loop approval dialogs.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-76">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 76</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="76" data-week="11">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Full-Stack Deployed Agent UI</h3>
+                        <p class="day-details">Assemble and launch your full-stack AI agent application: deployed React frontend integrated seamlessly with containerized cloud backend.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-77">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 77</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="77" data-week="11">
+                            </label>
+                        </div>
+                        <h3 class="day-title">End-to-End Stress Testing & Polish</h3>
+                        <p class="day-details">Test concurrent client requests, measure latency from token to first response, configure custom domain, and secure HTTPS endpoints.</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-star"></i> Key Project 11</span>
+                        </div>
+                        <h4 class="project-name">Full-Stack Cloud-Deployed AI Agent Chat Platform</h4>
+                        <p class="project-desc">A deployed cloud system featuring a responsive React frontend with streaming agent thoughts, tool call visualization, and a Dockerized FastAPI backend.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">Docker Compose</span>
+                            <span class="tech-pill">React UI</span>
+                            <span class="tech-pill">Cloud Deployment</span>
+                            <span class="tech-pill">SSE Streaming</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#deployed-chat-ui" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- WEEK 12 -->
+            <article class="week-card" data-week="12" data-phase="phase4">
+                <div class="week-header">
+                    <div class="week-title-area">
+                        <div class="week-meta-badges">
+                            <span class="badge-week-number">Week 12</span>
+                            <span class="badge-phase">Phase 4: Production & Capstone</span>
+                            <span class="badge-level"><i class="fa-solid fa-shield-halved"></i> Level 13 + Level 14</span>
+                            <span class="badge-hours"><i class="fa-regular fa-clock"></i> 14–16 Hours</span>
+                        </div>
+                        <h2 class="week-title">Safety, Evaluation & Professional Portfolio</h2>
+                        <p class="week-summary">Implement enterprise safety guardrails, automated trajectory evaluation, and publish a world-class AI Agent Developer portfolio featuring 3 live showcase projects.</p>
+                    </div>
+                    <div class="week-status-widget">
+                        <span class="week-status-badge status-not-started" id="status-badge-12"><i class="fa-regular fa-circle"></i> Not Started</span>
+                        <div class="week-progress-bar-wrap">
+                            <div class="week-progress-fill" id="week-bar-12"></div>
+                        </div>
+                        <span class="week-progress-text" id="week-progress-text-12">0 / 7 Days (0%)</span>
+                        <button class="toggle-week-btn" onclick="toggleWeekAll(12)"><i class="fa-solid fa-check-double"></i> Mark Week Done</button>
+                    </div>
+                </div>
+
+                <div class="schedule-section-title"><i class="fa-regular fa-calendar"></i> Daily Breakdown (1–2 hrs daily)</div>
+                <div class="days-grid">
+                    <div class="day-item" id="day-card-78">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Mon • Day 78</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="78" data-week="12">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Safety Guardrails & Moderation</h3>
+                        <p class="day-details">Integrating NeMo Guardrails / Llama Guard, input sanitize filters, PII redacting, prompt injection classification, and output safety boundaries.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-79">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Tue • Day 79</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="79" data-week="12">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Agent Evaluation & Trajectory Testing</h3>
+                        <p class="day-details">Automated testing of multi-step agent trajectories with synthetic eval sets, tool call accuracy scoring, and regression benchmarks.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-80">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Wed • Day 80</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="80" data-week="12">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Observability, Tracing & Cost Metrics</h3>
+                        <p class="day-details">Setting up LangSmith / Arize Phoenix / OpenTelemetry tracing, monitoring token consumption per user, latency profiling, and error alert triggers.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-81">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Thu • Day 81</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="81" data-week="12">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Case Study Write-ups & Architecture Schemas</h3>
+                        <p class="day-details">Crafting detailed engineering case studies for your 3 top projects with Mermaid system architecture diagrams, trade-off analysis, and metrics.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-82">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Fri • Day 82</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="82" data-week="12">
+                            </label>
+                        </div>
+                        <h3 class="day-title">GitHub Portfolio Polish & Loom Demos</h3>
+                        <p class="day-details">Polish GitHub repositories (licenses, badges, demo GIFs, setup guides), and record clean 2-minute video demonstrations of live agent capabilities.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-83">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sat • Day 83</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="83" data-week="12">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Project Build: Developer Portfolio Website</h3>
+                        <p class="day-details">Assemble your developer portfolio website showcasing your skills, technical case studies, and 3 deployed showcase AI agent systems.</p>
+                    </div>
+
+                    <div class="day-item" id="day-card-84">
+                        <div class="day-header">
+                            <div class="day-label"><span class="day-tag">Sun • Day 84</span></div>
+                            <label class="day-checkbox-label">
+                                <input type="checkbox" class="custom-checkbox day-checkbox" data-day="84" data-week="12">
+                            </label>
+                        </div>
+                        <h3 class="day-title">Graduation Day: Capstone & Career Launch</h3>
+                        <p class="day-details">Tailor your resume for AI Agent Engineering roles, publish your project portfolio to LinkedIn/Twitter, and celebrate 12 weeks of relentless growth!</p>
+                    </div>
+                </div>
+
+                <!-- Milestone Project -->
+                <div class="project-showcase">
+                    <div class="project-content">
+                        <div class="project-badge-row">
+                            <span class="badge-project-type"><i class="fa-solid fa-trophy"></i> Capstone Project 12</span>
+                        </div>
+                        <h4 class="project-name">AI Agent Engineer Portfolio + 3 Live Showcase Systems</h4>
+                        <p class="project-desc">Your flagship developer portfolio site presenting your technical capabilities, architectural diagrams, video demos, and 3 live production AI agent applications.</p>
+                        <div class="project-tags">
+                            <span class="tech-pill">Safety Guardrails</span>
+                            <span class="tech-pill">LangSmith Tracing</span>
+                            <span class="tech-pill">Case Studies</span>
+                            <span class="tech-pill">Live Portfolio</span>
+                        </div>
+                    </div>
+                    <div class="project-cta-area">
+                        <a href="projects.html#capstone-portfolio" class="btn-view-project">Project Details <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Proven Study Strategies Section -->
+        <section class="tips-section">
+            <h2 style="font-family: var(--font-display); font-size: 1.8rem; margin: 0 0 8px 0; color: var(--text-main);">
+                How to Succeed with <span class="gradient-text">1–2 Hours Daily</span>
+            </h2>
+            <p style="color: var(--text-secondary); margin: 0 0 20px 0;">Principles and habits practiced by top AI agent engineers to maximize learning velocity without burnout.</p>
+
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fa-solid fa-fire"></i></div>
+                    <h3 class="tip-title">1. Timebox Daily & Code First</h3>
+                    <p class="tip-desc">Reserve the same 60–90 minute window every day. Spend the first 20 minutes learning the concept, and the remaining 60 minutes writing code and breaking things in the IDE.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fa-solid fa-hammer"></i></div>
+                    <h3 class="tip-title">2. Saturday Project Sprint</h3>
+                    <p class="tip-desc">Weekdays build atomic muscle memory; Saturdays synthesize everything into a complete, standalone project deliverable that functions from end to end.</p>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                    <h3 class="tip-title">3. Public Accountability</h3>
+                    <p class="tip-desc">Commit your daily code to GitHub. Share daily learnings on LinkedIn or X with the hashtag #AgentMentor to build proof of work for recruiters.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Global Platform Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="index.html" class="brand-logo" aria-label="Agent Mentor Home">
+                        <div class="brand-icon">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <span>Agent Mentor</span>
+                    </a>
+                    <p>The comprehensive 15-level learning platform for aspiring AI Agent Engineers. Master autonomous reasoning, modern frameworks, and cloud deployment from zero to production.</p>
+                    <div class="social-row">
+                        <a href="https://github.com" class="social-link" target="_blank" rel="noopener" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                        <a href="https://discord.com" class="social-link" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                        <a href="https://twitter.com" class="social-link" target="_blank" rel="noopener" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://linkedin.com" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Curriculum</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#levels"><i class="fa-solid fa-chevron-right fa-xs"></i> 15 Levels Overview</a></li>
+                        <li><a href="studyplan.html"><i class="fa-solid fa-chevron-right fa-xs"></i> 12-Week Study Plan</a></li>
+                        <li><a href="projects.html"><i class="fa-solid fa-chevron-right fa-xs"></i> Milestone Projects</a></li>
+                        <li><a href="index.html#tech-stack"><i class="fa-solid fa-chevron-right fa-xs"></i> Core Tech Stack</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Resources</h4>
+                    <ul class="footer-links">
+                        <li><a href="resources.html#cheatsheets"><i class="fa-solid fa-chevron-right fa-xs"></i> API Cheat Sheets</a></li>
+                        <li><a href="resources.html#prompt-guide"><i class="fa-solid fa-chevron-right fa-xs"></i> Prompt Guide</a></li>
+                        <li><a href="resources.html#architecture"><i class="fa-solid fa-chevron-right fa-xs"></i> System Diagrams</a></li>
+                        <li><a href="resources.html#faq"><i class="fa-solid fa-chevron-right fa-xs"></i> Platform FAQ</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="footer-heading">Community & Code</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://github.com" target="_blank" rel="noopener"><i class="fa-solid fa-chevron-right fa-xs"></i> GitHub Repository</a></li>
+                        <li><a href="https://discord.com" target="_blank" rel="noopener"><i class="fa-solid fa-chevron-right fa-xs"></i> Discord Study Group</a></li>
+                        <li><a href="resources.html#contribute"><i class="fa-solid fa-chevron-right fa-xs"></i> Contributing Guide</a></li>
+                        <li><a href="resources.html#changelog"><i class="fa-solid fa-chevron-right fa-xs"></i> Curriculum Changelog</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div>© 2026 Agent Mentor. Designed and built for the next generation of AI Agent Architects.</div>
+                <div>All 15 Levels • Level 0 through Level 14 • MIT Licensed Curriculum</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Core Scripts -->
+    <script src="js/theme.js"></script>
+    <script src="js/progress.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Integrated Study Plan Interactivity & Persistence Script -->
+    <script>
+        (function() {
+            'use strict';
+
+            const STORAGE_KEY = 'agentMentor_studyPlan_v1';
+            let planState = {
+                completedDays: {}
+            };
+
+            // Load saved state from localStorage
+            function loadState() {
+                try {
+                    const saved = localStorage.getItem(STORAGE_KEY);
+                    if (saved) {
+                        planState = JSON.parse(saved);
+                        if (!planState.completedDays) {
+                            planState.completedDays = {};
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Could not load study plan state from localStorage:', e);
+                }
+            }
+
+            // Save state to localStorage
+            function saveState() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify(planState));
+                } catch (e) {
+                    console.warn('Could not save study plan state to localStorage:', e);
+                }
+            }
+
+            // Refresh DOM Elements with current state
+            function updateUI() {
+                const totalDays = 84;
+                let totalCompleted = 0;
+
+                for (let w = 1; w <= 12; w++) {
+                    const startDay = (w - 1) * 7 + 1;
+                    const endDay = w * 7;
+                    let weekCompleted = 0;
+
+                    for (let d = startDay; d <= endDay; d++) {
+                        const isDone = !!planState.completedDays[d];
+                        const checkbox = document.querySelector(`.day-checkbox[data-day="${d}"]`);
+                        const dayCard = document.getElementById(`day-card-${d}`);
+
+                        if (checkbox) {
+                            checkbox.checked = isDone;
+                        }
+                        if (dayCard) {
+                            if (isDone) {
+                                dayCard.classList.add('completed-day');
+                            } else {
+                                dayCard.classList.remove('completed-day');
+                            }
+                        }
+
+                        if (isDone) {
+                            weekCompleted++;
+                            totalCompleted++;
+                        }
+                    }
+
+                    // Update Week Progress UI
+                    const weekPct = Math.round((weekCompleted / 7) * 100);
+                    const weekFill = document.getElementById(`week-bar-${w}`);
+                    const weekText = document.getElementById(`week-progress-text-${w}`);
+                    const statusBadge = document.getElementById(`status-badge-${w}`);
+                    const weekCard = document.querySelector(`.week-card[data-week="${w}"]`);
+
+                    if (weekFill) {
+                        weekFill.style.width = `${weekPct}%`;
+                    }
+                    if (weekText) {
+                        weekText.textContent = `${weekCompleted} / 7 Days (${weekPct}%)`;
+                    }
+
+                    if (statusBadge) {
+                        if (weekCompleted === 7) {
+                            statusBadge.className = 'week-status-badge status-completed';
+                            statusBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Completed';
+                            if (weekCard) weekCard.classList.add('week-completed');
+                        } else if (weekCompleted > 0) {
+                            statusBadge.className = 'week-status-badge status-in-progress';
+                            statusBadge.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> In Progress';
+                            if (weekCard) weekCard.classList.remove('week-completed');
+                        } else {
+                            statusBadge.className = 'week-status-badge status-not-started';
+                            statusBadge.innerHTML = '<i class="fa-regular fa-circle"></i> Not Started';
+                            if (weekCard) weekCard.classList.remove('week-completed');
+                        }
+                    }
+                }
+
+                // Overall progress calculations
+                const overallPct = Math.round((totalCompleted / totalDays) * 100);
+                const masterBar = document.getElementById('master-progress-bar');
+                const completedCountEl = document.getElementById('completed-days-count');
+                const overallPctEl = document.getElementById('overall-pct');
+                const navProgressPct = document.getElementById('nav-progress-pct');
+
+                if (masterBar) masterBar.style.width = `${overallPct}%`;
+                if (completedCountEl) completedCountEl.textContent = totalCompleted;
+                if (overallPctEl) overallPctEl.textContent = `${overallPct}%`;
+                if (navProgressPct) navProgressPct.textContent = `${overallPct}%`;
+            }
+
+            // Toggle entire week complete/incomplete
+            window.toggleWeekAll = function(weekNum) {
+                const startDay = (weekNum - 1) * 7 + 1;
+                const endDay = weekNum * 7;
+                
+                // Check if all days are currently completed
+                let allDone = true;
+                for (let d = startDay; d <= endDay; d++) {
+                    if (!planState.completedDays[d]) {
+                        allDone = false;
+                        break;
+                    }
+                }
+
+                // If all done, mark all undone; otherwise mark all done
+                const targetState = !allDone;
+                for (let d = startDay; d <= endDay; d++) {
+                    if (targetState) {
+                        planState.completedDays[d] = true;
+                    } else {
+                        delete planState.completedDays[d];
+                    }
+                }
+
+                saveState();
+                updateUI();
+            };
+
+            // Event Listeners Initialization
+            document.addEventListener('DOMContentLoaded', function() {
+                loadState();
+                updateUI();
+
+                // Checkbox change listener
+                document.querySelectorAll('.day-checkbox').forEach(cb => {
+                    cb.addEventListener('change', function(e) {
+                        const day = parseInt(this.getAttribute('data-day'), 10);
+                        if (this.checked) {
+                            planState.completedDays[day] = true;
+                        } else {
+                            delete planState.completedDays[day];
+                        }
+                        saveState();
+                        updateUI();
+                    });
+                });
+
+                // Phase filter tabs
+                const filterBtns = document.querySelectorAll('.filter-btn');
+                const weekCards = document.querySelectorAll('.week-card');
+
+                filterBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        filterBtns.forEach(b => b.classList.remove('active'));
+                        this.classList.add('active');
+
+                        const filter = this.getAttribute('data-filter');
+                        weekCards.forEach(card => {
+                            if (filter === 'all' || card.getAttribute('data-phase') === filter) {
+                                card.style.display = 'block';
+                            } else {
+                                card.style.display = 'none';
+                            }
+                        });
+                    });
+                });
+
+                // Reset progress button
+                const resetBtn = document.getElementById('btn-reset-progress');
+                if (resetBtn) {
+                    resetBtn.addEventListener('click', function() {
+                        if (confirm('Are you sure you want to reset all progress tracking for your 12-week study plan?')) {
+                            planState.completedDays = {};
+                            saveState();
+                            updateUI();
+                        }
+                    });
+                }
+
+                // Expand / Collapse All Days
+                const expandBtn = document.getElementById('btn-expand-all');
+                let allExpanded = true;
+                if (expandBtn) {
+                    expandBtn.addEventListener('click', function() {
+                        const grids = document.querySelectorAll('.days-grid');
+                        allExpanded = !allExpanded;
+                        grids.forEach(g => {
+                            g.style.display = allExpanded ? 'grid' : 'none';
+                        });
+                        expandBtn.innerHTML = allExpanded ? 
+                            '<i class="fa-solid fa-arrows-up-down"></i> Collapse All' : 
+                            '<i class="fa-solid fa-arrows-up-down"></i> Expand All';
+                    });
+                }
+
+                // Mobile Navigation Toggle
+                const mobileBtn = document.getElementById('mobile-menu-btn');
+                const navMenu = document.getElementById('nav-menu');
+                if (mobileBtn && navMenu) {
+                    mobileBtn.addEventListener('click', function() {
+                        navMenu.classList.toggle('mobile-open');
+                        const icon = mobileBtn.querySelector('i');
+                        if (icon) {
+                            icon.classList.toggle('fa-bars');
+                            icon.classList.toggle('fa-xmark');
+                        }
+                    });
+                }
+
+                // Theme Toggle fallback if theme.js is not loaded
+                const themeBtn = document.getElementById('theme-toggle');
+                if (themeBtn) {
+                    themeBtn.addEventListener('click', function() {
+                        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+                        const next = current === 'dark' ? 'light' : 'dark';
+                        document.documentElement.setAttribute('data-theme', next);
+                        localStorage.setItem('theme', next);
+                        const icon = themeBtn.querySelector('i');
+                        if (icon) {
+                            icon.className = next === 'dark' ? 'fa-solid fa-moon' : 'fa-solid fa-sun';
+                        }
+                    });
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
