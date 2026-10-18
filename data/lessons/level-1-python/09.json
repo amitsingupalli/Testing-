@@ -1,0 +1,42 @@
+﻿{
+  "id": "1-09",
+  "level": 1,
+  "lesson": 9,
+  "title": "OOP: Designing Base Agent & Tool Classes",
+  "duration": "60 mins",
+  "why": "Major agent frameworks (LangChain, CrewAI, AutoGen) are heavily object-oriented. Understanding abstract base classes, inheritance, and encapsulation allows you to build custom agents and interchangeable tools.",
+  "objectives": [
+    "Design abstract BaseTool and BaseAgent classes",
+    "Use polymorphism to swap LLM providers seamlessly",
+    "Manage internal agent state and memory using class attributes"
+  ],
+  "concept": "By creating a base Tool class, any new tool created by your team automatically conforms to the schema expected by your agent runner loop.",
+  "code": [
+    {
+      "filename": "base_agent.py",
+      "language": "python",
+      "content": "from abc import ABC, abstractmethod\nfrom typing import List\n\nclass BaseTool(ABC):\n    name: str\n    description: str\n    \n    @abstractmethod\n    def run(self, **kwargs) -> str:\n        \"\"\"Execute the tool and return observation string.\"\"\"\n        pass\n\nclass CalculatorTool(BaseTool):\n    name = 'calculator'\n    description = 'Evaluates basic mathematical expressions'\n    \n    def run(self, expression: str) -> str:\n        try:\n            return str(eval(expression, {'__builtins__': None}, {}))\n        except Exception as e:\n            return f'Calc error: {e}'\n\ntool = CalculatorTool()\nprint(f'Tool: {tool.name} -> Result: {tool.run(expression=\"15 * 4 + 10\")}')\n"
+    }
+  ],
+  "practice": {
+    "description": "Create a WikipediaSearchTool subclass inheriting from BaseTool that mocks search functionality.",
+    "hint": "Set 
+ame and description attributes and override the un method."
+  },
+  "project": {
+    "description": "Modular Multi-Tool Agent Base Class",
+    "requirements": [
+      "Implement Agent class that accepts a list of BaseTool instances",
+      "Build a get_tools_prompt() method returning markdown descriptions of all loaded tools"
+    ]
+  },
+  "checklist": [
+    "Implemented abstract classes with bc.ABC",
+    "Created decoupled tool interfaces",
+    "Maintained clean separation of concerns"
+  ],
+  "mistakes": [
+    "Hardcoding tool execution inside agent loops instead of using polymorphic tool objects"
+  ],
+  "next": "Lesson 10: Type Hints & Pydantic for Structured LLM Outputs"
+}
