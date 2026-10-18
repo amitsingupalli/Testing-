@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-11",
+  "level": 1,
+  "lesson": 11,
+  "title": "Asyncio & Concurrent Agent Tool Execution",
+  "duration": "60 mins",
+  "why": "When an agent needs to search 5 different websites or query 3 vector indexes, executing them synchronously takes 15 seconds. Using Python's syncio.gather(), all 5 execute concurrently in just 3 seconds.",
+  "objectives": [
+    "Understand coroutines with async and await",
+    "Execute multiple tool calls in parallel with asyncio.gather",
+    "Prevent event loop blocking with proper non-blocking I/O"
+  ],
+  "concept": "AI agents spend 90% of their time waiting for network responses (LLM API calls, search APIs, database lookups). Async allows a single Python process to handle hundreds of concurrent agent conversations.",
+  "code": [
+    {
+      "filename": "parallel_tools.py",
+      "language": "python",
+      "content": "import asyncio\nimport time\n\nasync def mock_async_search(source: str, query: str) -> str:\n    print(f'ðŸ“¡ Querying {source} for \"{query}\"...')\n    await asyncio.sleep(1.5)  # Simulating network latency\n    return f'Results from {source}'\n\nasync def run_parallel_research(query: str):\n    start = time.time()\n    sources = ['Google', 'ArXiv', 'GitHub', 'Wikipedia']\n    \n    # Run all search queries concurrently\n    tasks = [mock_async_search(s, query) for s in sources]\n    results = await asyncio.gather(*tasks)\n    \n    elapsed = time.time() - start\n    print(f'\\nâœ… Completed {len(results)} queries in {elapsed:.2f} seconds (Sequential would take 6.0s)')\n    for res in results:\n        print(f' - {res}')\n\nif __name__ == '__main__':\n    asyncio.run(run_parallel_research('Autonomous Agents 2026'))\n"
+    }
+  ],
+  "practice": {
+    "description": "Write an async function that fetches mock user profiles with a timeout of 2 seconds using syncio.wait_for.",
+    "hint": "Wrap the coroutine in syncio.wait_for(task, timeout=2.0) and handle syncio.TimeoutError."
+  },
+  "project": {
+    "description": "Parallel Multi-Source News Scraper",
+    "requirements": [
+      "Query 3 mock RSS feeds asynchronously",
+      "Aggregate and deduplicate results within a single async pipeline"
+    ]
+  },
+  "checklist": [
+    "Mastered async/await syntax and event loop execution",
+    "Executed concurrent tasks with syncio.gather",
+    "Implemented timeouts on long-running network calls"
+  ],
+  "mistakes": [
+    "Using synchronous 	ime.sleep() or blocking equests.get() inside async functions"
+  ],
+  "next": "Lesson 12: Networking with HTTPX & Calling REST APIs"
+}
