@@ -1,0 +1,2841 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Track your AI Agent Developer learning journey across all 15 curriculum levels. Monitor completed lessons, streaks, achievements, and study heatmap.">
+  <meta name="theme-color" content="#0B0F19">
+  <title>Progress Dashboard | Agent Mentor - AI Agent Developer Curriculum</title>
+
+  <!-- Google Fonts Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Project Core Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/responsive.css">
+
+  <!-- Self-contained production-grade fallback styles for standalone resilience -->
+  <style>
+    :root {
+      --bg-primary: #080D1A;
+      --bg-secondary: #0F172A;
+      --bg-card: #131E36;
+      --bg-card-hover: #182645;
+      --bg-card-subtle: rgba(255, 255, 255, 0.02);
+      --border-subtle: rgba(255, 255, 255, 0.07);
+      --border-focus: rgba(6, 182, 212, 0.4);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --text-dim: #64748B;
+      --accent-cyan: #06B6D4;
+      --accent-blue: #3B82F6;
+      --accent-purple: #8B5CF6;
+      --accent-gold: #F59E0B;
+      --accent-emerald: #10B981;
+      --accent-rose: #F43F5E;
+      --gradient-brand: linear-gradient(135deg, #06B6D4 0%, #3B82F6 50%, #8B5CF6 100%);
+      --gradient-gold: linear-gradient(135deg, #F59E0B 0%, #FBBF24 50%, #D97706 100%);
+      --gradient-card: linear-gradient(180deg, rgba(30, 41, 59, 0.45) 0%, rgba(15, 23, 42, 0.75) 100%);
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-display: 'Plus Jakarta Sans', var(--font-sans);
+      --font-mono: 'Fira Code', monospace;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
+      --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.45);
+      --shadow-glow-cyan: 0 0 25px rgba(6, 182, 212, 0.25);
+      --shadow-glow-gold: 0 0 25px rgba(245, 158, 11, 0.3);
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    [data-theme="light"] {
+      --bg-primary: #F8FAFC;
+      --bg-secondary: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #F1F5F9;
+      --bg-card-subtle: rgba(0, 0, 0, 0.02);
+      --border-subtle: #E2E8F0;
+      --border-focus: rgba(6, 182, 212, 0.5);
+      --text-main: #0F172A;
+      --text-muted: #475569;
+      --text-dim: #94A3B8;
+      --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+      --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+      --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.12);
+    }
+
+    /* Core Page Styling */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      background-image: 
+        radial-gradient(circle at 15% 10%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+      background-attachment: fixed;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      background: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Navbar */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 13, 26, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-subtle);
+      transition: var(--transition);
+    }
+    [data-theme="light"] .site-header {
+      background: rgba(255, 255, 255, 0.88);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      gap: 16px;
+    }
+
+    .brand-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--gradient-brand);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 14px rgba(6, 182, 212, 0.35);
+      color: #FFFFFF;
+      flex-shrink: 0;
+    }
+
+    .brand-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text-main);
+      line-height: 1.1;
+    }
+
+    .brand-title span {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .brand-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-cyan);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-item a {
+      display: block;
+      padding: 8px 14px;
+      font-size: 0.92rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .nav-item a:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    [data-theme="light"] .nav-item a:hover {
+      background: rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-item a.active {
+      color: var(--accent-cyan);
+      background: rgba(6, 182, 212, 0.1);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .streak-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #FBBF24;
+      white-space: nowrap;
+    }
+
+    .streak-badge .flame-icon {
+      animation: pulseFlame 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseFlame {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4)); }
+      50% { transform: scale(1.18); filter: drop-shadow(0 0 8px rgba(245, 158, 11, 0.8)); }
+    }
+
+    .theme-toggle-btn {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+    }
+
+    .theme-toggle-btn:hover {
+      color: var(--text-main);
+      border-color: var(--border-focus);
+      background: var(--bg-card-hover);
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-main);
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Main Content Layout */
+    .main-content {
+      flex: 1;
+      padding: 40px 0 80px;
+    }
+
+    /* Hero Section */
+    .dashboard-hero {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .hero-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-radius: var(--radius-xl);
+      background: var(--gradient-card);
+      border: 1px solid var(--border-subtle);
+      padding: 36px 40px;
+      box-shadow: var(--shadow-md);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-wrapper::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-top-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-header-text h1 {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .hero-header-text h1 span {
+      background: var(--gradient-brand);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-header-text p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--gradient-brand);
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(6, 182, 212, 0.35);
+    }
+    .btn-primary:hover {
+      opacity: 0.94;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(6, 182, 212, 0.45);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: var(--border-focus);
+    }
+
+    .btn-danger-outline {
+      background: rgba(239, 68, 68, 0.08);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #F87171;
+    }
+    .btn-danger-outline:hover {
+      background: rgba(239, 68, 68, 0.16);
+      border-color: #EF4444;
+      color: #FCA5A5;
+    }
+
+    /* Overall Completion Bar inside Hero */
+    .hero-progress-banner {
+      margin-top: 12px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .hero-progress-labels {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.88rem;
+    }
+
+    .hero-progress-labels .curr-status {
+      font-weight: 600;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hero-progress-labels .percentage-val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent-cyan);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+    [data-theme="light"] .progress-track {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--gradient-brand);
+      transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+      animation: progressGleam 2.5s infinite;
+    }
+
+    @keyframes progressGleam {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    /* Section Headers */
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .section-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Stats Cards Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--border-focus);
+    }
+
+    .stat-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-card-title {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .stat-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+    }
+
+    .stat-icon-cyan {
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(6, 182, 212, 0.25);
+    }
+
+    .stat-icon-amber {
+      background: rgba(245, 158, 11, 0.12);
+      color: var(--accent-gold);
+      border: 1px solid rgba(245, 158, 11, 0.25);
+    }
+
+    .stat-icon-purple {
+      background: rgba(139, 92, 246, 0.12);
+      color: var(--accent-purple);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+    }
+
+    .stat-icon-emerald {
+      background: rgba(16, 185, 129, 0.12);
+      color: var(--accent-emerald);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .stat-body {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat-number {
+      font-family: var(--font-display);
+      font-size: 2.1rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-meta {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .stat-meta .stat-subtag {
+      font-weight: 600;
+      color: var(--accent-cyan);
+    }
+
+    /* Study Calendar Heatmap */
+    .heatmap-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 32px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .heatmap-controls-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .heatmap-stats-summary {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .heatmap-stat-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .heatmap-stat-label {
+      font-size: 0.76rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .heatmap-stat-value {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .heatmap-grid-container {
+      width: 100%;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .heatmap-grid {
+      display: grid;
+      grid-template-columns: repeat(30, minmax(28px, 1fr));
+      gap: 8px;
+      min-width: 840px;
+    }
+
+    .heatmap-cell {
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      position: relative;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .heatmap-cell:hover {
+      transform: scale(1.15);
+      z-index: 10;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      border-color: var(--accent-cyan);
+    }
+
+    .heatmap-cell.level-0 {
+      background: rgba(255, 255, 255, 0.02);
+      color: var(--text-dim);
+    }
+    .heatmap-cell.level-1 {
+      background: rgba(16, 185, 129, 0.25);
+      border-color: rgba(16, 185, 129, 0.4);
+      color: #A7F3D0;
+    }
+    .heatmap-cell.level-2 {
+      background: rgba(16, 185, 129, 0.55);
+      border-color: rgba(16, 185, 129, 0.7);
+      color: #ECFDF5;
+    }
+    .heatmap-cell.level-3 {
+      background: #10B981;
+      border-color: #34D399;
+      color: #022C22;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+    }
+
+    .heatmap-legend {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .legend-box {
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+    }
+
+    /* Level-by-Level Section */
+    .levels-section {
+      margin-bottom: 56px;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.86rem;
+      font-weight: 600;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .filter-btn:hover {
+      color: var(--text-main);
+      background: var(--bg-card-hover);
+    }
+
+    .filter-btn.active {
+      background: var(--accent-cyan);
+      color: #04121F;
+      border-color: var(--accent-cyan);
+      box-shadow: 0 2px 10px rgba(6, 182, 212, 0.3);
+    }
+
+    .levels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .level-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .level-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(6, 182, 212, 0.35);
+    }
+
+    .level-card.status-completed {
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    .level-card.status-in-progress {
+      border-color: rgba(6, 182, 212, 0.4);
+    }
+
+    .level-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .level-badge-pill {
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .status-badge-not-started {
+      background: rgba(100, 116, 139, 0.15);
+      color: #94A3B8;
+      border: 1px solid rgba(100, 116, 139, 0.3);
+    }
+
+    .status-badge-in-progress {
+      background: rgba(6, 182, 212, 0.15);
+      color: #38BDF8;
+      border: 1px solid rgba(6, 182, 212, 0.35);
+    }
+
+    .status-badge-completed {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .level-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .level-number-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .level-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .level-description {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .level-progress-block {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: var(--bg-card-subtle);
+      padding: 12px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .level-progress-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+    }
+
+    .level-lesson-count {
+      color: var(--text-muted);
+    }
+
+    .level-percentage {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .level-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    [data-theme="light"] .level-track {
+      background: rgba(0, 0, 0, 0.08);
+    }
+
+    .level-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .level-fill.completed {
+      background: #10B981;
+    }
+
+    .level-fill.in-progress {
+      background: var(--gradient-brand);
+    }
+
+    .level-fill.not-started {
+      background: transparent;
+    }
+
+    .level-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-subtle);
+      font-size: 0.84rem;
+    }
+
+    .toggle-lessons-btn {
+      color: var(--accent-cyan);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .toggle-lessons-btn:hover {
+      text-decoration: underline;
+    }
+
+    .open-level-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .open-level-link:hover {
+      color: var(--text-main);
+    }
+
+    /* Collapsible lesson item list */
+    .level-lessons-drawer {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border-subtle);
+      max-height: 240px;
+      overflow-y: auto;
+    }
+
+    .level-lessons-drawer.open {
+      display: flex;
+    }
+
+    .lesson-item-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.02);
+      font-size: 0.82rem;
+      transition: var(--transition);
+    }
+
+    .lesson-item-row:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .lesson-item-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-main);
+    }
+
+    .lesson-checkbox-btn {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .lesson-checkbox-btn.checked {
+      background: #10B981;
+      border-color: #10B981;
+      color: #FFFFFF;
+    }
+
+    /* Achievements Grid */
+    .achievements-section {
+      margin-bottom: 56px;
+    }
+
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .badge-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      position: relative;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    /* Locked Achievement */
+    .badge-card.locked {
+      opacity: 0.6;
+      filter: grayscale(85%);
+      background: rgba(15, 23, 42, 0.4);
+    }
+
+    .badge-card.locked:hover {
+      opacity: 0.85;
+      filter: grayscale(40%);
+    }
+
+    /* Unlocked Achievement */
+    .badge-card.unlocked {
+      border: 1px solid rgba(245, 158, 11, 0.45);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.06) 0%, rgba(19, 30, 54, 0.95) 100%);
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.15);
+      animation: badgeGlowPulse 4s infinite ease-in-out;
+    }
+
+    @keyframes badgeGlowPulse {
+      0%, 100% {
+        box-shadow: 0 4px 20px rgba(245, 158, 11, 0.12);
+        border-color: rgba(245, 158, 11, 0.4);
+      }
+      50% {
+        box-shadow: 0 4px 30px rgba(245, 158, 11, 0.3);
+        border-color: rgba(245, 158, 11, 0.7);
+      }
+    }
+
+    .badge-card.unlocked::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .badge-icon-box {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      position: relative;
+      background: rgba(255, 255, 255, 0.04);
+      border: 2px dashed var(--border-subtle);
+    }
+
+    .badge-card.unlocked .badge-icon-box {
+      background: var(--gradient-gold);
+      border: 3px solid #FDE68A;
+      box-shadow: var(--shadow-glow-gold);
+      color: #000;
+      animation: bounceMedal 2.5s infinite ease-in-out;
+    }
+
+    @keyframes bounceMedal {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-4px); }
+    }
+
+    .badge-lock-indicator {
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #1E293B;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: #94A3B8;
+    }
+
+    .badge-card.unlocked .badge-lock-indicator {
+      background: #10B981;
+      border-color: #A7F3D0;
+      color: #FFFFFF;
+    }
+
+    .badge-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .badge-name {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .badge-description {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .badge-progress-box {
+      width: 100%;
+      margin-top: 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .badge-status-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 8px;
+      border-radius: 999px;
+      align-self: center;
+    }
+
+    .badge-card.locked .badge-status-tag {
+      background: rgba(100, 116, 139, 0.15);
+      color: #94A3B8;
+    }
+
+    .badge-card.unlocked .badge-status-tag {
+      background: rgba(245, 158, 11, 0.15);
+      color: #FBBF24;
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    /* Modal Backdrop & Dialog */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(4, 7, 15, 0.8);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+      opacity: 1;
+    }
+
+    .modal-card {
+      background: #0F172A;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: var(--radius-xl);
+      max-width: 480px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transform: translateY(20px) scale(0.96);
+      transition: transform 0.25s ease;
+    }
+
+    .modal-backdrop.open .modal-card {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-icon-header {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #EF4444;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+    }
+
+    .modal-text h3 {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .modal-text p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn-danger {
+      background: #EF4444;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.4);
+    }
+    .btn-danger:hover {
+      background: #DC2626;
+      box-shadow: 0 6px 18px rgba(239, 68, 68, 0.5);
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      pointer-events: auto;
+      background: #1E293B;
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: var(--radius-md);
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transform: translateX(120%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .toast.show {
+      transform: translateX(0);
+    }
+
+    .toast.toast-danger {
+      border-left-color: #EF4444;
+    }
+
+    .toast.toast-gold {
+      border-left-color: #F59E0B;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: #060911;
+      border-top: 1px solid var(--border-subtle);
+      padding: 60px 0 30px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-desc {
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    .footer-col h4 {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent-cyan);
+      padding-left: 3px;
+    }
+
+    .footer-bottom {
+      padding-top: 24px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--text-dim);
+      font-size: 0.84rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        height: 64px;
+      }
+      .nav-menu {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        width: 100%;
+        background: var(--bg-secondary);
+        flex-direction: column;
+        padding: 20px;
+        border-bottom: 1px solid var(--border-subtle);
+        box-shadow: var(--shadow-lg);
+      }
+      .nav-menu.mobile-open {
+        display: flex;
+      }
+      .mobile-toggle {
+        display: flex;
+      }
+      .hero-wrapper {
+        padding: 24px;
+      }
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .levels-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <nav class="navbar" aria-label="Main Navigation">
+        <!-- Brand Link -->
+        <a href="index.html" class="brand-link" aria-label="Agent Mentor Home">
+          <div class="brand-logo-icon">
+            <!-- Brain / Robot Architecture SVG -->
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2a8 8 0 0 0-8 8c0 3.3 2 6.1 5 7.4V20a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.6c3-1.3 5-4.1 5-7.4a8 8 0 0 0-8-8z"/>
+              <path d="M9 10h.01"/>
+              <path d="M15 10h.01"/>
+              <path d="M9 14a3 3 0 0 0 6 0"/>
+            </svg>
+          </div>
+          <div class="brand-meta">
+            <span class="brand-title">Agent<span>Mentor</span></span>
+            <span class="brand-tag">AI Agent Engineering</span>
+          </div>
+        </a>
+
+        <!-- Main Navigation Links -->
+        <ul class="nav-menu" id="primary-nav-menu">
+          <li class="nav-item"><a href="index.html">Home</a></li>
+          <li class="nav-item"><a href="roadmap.html">Roadmap</a></li>
+          <li class="nav-item"><a href="topics.html">Curriculum</a></li>
+          <li class="nav-item"><a href="studyplan.html">Study Plan</a></li>
+          <li class="nav-item"><a href="progress.html" class="active" aria-current="page">Progress</a></li>
+          <li class="nav-item"><a href="quiz.html">Quizzes</a></li>
+        </ul>
+
+        <!-- Action Controls -->
+        <div class="nav-actions">
+          <!-- Study Streak Pill -->
+          <div class="streak-badge" id="nav-streak-pill" title="Current Daily Study Streak">
+            <span class="flame-icon">🔥</span>
+            <span id="nav-streak-count">0</span> Days
+          </div>
+
+          <!-- Theme Toggle -->
+          <button type="button" class="theme-toggle-btn" id="theme-toggle" aria-label="Toggle light and dark mode">
+            <!-- Sun / Moon SVG icons -->
+            <svg id="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+              <line x1="1" y1="12" x2="3" y2="12"></line>
+              <line x1="21" y1="12" x2="23" y2="12"></line>
+              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <svg id="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+          </button>
+
+          <!-- Mobile Hamburger Toggle -->
+          <button type="button" class="mobile-toggle" id="mobile-toggle-btn" aria-label="Toggle navigation menu">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="3" y1="12" x2="21" y2="12"></line>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content" id="main-content">
+    <div class="container">
+
+      <!-- Hero Header Section -->
+      <section class="dashboard-hero" aria-labelledby="hero-dashboard-heading">
+        <div class="hero-wrapper">
+          <div class="hero-top-row">
+            <div class="hero-header-text">
+              <h1 id="hero-dashboard-heading">Your <span>Progress Dashboard</span></h1>
+              <p>Track your AI agent engineering journey across 15 progressive levels. Analyze study continuity, celebrate achievement milestones, and build production-grade agentic systems.</p>
+            </div>
+            <div class="hero-actions">
+              <!-- Quick Demo Data Population for testing & preview -->
+              <button type="button" class="btn btn-outline" id="load-sample-btn" title="Populate simulated sample data for preview">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Load Sample Data
+              </button>
+              
+              <!-- Reset Progress Trigger Button -->
+              <button type="button" class="btn btn-danger-outline" id="open-reset-modal-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M3 6h18"></path>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                </svg>
+                Reset Progress
+              </button>
+
+              <!-- Continue Learning CTA -->
+              <a href="topics.html" class="btn btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Continue Curriculum
+              </a>
+            </div>
+          </div>
+
+          <!-- Overall Progress Bar Banner -->
+          <div class="hero-progress-banner">
+            <div class="hero-progress-labels">
+              <span class="curr-status">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                Curriculum Mastery (<span id="total-completed-text">0</span> of <span id="total-lessons-text">100</span> Lessons Completed)
+              </span>
+              <span class="percentage-val" id="overall-percentage-badge">0% Complete</span>
+            </div>
+            <div class="progress-track">
+              <div class="progress-fill" id="overall-progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Stats Overview Cards Row -->
+      <section class="stats-section" aria-label="Key Performance Statistics">
+        <div class="stats-grid">
+          
+          <!-- Card 1: Completed Lessons -->
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Completed Lessons</span>
+              <div class="stat-icon-wrapper stat-icon-cyan">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-body">
+              <div class="stat-number" id="stat-lessons-count">0</div>
+              <div class="stat-meta">
+                <span class="stat-subtag" id="stat-lessons-pct">0%</span> of ~100 curriculum modules
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Current Streak -->
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Current Streak</span>
+              <div class="stat-icon-wrapper stat-icon-amber">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-body">
+              <div class="stat-number" id="stat-streak-days">0 Days</div>
+              <div class="stat-meta" id="stat-streak-note">
+                Keep the momentum alive today!
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Achievements Earned -->
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Achievements</span>
+              <div class="stat-icon-wrapper stat-icon-purple">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="8" r="7"></circle>
+                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-body">
+              <div class="stat-number" id="stat-achievements-count">0 / 7</div>
+              <div class="stat-meta">
+                <span class="stat-subtag" id="stat-achievements-pct">0%</span> badges unlocked
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Last Study Date -->
+          <div class="stat-card">
+            <div class="stat-card-header">
+              <span class="stat-card-title">Last Study Date</span>
+              <div class="stat-icon-wrapper stat-icon-emerald">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+              </div>
+            </div>
+            <div class="stat-body">
+              <div class="stat-number" id="stat-last-study" style="font-size: 1.6rem;">Never</div>
+              <div class="stat-meta" id="stat-last-study-sub">
+                No activity recorded yet
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 30-Day Study Calendar / Activity Heatmap Section -->
+      <section class="heatmap-section" aria-labelledby="heatmap-heading">
+        <div class="heatmap-controls-row">
+          <div class="section-title-group">
+            <h2 class="section-title" id="heatmap-heading">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              30-Day Activity Heatmap
+            </h2>
+            <p class="section-subtitle">Consistent micro-learning is the fastest path to mastery. Here is your daily activity for the past 30 days.</p>
+          </div>
+
+          <div class="heatmap-stats-summary">
+            <div class="heatmap-stat-item">
+              <span class="heatmap-stat-label">Active Days</span>
+              <span class="heatmap-stat-value" id="heatmap-active-days">0 / 30</span>
+            </div>
+            <div class="heatmap-stat-item">
+              <span class="heatmap-stat-label">30-Day Completion Rate</span>
+              <span class="heatmap-stat-value" id="heatmap-consistency">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 30-Day Square Grid -->
+        <div class="heatmap-grid-container">
+          <div class="heatmap-grid" id="heatmap-grid-cells">
+            <!-- Dynamically generated 30 days -->
+          </div>
+        </div>
+
+        <!-- Heatmap Intensity Legend -->
+        <div class="heatmap-legend">
+          <span>Less Activity</span>
+          <div class="legend-box heatmap-cell level-0" title="0 lessons"></div>
+          <div class="legend-box heatmap-cell level-1" title="1 lesson"></div>
+          <div class="legend-box heatmap-cell level-2" title="2-3 lessons"></div>
+          <div class="legend-box heatmap-cell level-3" title="4+ lessons"></div>
+          <span>More Activity</span>
+        </div>
+      </section>
+
+      <!-- Level-by-Level Progress Section (15 Levels) -->
+      <section class="levels-section" aria-labelledby="levels-heading">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title" id="levels-heading">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                <line x1="12" y1="20" x2="12" y2="10"></line>
+                <line x1="18" y1="20" x2="18" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="16"></line>
+              </svg>
+              Level-by-Level Curriculum Progress
+            </h2>
+            <p class="section-subtitle">All 15 tiers of AI Agent Development from foundations to enterprise autonomous swarms.</p>
+          </div>
+
+          <!-- Status Filters -->
+          <div class="filter-bar" role="tablist">
+            <button type="button" class="filter-btn active" data-filter="all">All Levels (15)</button>
+            <button type="button" class="filter-btn" data-filter="in-progress">In Progress</button>
+            <button type="button" class="filter-btn" data-filter="completed">Completed</button>
+            <button type="button" class="filter-btn" data-filter="not-started">Not Started</button>
+          </div>
+        </div>
+
+        <!-- Levels Responsive Grid -->
+        <div class="levels-grid" id="levels-container">
+          <!-- Dynamically populated 15 levels -->
+        </div>
+      </section>
+
+      <!-- Achievements Section -->
+      <section class="achievements-section" aria-labelledby="achievements-heading">
+        <div class="section-header">
+          <div class="section-title-group">
+            <h2 class="section-title" id="achievements-heading">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gold)" stroke-width="2">
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+              </svg>
+              Milestone Achievements
+            </h2>
+            <p class="section-subtitle">Unlock badges as you complete lessons, maintain learning streaks, and master complex agent architectures.</p>
+          </div>
+        </div>
+
+        <!-- Badges Grid -->
+        <div class="achievements-grid" id="achievements-container">
+          <!-- Dynamically populated badges -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Reset Progress Confirmation Modal -->
+  <div class="modal-backdrop" id="reset-confirmation-modal" role="dialog" aria-modal="true" aria-labelledby="modal-reset-title">
+    <div class="modal-card">
+      <div class="modal-icon-header">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+          <line x1="12" y1="9" x2="12" y2="13"></line>
+          <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+      </div>
+      <div class="modal-text">
+        <h3 id="modal-reset-title">Reset All Learning Progress?</h3>
+        <p>This action is irreversible. It will erase all <strong>completed lesson records</strong>, reset your <strong>streak counters</strong>, clear your <strong>30-day heatmap history</strong>, and lock all <strong>achievements</strong> back to their initial state.</p>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" id="cancel-reset-btn">Cancel</button>
+        <button type="button" class="btn btn-danger" id="confirm-reset-btn">Yes, Reset Everything</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-link">
+            <div class="brand-logo-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2a8 8 0 0 0-8 8c0 3.3 2 6.1 5 7.4V20a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.6c3-1.3 5-4.1 5-7.4a8 8 0 0 0-8-8z"/>
+              </svg>
+            </div>
+            <div class="brand-meta">
+              <span class="brand-title">Agent<span>Mentor</span></span>
+              <span class="brand-tag">AI Agent Engineering</span>
+            </div>
+          </a>
+          <p class="footer-desc">The comprehensive curriculum and mentorship platform for software engineers mastering LLM agents, multi-agent frameworks, autonomous reasoning, and production deployments.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="roadmap.html">Visual Roadmap</a></li>
+            <li><a href="topics.html">All 15 Levels</a></li>
+            <li><a href="studyplan.html">Study Planner</a></li>
+            <li><a href="progress.html">Progress Dashboard</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Curriculum Tiers</h4>
+          <ul class="footer-links">
+            <li><a href="topics.html#tier-foundations">Tier 1: Foundations (L1-L5)</a></li>
+            <li><a href="topics.html#tier-architectures">Tier 2: Architectures (L6-L10)</a></li>
+            <li><a href="topics.html#tier-production">Tier 3: Production & Scale (L11-L15)</a></li>
+            <li><a href="quiz.html">Self Assessment Quizzes</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Community & Code</h4>
+          <ul class="footer-links">
+            <li><a href="https://github.com" target="_blank" rel="noopener">GitHub Repository</a></li>
+            <li><a href="https://discord.com" target="_blank" rel="noopener">Discord Community</a></li>
+            <li><a href="#">Agent Design Patterns</a></li>
+            <li><a href="#">API Cheatsheets</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Agent Mentor. Designed for AI Agent Developers worldwide.</p>
+        <p>Built with modern HTML5, CSS3, &amp; Vanilla JavaScript.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- External Scripts Integration (with fallback handling) -->
+  <script src="js/utils.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/progress.js"></script>
+  <script src="js/app.js"></script>
+
+  <!-- Inline Dashboard Logic & Controller -->
+  <script>
+    /**
+     * Agent Mentor - Progress Dashboard Controller
+     * Reads and writes progress state using localStorage or ProgressManager interface.
+     */
+    (function () {
+      'use strict';
+
+      // 1. Curriculum Definition (15 Levels totaling exactly 100 Lessons)
+      const CURRICULUM_LEVELS = [
+        {
+          id: 1,
+          title: "Foundations of AI Agents",
+          tier: "Foundations",
+          description: "Core agent architecture, perception-action loops, prompt engineering, and your first single-turn loop.",
+          totalLessons: 7,
+          lessons: [
+            "1.1 What is an AI Agent? Core Definitions",
+            "1.2 Anatomy of an Agent: Sensors, Actuators & Policies",
+            "1.3 LLM as the Central Reasoning Engine",
+            "1.4 Direct Prompting vs Agentic Loops",
+            "1.5 Perception-Action Cycle in Python",
+            "1.6 First Single-Turn Agent with Fallbacks",
+            "1.7 Hands-on Lab: Echo Agent with Guardrails"
+          ]
+        },
+        {
+          id: 2,
+          title: "Structured Outputs & Function Calling",
+          tier: "Foundations",
+          description: "JSON Schema validation, tool contracts, OpenAI & Anthropic tool protocol, and robust error recovery.",
+          totalLessons: 7,
+          lessons: [
+            "2.1 Understanding Structured JSON Schemas",
+            "2.2 OpenAI Function Calling Architecture",
+            "2.3 Anthropic Tool Use Protocol",
+            "2.4 Pydantic Models for Response Enforcement",
+            "2.5 Handling Malformed Function Arguments",
+            "2.6 Multi-step Function Call Sequences",
+            "2.7 Hands-on Lab: Schema-Constrained Query Agent"
+          ]
+        },
+        {
+          id: 3,
+          title: "Memory Systems & Context Management",
+          tier: "Foundations",
+          description: "Working memory, sliding context windows, token summarization, and persistent episodic vector memory.",
+          totalLessons: 7,
+          lessons: [
+            "3.1 Working vs Short-Term vs Long-Term Memory",
+            "3.2 Sliding Window Context Management",
+            "3.3 Conversation Token Summarization Patterns",
+            "3.4 Semantic Episodic Memory Systems",
+            "3.5 Entity Memory & Knowledge Graphs",
+            "3.6 Memory Eviction & Salience Policies",
+            "3.7 Hands-on Lab: Stateful Chat Agent"
+          ]
+        },
+        {
+          id: 4,
+          title: "Tool Use & External Integrations",
+          tier: "Foundations",
+          description: "Web search tools, sandboxed Python execution, Text-to-SQL, and dynamic REST API integrations.",
+          totalLessons: 7,
+          lessons: [
+            "4.1 Web Search Tools & Result Parsers",
+            "4.2 Sandboxed Python Code Execution",
+            "4.3 Database Querying via Text-to-SQL",
+            "4.4 Filesystem I/O & Document Extractors",
+            "4.5 REST API Dynamic Invocations",
+            "4.6 Error Recovery & Tool Retries",
+            "4.7 Hands-on Lab: Multi-Tool Research Assistant"
+          ]
+        },
+        {
+          id: 5,
+          title: "Planning & Reasoning Frameworks",
+          tier: "Foundations",
+          description: "ReAct patterns, Chain-of-Thought, Tree-of-Thoughts, Plan-and-Solve, and self-reflection loops.",
+          totalLessons: 7,
+          lessons: [
+            "5.1 ReAct: Reasoning + Acting Pattern",
+            "5.2 Chain-of-Thought (CoT) Decomposition",
+            "5.3 Tree-of-Thoughts (ToT) Exploration",
+            "5.4 Plan-and-Solve (Self-Correction Loops)",
+            "5.5 Reflection & Reflexion Architectures",
+            "5.6 Handling Deadlocks & Stalled Plans",
+            "5.7 Hands-on Lab: ReAct Agent from Scratch"
+          ]
+        },
+        {
+          id: 6,
+          title: "Vector Databases & Semantic Retrieval",
+          tier: "Architectures",
+          description: "Embedding models, similarity search, chunking strategies, hybrid retrieval (BM25 + Dense).",
+          totalLessons: 7,
+          lessons: [
+            "6.1 Vector Embeddings & Similarity Metrics",
+            "6.2 Vector DB Selection (Chroma, Pinecone, Qdrant)",
+            "6.3 Chunking Strategies: Semantic, Recursive, Fixed",
+            "6.4 Hybrid Retrieval: Keyword (BM25) + Semantic",
+            "6.5 Contextual Compression & Document Filters",
+            "6.6 Query Expansion & Multi-Query Generation",
+            "6.7 Hands-on Lab: Document QA RAG Agent"
+          ]
+        },
+        {
+          id: 7,
+          title: "Advanced RAG & Agentic Retrieval",
+          tier: "Architectures",
+          description: "Corrective RAG (CRAG), Self-RAG reflection tokens, cross-encoder reranking, and GraphRAG.",
+          totalLessons: 7,
+          lessons: [
+            "7.1 Agentic RAG vs Traditional RAG",
+            "7.2 Corrective RAG (CRAG) with Fallbacks",
+            "7.3 Self-RAG: Reflection Tokens & Critiques",
+            "7.4 Cohere & Cross-Encoder Reranking",
+            "7.5 Routing Queries Across Domain Stores",
+            "7.6 GraphRAG: Knowledge Graphs + Vector Spaces",
+            "7.7 Hands-on Lab: Self-Correcting RAG System"
+          ]
+        },
+        {
+          id: 8,
+          title: "Multi-Agent Collaboration Patterns",
+          tier: "Architectures",
+          description: "Supervisor patterns, peer-to-peer message buses, hierarchical role delegation, and consensus voting.",
+          totalLessons: 7,
+          lessons: [
+            "8.1 Single-Agent Limits & Multi-Agent Value",
+            "8.2 Supervisor / Orchestrator Architecture",
+            "8.3 Peer-to-Peer Agent Messaging Protocols",
+            "8.4 Hierarchical Delegation & Specialist Roles",
+            "8.5 Debate & Consensus Protocols",
+            "8.6 Agent Conflict Resolution & Voting",
+            "8.7 Hands-on Lab: Collaborative Research Team"
+          ]
+        },
+        {
+          id: 9,
+          title: "Agent Frameworks: LangChain & LangGraph",
+          tier: "Architectures",
+          description: "State graphs, cyclic loops, human-in-the-loop approvals, checkpointing, and time-travel debugging.",
+          totalLessons: 7,
+          lessons: [
+            "9.1 LangChain Core Architecture & Runnables (LCEL)",
+            "9.2 LangGraph Fundamentals: Nodes, Edges, State",
+            "9.3 Cycles & State Machines in Agent Loops",
+            "9.4 Human-in-the-Loop Interrupts & Approvals",
+            "9.5 Checkpointing & Time-Travel Debugging",
+            "9.6 Multi-Agent Graphs with Shared State",
+            "9.7 Hands-on Lab: Resilient Customer Support Graph"
+          ]
+        },
+        {
+          id: 10,
+          title: "Agent Frameworks: CrewAI & AutoGen",
+          tier: "Architectures",
+          description: "Role-playing agents, crew process management, ConversableAgent, GroupChat, and framework tradeoffs.",
+          totalLessons: 7,
+          lessons: [
+            "10.1 CrewAI Concepts: Agents, Tasks, Crews",
+            "10.2 Role Playing, Goals & Backstories",
+            "10.3 AutoGen Architecture: ConversableAgent",
+            "10.4 GroupChat & GroupChatManager Coordination",
+            "10.5 Tool Registration across Frameworks",
+            "10.6 Benchmarking CrewAI vs AutoGen vs Custom",
+            "10.7 Hands-on Lab: Automated Code Review Crew"
+          ]
+        },
+        {
+          id: 11,
+          title: "Autonomous Execution & Sandboxing",
+          tier: "Production",
+          description: "Docker isolation, e2b cloud sandboxes, network egress whitelisting, and privilege protection.",
+          totalLessons: 6,
+          lessons: [
+            "11.1 Security Risks of Code-Executing Agents",
+            "11.2 Docker Container Isolation & Resource Limits",
+            "11.3 WebAssembly (WASM) & e2b Cloud Sandboxes",
+            "11.4 Network Sandboxing & Egress Whitelisting",
+            "11.5 Privilege Escalation Prevention",
+            "11.6 Hands-on Lab: Secure Code Execution Sandbox"
+          ]
+        },
+        {
+          id: 12,
+          title: "Evaluation, Benchmarking & Metrics",
+          tier: "Production",
+          description: "LLM-as-a-judge techniques, SWE-bench, GAIA benchmark, tool calling accuracy, and cost tracking.",
+          totalLessons: 6,
+          lessons: [
+            "12.1 The Challenge of Non-Deterministic Evaluation",
+            "12.2 LLM-as-a-Judge Techniques & Bias Mitigation",
+            "12.3 Agent Benchmarks: SWE-bench, GAIA, WebArena",
+            "12.4 Trajectory Evaluation & Tool Accuracy Metrics",
+            "12.5 Cost & Latency Tradeoff Scoring",
+            "12.6 Hands-on Lab: Automated Benchmark Test Suite"
+          ]
+        },
+        {
+          id: 13,
+          title: "Observability, Tracing & Logging",
+          tier: "Production",
+          description: "OpenTelemetry standards, LangSmith, Phoenix tracing, runaway loop detection, and cost telemetry.",
+          totalLessons: 6,
+          lessons: [
+            "13.1 Tracing Agent Decision Trees & Tool Calls",
+            "13.2 OpenTelemetry Standards for AI Workloads",
+            "13.3 LangSmith & Phoenix Tracing Setup",
+            "13.4 Token Consumption & Cost Budget Monitors",
+            "13.5 Detecting Infinite Loops & Runaway Agents",
+            "13.6 Hands-on Lab: Full Tracing Dashboard Setup"
+          ]
+        },
+        {
+          id: 14,
+          title: "Production Deployment & Scaling",
+          tier: "Production",
+          description: "FastAPI async endpoints, WebSocket streaming, Redis task queues, and semantic prompt caching.",
+          totalLessons: 6,
+          lessons: [
+            "14.1 FastAPI Async Microservice Architectures",
+            "14.2 SSE & WebSocket Realtime Token Streaming",
+            "14.3 Concurrency, Redis Queues & Background Workers",
+            "14.4 Production Caching: Semantic & Exact",
+            "14.5 Rate Limiting, Retries & Fallback Providers",
+            "14.6 Hands-on Lab: High-Throughput Agent API"
+          ]
+        },
+        {
+          id: 15,
+          title: "Capstone: Production AI Agent System",
+          tier: "Production",
+          description: "Full end-to-end multi-agent system, persistent tenancy, CI/CD pipelines, and certification review.",
+          totalLessons: 6,
+          lessons: [
+            "15.1 System Architecture & Requirement Specification",
+            "15.2 End-to-End Orchestration & Guardrails",
+            "15.3 Persistent Multi-Tenant Storage & Sessions",
+            "15.4 Deployment, Dockerization & CI/CD Pipelines",
+            "15.5 Automated Self-Healing & Alerting",
+            "15.6 Final Capstone Showcase & Certification"
+          ]
+        }
+      ];
+
+      // Calculate total lessons in curriculum (7*10 + 6*5 = 100)
+      const TOTAL_CURRICULUM_LESSONS = CURRICULUM_LEVELS.reduce((acc, lvl) => acc + lvl.totalLessons, 0);
+
+      // 2. Achievements Definitions (7 core requested + 3 advanced)
+      const ACHIEVEMENTS_LIST = [
+        {
+          id: "first_step",
+          name: "First Step",
+          icon: "🚀",
+          description: "Complete your first lesson in AI Agent Development.",
+          requirementText: "1 Lesson completed",
+          target: 1,
+          type: "lessons"
+        },
+        {
+          id: "getting_started",
+          name: "Getting Started",
+          icon: "🌱",
+          description: "Complete 5 lessons across any of the 15 levels.",
+          requirementText: "5 Lessons completed",
+          target: 5,
+          type: "lessons"
+        },
+        {
+          id: "dedicated_learner",
+          name: "Dedicated Learner",
+          icon: "📚",
+          description: "Complete 10 lessons to cement core conceptual knowledge.",
+          requirementText: "10 Lessons completed",
+          target: 10,
+          type: "lessons"
+        },
+        {
+          id: "knowledge_seeker",
+          name: "Knowledge Seeker",
+          icon: "🧠",
+          description: "Complete 20 lessons and master structured tools & memory.",
+          requirementText: "20 Lessons completed",
+          target: 20,
+          type: "lessons"
+        },
+        {
+          id: "streak_3",
+          name: "3-Day Streak",
+          icon: "🔥",
+          description: "Maintain a daily study streak for 3 consecutive days.",
+          requirementText: "3-Day Study Streak",
+          target: 3,
+          type: "streak"
+        },
+        {
+          id: "week_warrior",
+          name: "Week Warrior",
+          icon: "⚡",
+          description: "Maintain a relentless 7-day daily study streak.",
+          requirementText: "7-Day Study Streak",
+          target: 7,
+          type: "streak"
+        },
+        {
+          id: "month_master",
+          name: "Month Master",
+          icon: "👑",
+          description: "Study consistently for 30 consecutive days.",
+          requirementText: "30-Day Study Streak",
+          target: 30,
+          type: "streak"
+        }
+      ];
+
+      // 3. Storage Adapter & Local State Manager
+      const STORAGE_KEYS = {
+        COMPLETED_LESSONS: 'agentmentor_completed_lessons',
+        STREAK_COUNT: 'agentmentor_streak_days',
+        LAST_STUDY_DATE: 'agentmentor_last_study_date',
+        STUDY_HISTORY: 'agentmentor_study_history',
+        UNLOCKED_ACHIEVEMENTS: 'agentmentor_achievements'
+      };
+
+      /**
+       * Retrieve stored or computed user progress
+       */
+      function loadUserData() {
+        // Fallback or integration with window.ProgressManager
+        let completedLessons = [];
+        let streak = 0;
+        let lastStudyDate = null;
+        let studyHistory = {}; // Format: { "YYYY-MM-DD": lessonCount }
+        let unlockedBadges = [];
+
+        try {
+          if (window.ProgressManager && typeof window.ProgressManager.getCompletedLessons === 'function') {
+            completedLessons = window.ProgressManager.getCompletedLessons() || [];
+          } else {
+            const rawLessons = localStorage.getItem(STORAGE_KEYS.COMPLETED_LESSONS) || localStorage.getItem('completed_lessons');
+            if (rawLessons) completedLessons = JSON.parse(rawLessons);
+          }
+
+          if (window.ProgressManager && typeof window.ProgressManager.getStreak === 'function') {
+            streak = window.ProgressManager.getStreak() || 0;
+          } else {
+            const rawStreak = localStorage.getItem(STORAGE_KEYS.STREAK_COUNT) || localStorage.getItem('streak');
+            if (rawStreak) streak = parseInt(rawStreak, 10) || 0;
+          }
+
+          if (window.ProgressManager && typeof window.ProgressManager.getLastStudyDate === 'function') {
+            lastStudyDate = window.ProgressManager.getLastStudyDate();
+          } else {
+            lastStudyDate = localStorage.getItem(STORAGE_KEYS.LAST_STUDY_DATE) || localStorage.getItem('last_study_date');
+          }
+
+          const rawHistory = localStorage.getItem(STORAGE_KEYS.STUDY_HISTORY);
+          if (rawHistory) {
+            studyHistory = JSON.parse(rawHistory);
+          }
+
+          const rawBadges = localStorage.getItem(STORAGE_KEYS.UNLOCKED_ACHIEVEMENTS);
+          if (rawBadges) {
+            unlockedBadges = JSON.parse(rawBadges);
+          }
+        } catch (err) {
+          console.warn("Error loading data from localStorage:", err);
+        }
+
+        return {
+          completedLessons: Array.isArray(completedLessons) ? completedLessons : [],
+          streak: streak || 0,
+          lastStudyDate: lastStudyDate || null,
+          studyHistory: studyHistory || {},
+          unlockedBadges: Array.isArray(unlockedBadges) ? unlockedBadges : []
+        };
+      }
+
+      /**
+       * Save progress state to localStorage
+       */
+      function saveUserData(data) {
+        try {
+          localStorage.setItem(STORAGE_KEYS.COMPLETED_LESSONS, JSON.stringify(data.completedLessons));
+          localStorage.setItem('completed_lessons', JSON.stringify(data.completedLessons));
+          localStorage.setItem(STORAGE_KEYS.STREAK_COUNT, data.streak.toString());
+          localStorage.setItem('streak', data.streak.toString());
+          if (data.lastStudyDate) {
+            localStorage.setItem(STORAGE_KEYS.LAST_STUDY_DATE, data.lastStudyDate);
+            localStorage.setItem('last_study_date', data.lastStudyDate);
+          } else {
+            localStorage.removeItem(STORAGE_KEYS.LAST_STUDY_DATE);
+            localStorage.removeItem('last_study_date');
+          }
+          localStorage.setItem(STORAGE_KEYS.STUDY_HISTORY, JSON.stringify(data.studyHistory));
+          localStorage.setItem(STORAGE_KEYS.UNLOCKED_ACHIEVEMENTS, JSON.stringify(data.unlockedBadges));
+
+          // Also trigger window custom event for other components
+          window.dispatchEvent(new CustomEvent('agentmentor:progress-updated', { detail: data }));
+        } catch (err) {
+          console.error("Error saving data to localStorage:", err);
+        }
+      }
+
+      /**
+       * Evaluate and update achievements status based on current counts
+       */
+      function evaluateAchievements(data) {
+        const totalCompleted = data.completedLessons.length;
+        const currentStreak = data.streak;
+        const unlockedIds = new Set(data.unlockedBadges);
+        let newlyUnlocked = false;
+
+        ACHIEVEMENTS_LIST.forEach(achievement => {
+          let earned = false;
+          if (achievement.type === 'lessons' && totalCompleted >= achievement.target) {
+            earned = true;
+          } else if (achievement.type === 'streak' && currentStreak >= achievement.target) {
+            earned = true;
+          }
+
+          if (earned && !unlockedIds.has(achievement.id)) {
+            unlockedIds.add(achievement.id);
+            newlyUnlocked = true;
+          }
+        });
+
+        data.unlockedBadges = Array.from(unlockedIds);
+        return newlyUnlocked;
+      }
+
+      // 4. UI Rendering Functions
+
+      /**
+       * Render top stats cards & hero progress
+       */
+      function renderOverview(data) {
+        const totalCompleted = data.completedLessons.length;
+        const totalLessons = TOTAL_CURRICULUM_LESSONS;
+        const percent = Math.min(100, Math.round((totalCompleted / totalLessons) * 100));
+
+        // Hero bar elements
+        const totalCompletedEl = document.getElementById('total-completed-text');
+        const totalLessonsEl = document.getElementById('total-lessons-text');
+        const overallPercentageEl = document.getElementById('overall-percentage-badge');
+        const overallProgressFillEl = document.getElementById('overall-progress-fill');
+
+        if (totalCompletedEl) totalCompletedEl.textContent = totalCompleted;
+        if (totalLessonsEl) totalLessonsEl.textContent = totalLessons;
+        if (overallPercentageEl) overallPercentageEl.textContent = `${percent}% Complete`;
+        if (overallProgressFillEl) overallProgressFillEl.style.width = `${percent}%`;
+
+        // Card 1: Completed lessons
+        const statLessonsCountEl = document.getElementById('stat-lessons-count');
+        const statLessonsPctEl = document.getElementById('stat-lessons-pct');
+        if (statLessonsCountEl) statLessonsCountEl.textContent = totalCompleted;
+        if (statLessonsPctEl) statLessonsPctEl.textContent = `${percent}%`;
+
+        // Card 2: Streak
+        const statStreakDaysEl = document.getElementById('stat-streak-days');
+        const statStreakNoteEl = document.getElementById('stat-streak-note');
+        const navStreakCountEl = document.getElementById('nav-streak-count');
+        if (statStreakDaysEl) statStreakDaysEl.textContent = `${data.streak} Day${data.streak === 1 ? '' : 's'}`;
+        if (navStreakCountEl) navStreakCountEl.textContent = data.streak;
+
+        if (statStreakNoteEl) {
+          if (data.streak === 0) {
+            statStreakNoteEl.textContent = "Start your streak with a lesson today!";
+          } else if (data.streak < 3) {
+            statStreakNoteEl.textContent = "Great start! Keep learning daily.";
+          } else if (data.streak < 7) {
+            statStreakNoteEl.textContent = "🔥 On fire! Keep building momentum!";
+          } else {
+            statStreakNoteEl.textContent = "⚡ Masterclass dedication! Unstoppable!";
+          }
+        }
+
+        // Card 3: Achievements
+        const unlockedCount = data.unlockedBadges.length;
+        const totalBadges = ACHIEVEMENTS_LIST.length;
+        const badgePct = Math.round((unlockedCount / totalBadges) * 100);
+        const statAchievementsCountEl = document.getElementById('stat-achievements-count');
+        const statAchievementsPctEl = document.getElementById('stat-achievements-pct');
+        if (statAchievementsCountEl) statAchievementsCountEl.textContent = `${unlockedCount} / ${totalBadges}`;
+        if (statAchievementsPctEl) statAchievementsPctEl.textContent = `${badgePct}%`;
+
+        // Card 4: Last Study Date
+        const statLastStudyEl = document.getElementById('stat-last-study');
+        const statLastStudySubEl = document.getElementById('stat-last-study-sub');
+        if (statLastStudyEl && statLastStudySubEl) {
+          if (!data.lastStudyDate) {
+            statLastStudyEl.textContent = "Never";
+            statLastStudySubEl.textContent = "No lessons recorded yet";
+          } else {
+            const lastDate = new Date(data.lastStudyDate);
+            const today = new Date();
+            const isToday = lastDate.toDateString() === today.toDateString();
+            
+            const yesterday = new Date();
+            yesterday.setDate(today.getDate() - 1);
+            const isYesterday = lastDate.toDateString() === yesterday.toDateString();
+
+            if (isToday) {
+              statLastStudyEl.textContent = "Today";
+              statLastStudySubEl.textContent = "Active in the last 24 hours";
+            } else if (isYesterday) {
+              statLastStudyEl.textContent = "Yesterday";
+              statLastStudySubEl.textContent = "Ready for today's session";
+            } else {
+              statLastStudyEl.textContent = lastDate.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+              statLastStudySubEl.textContent = `Last studied on ${data.lastStudyDate}`;
+            }
+          }
+        }
+      }
+
+      /**
+       * Render the 30-day activity calendar heatmap
+       */
+      function renderHeatmap(data) {
+        const grid = document.getElementById('heatmap-grid-cells');
+        const activeDaysEl = document.getElementById('heatmap-active-days');
+        const consistencyEl = document.getElementById('heatmap-consistency');
+        if (!grid) return;
+
+        grid.innerHTML = '';
+        const today = new Date();
+        const days = [];
+        let activeDaysCount = 0;
+
+        // Generate past 30 days
+        for (let i = 29; i >= 0; i--) {
+          const d = new Date();
+          d.setDate(today.getDate() - i);
+          const dateStr = d.toISOString().split('T')[0];
+          const count = data.studyHistory[dateStr] || 0;
+          if (count > 0) activeDaysCount++;
+          days.push({
+            date: dateStr,
+            displayDate: d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' }),
+            count: count,
+            dayOfWeek: d.toLocaleDateString(undefined, { weekday: 'narrow' }),
+            dayNum: d.getDate()
+          });
+        }
+
+        days.forEach(day => {
+          const cell = document.createElement('div');
+          let levelClass = 'level-0';
+          if (day.count === 1) levelClass = 'level-1';
+          else if (day.count >= 2 && day.count < 4) levelClass = 'level-2';
+          else if (day.count >= 4) levelClass = 'level-3';
+
+          cell.className = `heatmap-cell ${levelClass}`;
+          cell.textContent = day.dayNum;
+          cell.title = `${day.displayDate}: ${day.count} lesson${day.count === 1 ? '' : 's'} completed`;
+          grid.appendChild(cell);
+        });
+
+        if (activeDaysEl) activeDaysEl.textContent = `${activeDaysCount} / 30 Days`;
+        if (consistencyEl) {
+          const consistency = Math.round((activeDaysCount / 30) * 100);
+          consistencyEl.textContent = `${consistency}%`;
+        }
+      }
+
+      /**
+       * Render all 15 curriculum level cards
+       */
+      function renderLevels(data, activeFilter = 'all') {
+        const container = document.getElementById('levels-container');
+        if (!container) return;
+
+        container.innerHTML = '';
+        const completedSet = new Set(data.completedLessons);
+
+        CURRICULUM_LEVELS.forEach(lvl => {
+          // Count completed lessons in this level
+          let lvlCompletedCount = 0;
+          lvl.lessons.forEach(lessonName => {
+            if (completedSet.has(lessonName)) {
+              lvlCompletedCount++;
+            }
+          });
+
+          const pct = Math.round((lvlCompletedCount / lvl.totalLessons) * 100);
+          let status = 'not-started';
+          let statusLabel = 'Not Started';
+          let statusBadgeClass = 'status-badge-not-started';
+          let fillClass = 'not-started';
+
+          if (lvlCompletedCount === lvl.totalLessons) {
+            status = 'completed';
+            statusLabel = 'Completed';
+            statusBadgeClass = 'status-badge-completed';
+            fillClass = 'completed';
+          } else if (lvlCompletedCount > 0) {
+            status = 'in-progress';
+            statusLabel = 'In Progress';
+            statusBadgeClass = 'status-badge-in-progress';
+            fillClass = 'in-progress';
+          }
+
+          // Apply Filter check
+          if (activeFilter !== 'all' && activeFilter !== status) {
+            return;
+          }
+
+          // Create Level Card
+          const card = document.createElement('div');
+          card.className = `level-card status-${status}`;
+          card.dataset.levelId = lvl.id;
+          card.dataset.status = status;
+
+          card.innerHTML = `
+            <div class="level-card-header">
+              <div class="level-info">
+                <span class="level-number-tag">Level ${lvl.id} &bull; ${lvl.tier}</span>
+                <h3 class="level-title">${lvl.title}</h3>
+              </div>
+              <span class="level-badge-pill ${statusBadgeClass}">${statusLabel}</span>
+            </div>
+
+            <p class="level-description">${lvl.description}</p>
+
+            <div class="level-progress-block">
+              <div class="level-progress-meta">
+                <span class="level-lesson-count">${lvlCompletedCount} of ${lvl.totalLessons} Lessons</span>
+                <span class="level-percentage">${pct}%</span>
+              </div>
+              <div class="level-track">
+                <div class="level-fill ${fillClass}" style="width: ${pct}%;"></div>
+              </div>
+            </div>
+
+            <div class="level-actions">
+              <button type="button" class="toggle-lessons-btn" data-toggle-id="drawer-${lvl.id}">
+                <span>View Lessons (${lvl.totalLessons})</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </button>
+              <a href="topics.html#level-${lvl.id}" class="open-level-link" title="Open Level Details">
+                <span>Start Level</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+
+            <!-- Expandable Drawer for Interactive Lesson Checklist -->
+            <div class="level-lessons-drawer" id="drawer-${lvl.id}">
+              ${lvl.lessons.map(lesson => {
+                const isChecked = completedSet.has(lesson);
+                return `
+                  <div class="lesson-item-row">
+                    <div class="lesson-item-title">
+                      <button type="button" class="lesson-checkbox-btn ${isChecked ? 'checked' : ''}" data-lesson-name="${encodeURIComponent(lesson)}" title="${isChecked ? 'Mark incomplete' : 'Mark complete'}">
+                        ${isChecked ? '✓' : ''}
+                      </button>
+                      <span>${lesson}</span>
+                    </div>
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+
+        // Attach lesson toggle accordion listeners
+        container.querySelectorAll('.toggle-lessons-btn').forEach(btn => {
+          btn.addEventListener('click', function () {
+            const drawerId = this.getAttribute('data-toggle-id');
+            const drawer = document.getElementById(drawerId);
+            if (drawer) {
+              const isOpen = drawer.classList.contains('open');
+              drawer.classList.toggle('open');
+              this.querySelector('span').textContent = isOpen 
+                ? `View Lessons (${drawer.children.length})` 
+                : `Hide Lessons`;
+            }
+          });
+        });
+
+        // Attach interactive lesson complete/incomplete checkbox listeners
+        container.querySelectorAll('.lesson-checkbox-btn').forEach(chk => {
+          chk.addEventListener('click', function () {
+            const lessonName = decodeURIComponent(this.getAttribute('data-lesson-name'));
+            toggleLessonCompletion(lessonName);
+          });
+        });
+      }
+
+      /**
+       * Render Achievements Badges Grid
+       */
+      function renderAchievements(data) {
+        const container = document.getElementById('achievements-container');
+        if (!container) return;
+
+        container.innerHTML = '';
+        const unlockedSet = new Set(data.unlockedBadges);
+        const totalCompleted = data.completedLessons.length;
+        const currentStreak = data.streak;
+
+        ACHIEVEMENTS_LIST.forEach(badge => {
+          const isUnlocked = unlockedSet.has(badge.id);
+          const currentVal = badge.type === 'lessons' ? totalCompleted : currentStreak;
+          const progressPct = Math.min(100, Math.round((currentVal / badge.target) * 100));
+
+          const card = document.createElement('div');
+          card.className = `badge-card ${isUnlocked ? 'unlocked' : 'locked'}`;
+
+          card.innerHTML = `
+            <div class="badge-icon-box">
+              <span>${badge.icon}</span>
+              <div class="badge-lock-indicator">
+                ${isUnlocked 
+                  ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+                  : '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>'
+                }
+              </div>
+            </div>
+
+            <div class="badge-info">
+              <h3 class="badge-name">${badge.name}</h3>
+              <p class="badge-description">${badge.description}</p>
+            </div>
+
+            <div class="badge-progress-box">
+              <span class="badge-status-tag">
+                ${isUnlocked ? '★ Unlocked Milestone' : `${Math.min(currentVal, badge.target)} / ${badge.target} (${progressPct}%)`}
+              </span>
+              <div class="progress-track" style="height: 6px;">
+                <div class="progress-fill" style="width: ${progressPct}%; background: ${isUnlocked ? 'var(--gradient-gold)' : 'rgba(255,255,255,0.2)'};"></div>
+              </div>
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+      }
+
+      /**
+       * Toggle a single lesson completion and trigger dashboard re-render
+       */
+      function toggleLessonCompletion(lessonName) {
+        const data = loadUserData();
+        const index = data.completedLessons.indexOf(lessonName);
+        const todayStr = new Date().toISOString().split('T')[0];
+
+        if (index > -1) {
+          // Remove completion
+          data.completedLessons.splice(index, 1);
+          if (data.studyHistory[todayStr] && data.studyHistory[todayStr] > 0) {
+            data.studyHistory[todayStr]--;
+          }
+          showToast(`Lesson marked incomplete: "${lessonName.substring(0, 32)}..."`);
+        } else {
+          // Add completion
+          data.completedLessons.push(lessonName);
+          data.studyHistory[todayStr] = (data.studyHistory[todayStr] || 0) + 1;
+          data.lastStudyDate = todayStr;
+          
+          // Increment streak if not studied yet today
+          if (data.streak === 0) {
+            data.streak = 1;
+          }
+          showToast(`Completed: "${lessonName.substring(0, 32)}..."`, 'toast-gold');
+        }
+
+        // Check achievements
+        const newlyUnlocked = evaluateAchievements(data);
+        if (newlyUnlocked) {
+          showToast("🎉 New Achievement Unlocked!", "toast-gold");
+        }
+
+        saveUserData(data);
+        refreshDashboard();
+      }
+
+      /**
+       * Load sample mock data for demonstration
+       */
+      function loadSampleData() {
+        const sampleCompleted = [
+          "1.1 What is an AI Agent? Core Definitions",
+          "1.2 Anatomy of an Agent: Sensors, Actuators & Policies",
+          "1.3 LLM as the Central Reasoning Engine",
+          "1.4 Direct Prompting vs Agentic Loops",
+          "1.5 Perception-Action Cycle in Python",
+          "1.6 First Single-Turn Agent with Fallbacks",
+          "1.7 Hands-on Lab: Echo Agent with Guardrails", // Level 1 (7/7)
+          "2.1 Understanding Structured JSON Schemas",
+          "2.2 OpenAI Function Calling Architecture",
+          "2.3 Anthropic Tool Use Protocol",
+          "2.4 Pydantic Models for Response Enforcement", // Level 2 (4/7)
+          "3.1 Working vs Short-Term vs Long-Term Memory",
+          "3.2 Sliding Window Context Management", // Level 3 (2/7)
+          "5.1 ReAct: Reasoning + Acting Pattern",
+          "5.2 Chain-of-Thought (CoT) Decomposition" // Level 5 (2/7)
+        ];
+
+        const history = {};
+        const today = new Date();
+        // Generate pseudo activity over last 14 days
+        for (let i = 0; i < 14; i++) {
+          const d = new Date();
+          d.setDate(today.getDate() - i);
+          const dateStr = d.toISOString().split('T')[0];
+          if (i % 2 === 0 || i < 5) {
+            history[dateStr] = (i % 3) + 1;
+          }
+        }
+
+        const sampleData = {
+          completedLessons: sampleCompleted,
+          streak: 5,
+          lastStudyDate: today.toISOString().split('T')[0],
+          studyHistory: history,
+          unlockedBadges: []
+        };
+
+        evaluateAchievements(sampleData);
+        saveUserData(sampleData);
+        refreshDashboard();
+        showToast("Sample learning data loaded successfully!", "toast-gold");
+      }
+
+      /**
+       * Reset all user progress data to clean initial state
+       */
+      function resetAllProgress() {
+        const cleanData = {
+          completedLessons: [],
+          streak: 0,
+          lastStudyDate: null,
+          studyHistory: {},
+          unlockedBadges: []
+        };
+
+        // Also call ProgressManager reset if present in window
+        if (window.ProgressManager && typeof window.ProgressManager.resetProgress === 'function') {
+          try {
+            window.ProgressManager.resetProgress();
+          } catch (e) {
+            console.warn("ProgressManager.resetProgress call error:", e);
+          }
+        }
+
+        saveUserData(cleanData);
+        refreshDashboard();
+        showToast("All progress has been reset to zero.", "toast-danger");
+      }
+
+      /**
+       * Toast Notification Helper
+       */
+      function showToast(message, variant = '') {
+        const container = document.getElementById('toast-container');
+        if (!container) return;
+
+        const toast = document.createElement('div');
+        toast.className = `toast ${variant}`;
+        toast.innerHTML = `
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+          </svg>
+          <span>${message}</span>
+        `;
+
+        container.appendChild(toast);
+        // Force reflow for CSS transition
+        void toast.offsetWidth;
+        toast.classList.add('show');
+
+        setTimeout(() => {
+          toast.classList.remove('show');
+          setTimeout(() => toast.remove(), 350);
+        }, 3200);
+      }
+
+      /**
+       * Full Dashboard Refresh Coordinator
+       */
+      let currentLevelFilter = 'all';
+
+      function refreshDashboard() {
+        const data = loadUserData();
+        evaluateAchievements(data);
+        renderOverview(data);
+        renderHeatmap(data);
+        renderLevels(data, currentLevelFilter);
+        renderAchievements(data);
+      }
+
+      // 5. Initial Event Bindings & Lifecycle Setup
+      document.addEventListener('DOMContentLoaded', function () {
+        // Initial render
+        refreshDashboard();
+
+        // Level Filter buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+          btn.addEventListener('click', function () {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            currentLevelFilter = this.getAttribute('data-filter') || 'all';
+            const data = loadUserData();
+            renderLevels(data, currentLevelFilter);
+          });
+        });
+
+        // Sample Data Button
+        const sampleBtn = document.getElementById('load-sample-btn');
+        if (sampleBtn) {
+          sampleBtn.addEventListener('click', loadSampleData);
+        }
+
+        // Modal Controls
+        const resetModal = document.getElementById('reset-confirmation-modal');
+        const openResetBtn = document.getElementById('open-reset-modal-btn');
+        const cancelResetBtn = document.getElementById('cancel-reset-btn');
+        const confirmResetBtn = document.getElementById('confirm-reset-btn');
+
+        if (openResetBtn && resetModal) {
+          openResetBtn.addEventListener('click', () => {
+            resetModal.classList.add('open');
+          });
+        }
+
+        function closeModal() {
+          if (resetModal) resetModal.classList.remove('open');
+        }
+
+        if (cancelResetBtn) cancelResetBtn.addEventListener('click', closeModal);
+
+        if (confirmResetBtn) {
+          confirmResetBtn.addEventListener('click', () => {
+            resetAllProgress();
+            closeModal();
+          });
+        }
+
+        // Close on backdrop click
+        if (resetModal) {
+          resetModal.addEventListener('click', (e) => {
+            if (e.target === resetModal) closeModal();
+          });
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && resetModal && resetModal.classList.contains('open')) {
+            closeModal();
+          }
+        });
+
+        // Theme Toggle Setup
+        const themeBtn = document.getElementById('theme-toggle');
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+
+        function applyTheme(theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+          localStorage.setItem('agentmentor_theme', theme);
+          if (sunIcon && moonIcon) {
+            if (theme === 'light') {
+              sunIcon.style.display = 'block';
+              moonIcon.style.display = 'none';
+            } else {
+              sunIcon.style.display = 'none';
+              moonIcon.style.display = 'block';
+            }
+          }
+        }
+
+        const savedTheme = localStorage.getItem('agentmentor_theme') || 'dark';
+        applyTheme(savedTheme);
+
+        if (themeBtn) {
+          themeBtn.addEventListener('click', () => {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const target = current === 'dark' ? 'light' : 'dark';
+            applyTheme(target);
+          });
+        }
+
+        // Mobile Nav Toggle
+        const mobileBtn = document.getElementById('mobile-toggle-btn');
+        const navMenu = document.getElementById('primary-nav-menu');
+        if (mobileBtn && navMenu) {
+          mobileBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('mobile-open');
+          });
+        }
+
+        // Listen for external storage events (cross-tab sync)
+        window.addEventListener('storage', function (e) {
+          if (e.key && (e.key.includes('lesson') || e.key.includes('streak') || e.key.includes('progress'))) {
+            refreshDashboard();
+          }
+        });
+      });
+
+      // Expose helper on window for ProgressManager compatibility
+      window.ProgressDashboard = {
+        refresh: refreshDashboard,
+        loadSampleData: loadSampleData,
+        reset: resetAllProgress
+      };
+
+    })();
+  </script>
+</body>
+</html>
