@@ -1,0 +1,42 @@
+﻿{
+  "id": "7-01",
+  "level": 7,
+  "lesson": 1,
+  "title": "Agent Architecture: ReAct, Planning & Memory Systems",
+  "duration": "60 mins",
+  "why": "A standard LLM is a single-turn autocomplete engine. An AI Agent has agency: it reasons about goals, breaks problems into subtasks, queries tools, observes environmental feedback, updates memory, and adjusts its plan.",
+  "objectives": [
+    "Master the ReAct framework (Reasoning + Acting)",
+    "Implement Short-term (buffer), Working (scratchpad), and Long-term (vector) memory",
+    "Build a self-reflective planning cycle"
+  ],
+  "concept": "ReAct balances reasoning and action: Reasoning traces help the model induce, track, and update action plans, while actions allow it to interface with external knowledge sources and APIs.",
+  "code": [
+    {
+      "filename": "react_agent.py",
+      "language": "python",
+      "content": "class AgentMemory:\n    def __init__(self):\n        self.short_term: list[str] = []\n        self.scratchpad: list[dict] = []\n        \n    def record_step(self, thought: str, action: str, observation: str):\n        self.scratchpad.append({\n            'thought': thought,\n            'action': action,\n            'observation': observation\n        })\n        print(f'ðŸ§  Thought: {thought}')\n        print(f'âš¡ Action: {action}')\n        print(f'ðŸ‘€ Observation: {observation}')\n\nmem = AgentMemory()\nmem.record_step(\n    'Need to find current USD/INR rate',\n    'call_forex_tool(pair=\"USD/INR\")',\n    '83.45 INR'\n)\n"
+    }
+  ],
+  "practice": {
+    "description": "Implement a planning step that decomposes a complex user query ('Compare GDP of India and Japan') into two separate search actions.",
+    "hint": "Return a list of two sub-queries before executing tools."
+  },
+  "project": {
+    "description": "Autonomous Deep Research Agent",
+    "requirements": [
+      "Accept open-ended research question",
+      "Iteratively execute up to 4 research actions, updating working memory at each step",
+      "Synthesize citations into a structured Markdown briefing"
+    ]
+  },
+  "checklist": [
+    "Implemented complete ReAct reasoning-action-observation cycle",
+    "Separated short-term scratchpad from persistent long-term storage",
+    "Added plan decomposition before execution"
+  ],
+  "mistakes": [
+    "Allowing the agent to act without reasoning (pure action leads to hallucinated parameters)"
+  ],
+  "next": "Level 8: Agent Frameworks: LangGraph, CrewAI & LangChain"
+}
