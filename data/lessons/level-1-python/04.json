@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-04",
+  "level": 1,
+  "lesson": 4,
+  "title": "Lists, Dicts & Message History Management",
+  "duration": "55 mins",
+  "why": "LLM APIs expect conversation history as a list of message dictionaries: [{'role': 'user', 'content': '...'}]. You must manipulate, filter, and summarize message lists smoothly.",
+  "objectives": [
+    "Manage OpenAI-compatible message list structures",
+    "Sliding window memory with list slicing",
+    "Fast deduplication using sets for retrieved citations"
+  ],
+  "concept": "To prevent exceeding the context window, memory mechanisms use a sliding window (e.g. keeping only the last N messages) or prune older tool call messages while keeping system and summary messages intact.",
+  "code": [
+    {
+      "filename": "chat_memory.py",
+      "language": "python",
+      "content": "class SlidingWindowMemory:\n    def __init__(self, max_messages: int = 6):\n        self.max_messages = max_messages\n        self.system_message = {'role': 'system', 'content': 'You are a helpful agent.'}\n        self.history: list[dict] = []\n\n    def add_message(self, role: str, content: str):\n        self.history.append({'role': role, 'content': content})\n        # Enforce sliding window (preserve last max_messages)\n        if len(self.history) > self.max_messages:\n            self.history = self.history[-self.max_messages:]\n\n    def get_payload(self) -> list[dict]:\n        return [self.system_message] + self.history\n\nmem = SlidingWindowMemory(max_messages=4)\nmem.add_message('user', 'Hello!')\nmem.add_message('assistant', 'Hi! How can I help?')\nmem.add_message('user', 'What is RAG?')\nmem.add_message('assistant', 'RAG stands for Retrieval-Augmented Generation.')\nmem.add_message('user', 'Give an example.')\n\nprint(f'Total messages in prompt: {len(mem.get_payload())}')\nprint(mem.get_payload())"
+    }
+  ],
+  "practice": {
+    "description": "Create a function that removes consecutive duplicate user messages from a chat history list.",
+    "hint": "Iterate through items checking if the current item matches previous item."
+  },
+  "project": {
+    "description": "Unique Citation Accumulator",
+    "requirements": [
+      "Receive list of retrieved chunk dictionaries with source URLs",
+      "Use set operations to return unique list of cited URLs sorted alphabetically"
+    ]
+  },
+  "checklist": [
+    "Constructed compliant OpenAI message payload format",
+    "Built working sliding window memory buffer",
+    "Used list comprehensions for filtering chat roles"
+  ],
+  "mistakes": [
+    "Accidentally slicing away the system message when trimming history"
+  ],
+  "next": "Lesson 05: Conditionals, Loops & The Agent Execution Cycle"
+}
