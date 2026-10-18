@@ -1,0 +1,52 @@
+﻿{
+  "title": "Level 4 Mastery: LLM Fundamentals & Prompting",
+  "topic": "llm",
+  "difficulty": "Intermediate",
+  "description": "Test your understanding of tokenization, context windows, few-shot prompting, and temperature controls.",
+  "questions": [
+    {
+      "question": "Roughly how many characters correspond to 1 token in typical English LLM tokenizers?",
+      "options": [
+        "~1 character",
+        "~4 characters",
+        "~15 characters",
+        "~50 characters"
+      ],
+      "correct": 1,
+      "explanation": "As a general rule of thumb for English text, 1 token is approximately 4 characters or ~0.75 words."
+    },
+    {
+      "question": "What happens when you set the LLM temperature parameter to 0.0?",
+      "options": [
+        "The model produces the most deterministic, greedy outputs",
+        "The model hallucinates randomly",
+        "The model disables safety guardrails",
+        "The model doubles its inference latency"
+      ],
+      "correct": 0,
+      "explanation": "Temperature = 0.0 makes the model select the highest probability token at each step (greedy decoding), maximizing consistency for agent tool calling."
+    },
+    {
+      "question": "What is the core idea behind 'Chain-of-Thought' (CoT) prompting?",
+      "options": [
+        "Connecting multiple LLMs in a blockchain ledger",
+        "Instructing the model to show intermediate reasoning steps before arriving at a final answer",
+        "Encoding the entire internet into a single prompt",
+        "Repeating the user query 10 times to boost model attention"
+      ],
+      "correct": 1,
+      "explanation": "Encouraging the model to 'think step by step' allows it to allocate more reasoning tokens and significantly improves accuracy on complex multi-step tasks."
+    },
+    {
+      "question": "Why is Few-Shot prompting effective for agent tool calling?",
+      "options": [
+        "It provides concrete input-output demonstration pairs so the model learns the expected schema format",
+        "It fine-tunes the base model weights permanently on the server",
+        "It reduces token cost to zero",
+        "It bypasses API rate limits"
+      ],
+      "correct": 0,
+      "explanation": "In-context examples (few-shot) guide the model to follow specific output syntax and formatting constraints without retraining."
+    }
+  ]
+}
