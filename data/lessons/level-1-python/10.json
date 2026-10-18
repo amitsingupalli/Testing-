@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-10",
+  "level": 1,
+  "lesson": 10,
+  "title": "Type Hints & Pydantic for Structured Outputs",
+  "duration": "60 mins",
+  "why": "Raw text responses from LLMs are notoriously unreliable for downstream software. Pydantic is the industry standard across OpenAI, LangChain, and Instructor to enforce strict JSON schemas and validate LLM outputs.",
+  "objectives": [
+    "Define schema contracts using Pydantic BaseModel",
+    "Use Field with descriptions to guide LLM field generation",
+    "Validate and coerce LLM output JSON into typed Python objects"
+  ],
+  "concept": "Pydantic models generate the exact JSON schema passed to OpenAI's esponse_format={'type': 'json_object'} or client.beta.chat.completions.parse().",
+  "code": [
+    {
+      "filename": "agent_schemas.py",
+      "language": "python",
+      "content": "from pydantic import BaseModel, Field, EmailStr\nfrom typing import List, Optional\n\nclass ActionStep(BaseModel):\n    step_number: int = Field(..., description='Sequential step number')\n    action_name: str = Field(..., description='Name of tool or decision')\n    confidence: float = Field(..., ge=0.0, le=1.0, description='Confidence score between 0 and 1')\n\nclass AgentPlan(BaseModel):\n    goal: str\n    steps: List[ActionStep]\n    estimated_minutes: Optional[int] = 10\n\n# Simulating LLM JSON output validation\nraw_llm_json = '''{\n  \"goal\": \"Deploy Web Scraper\",\n  \"steps\": [\n    {\"step_number\": 1, \"action_name\": \"Fetch HTML\", \"confidence\": 0.95},\n    {\"step_number\": 2, \"action_name\": \"Parse DOM\", \"confidence\": 0.88}\n  ]\n}'''\n\nplan = AgentPlan.model_validate_json(raw_llm_json)\nprint(f'Plan validated successfully for goal: {plan.goal}')\nprint(f'First step confidence: {plan.steps[0].confidence}')\n"
+    }
+  ],
+  "practice": {
+    "description": "Create a Pydantic model SentimentReport containing score: float, label: str (positive/neutral/negative), and key_phrases: list[str].",
+    "hint": "Use Literal['positive', 'neutral', 'negative'] for the label field."
+  },
+  "project": {
+    "description": "Structured Resume Extraction Validator",
+    "requirements": [
+      "Define schemas for Candidate Profile, Skills, and Work Experience",
+      "Validate mock JSON payloads and catch schema validation errors gracefully"
+    ]
+  },
+  "checklist": [
+    "Mastered Pydantic BaseModel and Field annotations",
+    "Validated JSON strings using model_validate_json",
+    "Generated OpenAPI-compatible JSON schemas via model_json_schema()"
+  ],
+  "mistakes": [
+    "Using raw dictionaries instead of Pydantic models when calling structured output APIs"
+  ],
+  "next": "Lesson 11: Asyncio & Concurrent Tool Execution"
+}
