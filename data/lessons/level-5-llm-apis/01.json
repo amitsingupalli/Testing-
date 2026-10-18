@@ -1,0 +1,41 @@
+﻿{
+  "id": "5-01",
+  "level": 5,
+  "lesson": 1,
+  "title": "OpenAI & Gemini Native Function / Tool Calling",
+  "duration": "60 mins",
+  "why": "Native tool calling enables models to emit structured arguments matching your function definitions. The LLM pauses text generation, yields a 	ool_calls payload, waits for your code to execute the tool, and then synthesizes the answer.",
+  "objectives": [
+    "Format tool definitions using OpenAI function schema",
+    "Intercept 	ool_calls in API responses",
+    "Return tool observation messages back into the message array"
+  ],
+  "concept": "The model never runs code directly. It simply outputs a structured function call request: {\"name\": \"get_stock\", \"arguments\": \"{\\\"symbol\\\": \\\"GOOG\\\"}\"} which your Python loop executes.",
+  "code": [
+    {
+      "filename": "function_calling.py",
+      "language": "python",
+      "content": "tools = [\n    {\n        'type': 'function',\n        'function': {\n            'name': 'get_current_weather',\n            'description': 'Get the real-time weather in a given city',\n            'parameters': {\n                'type': 'object',\n                'properties': {\n                    'location': {'type': 'string', 'description': 'The city and state, e.g. San Francisco, CA'},\n                    'unit': {'type': 'string', 'enum': ['celsius', 'fahrenheit']}\n                },\n                'required': ['location']\n            }\n        }\n    }\n]\n\nprint(f'Ready to register {len(tools)} native tool definitions with OpenAI / Gemini API.')\n"
+    }
+  ],
+  "practice": {
+    "description": "Construct a function calling schema for a tool named search_knowledge_base with arguments query: str and limit: int.",
+    "hint": "Set type as object, properties with types and descriptions, and specify required fields."
+  },
+  "project": {
+    "description": "Full End-to-End Function Calling Agent Loop",
+    "requirements": [
+      "Send user message with tool schema",
+      "Handle tool_calls response, execute mock function, and pass result back to LLM for final reply"
+    ]
+  },
+  "checklist": [
+    "Understood client-server handshake of function calling",
+    "Defined JSON Schema properties with types and descriptions",
+    "Appended ole: tool message response with matching tool_call_id"
+  ],
+  "mistakes": [
+    "Mismatching the 	ool_call_id in the returned observation message"
+  ],
+  "next": "Level 6: RAG, Embeddings & Vector Databases"
+}
