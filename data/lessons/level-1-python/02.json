@@ -1,0 +1,41 @@
+﻿{
+  "id": "1-02",
+  "level": 1,
+  "lesson": 2,
+  "title": "Variables, Data Types & Agent State Schemas",
+  "duration": "40 mins",
+  "why": "AI agents pass dynamic conversation messages, tool schemas, token counts, and state dictionaries through their workflow graph. Understanding exact data types avoids runtime schema mismatch failures.",
+  "objectives": [
+    "Understand primitive types: int, float, str, bool",
+    "Type hints and runtime type checking",
+    "Representing agent conversation states"
+  ],
+  "concept": "An agent state typically consists of strings (system prompts, user inputs), lists (chat history), booleans (should_continue flag), and integers (step count to prevent infinite loops).",
+  "code": [
+    {
+      "filename": "agent_state.py",
+      "language": "python",
+      "content": "from typing import TypedDict, List\n\nclass AgentState(TypedDict):\n    session_id: str\n    user_prompt: str\n    chat_history: List[dict]\n    max_steps: int\n    current_step: int\n    is_finished: bool\n\n# Initialize state\ninitial_state: AgentState = {\n    'session_id': 'sess_992',\n    'user_prompt': 'Analyze today market trends',\n    'chat_history': [],\n    'max_steps': 5,\n    'current_step': 0,\n    'is_finished': False\n}\n\nprint(f'State initialized for step: {initial_state[\"current_step\"]}/{initial_state[\"max_steps\"]}')"
+    }
+  ],
+  "practice": {
+    "description": "Define a custom TypedDict for an email-drafting agent with sender, recipient, subject, draft_body, and sent status.",
+    "hint": "Import TypedDict from typing and define each key with appropriate types."
+  },
+  "project": {
+    "description": "State Transition Engine",
+    "requirements": [
+      "Define agent state structure",
+      "Implement a function that updates step count and marks is_finished when current_step >= max_steps"
+    ]
+  },
+  "checklist": [
+    "Mastered Python basic types and typing hints",
+    "Understood TypedDict for structured dictionary shapes",
+    "Created an immutable state transition check"
+  ],
+  "mistakes": [
+    "Mutating global state dictionaries directly across multiple concurrent agent tasks"
+  ],
+  "next": "Lesson 03: Strings, Token Calculations & Prompt Formatting"
+}
