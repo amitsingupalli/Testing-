@@ -1448,7 +1448,7 @@
         <div class="nav-actions">
           <!-- Study Streak Pill -->
           <div class="streak-badge" id="nav-streak-pill" title="Current Daily Study Streak">
-            <span class="flame-icon">🔥</span>
+            <span class="flame-icon">&#128293;</span>
             <span id="nav-streak-count">0</span> Days
           </div>
 
@@ -2072,7 +2072,7 @@
         {
           id: "first_step",
           name: "First Step",
-          icon: "🚀",
+          icon: "&#128640;",
           description: "Complete your first lesson in AI Agent Development.",
           requirementText: "1 Lesson completed",
           target: 1,
@@ -2081,7 +2081,7 @@
         {
           id: "getting_started",
           name: "Getting Started",
-          icon: "🌱",
+          icon: "&#127793;",
           description: "Complete 5 lessons across any of the 15 levels.",
           requirementText: "5 Lessons completed",
           target: 5,
@@ -2090,7 +2090,7 @@
         {
           id: "dedicated_learner",
           name: "Dedicated Learner",
-          icon: "📚",
+          icon: "&#128218;",
           description: "Complete 10 lessons to cement core conceptual knowledge.",
           requirementText: "10 Lessons completed",
           target: 10,
@@ -2099,7 +2099,7 @@
         {
           id: "knowledge_seeker",
           name: "Knowledge Seeker",
-          icon: "🧠",
+          icon: "&#129504;",
           description: "Complete 20 lessons and master structured tools & memory.",
           requirementText: "20 Lessons completed",
           target: 20,
@@ -2108,7 +2108,7 @@
         {
           id: "streak_3",
           name: "3-Day Streak",
-          icon: "🔥",
+          icon: "&#128293;",
           description: "Maintain a daily study streak for 3 consecutive days.",
           requirementText: "3-Day Study Streak",
           target: 3,
@@ -2117,7 +2117,7 @@
         {
           id: "week_warrior",
           name: "Week Warrior",
-          icon: "⚡",
+          icon: "s",
           description: "Maintain a relentless 7-day daily study streak.",
           requirementText: "7-Day Study Streak",
           target: 7,
@@ -2126,7 +2126,7 @@
         {
           id: "month_master",
           name: "Month Master",
-          icon: "👑",
+          icon: "&#128081;",
           description: "Study consistently for 30 consecutive days.",
           requirementText: "30-Day Study Streak",
           target: 30,
@@ -2290,9 +2290,9 @@
           } else if (data.streak < 3) {
             statStreakNoteEl.textContent = "Great start! Keep learning daily.";
           } else if (data.streak < 7) {
-            statStreakNoteEl.textContent = "🔥 On fire! Keep building momentum!";
+            statStreakNoteEl.textContent = "&#128293; On fire! Keep building momentum!";
           } else {
-            statStreakNoteEl.textContent = "⚡ Masterclass dedication! Unstoppable!";
+            statStreakNoteEl.textContent = "s Masterclass dedication! Unstoppable!";
           }
         }
 
@@ -2478,7 +2478,7 @@
                   <div class="lesson-item-row">
                     <div class="lesson-item-title">
                       <button type="button" class="lesson-checkbox-btn ${isChecked ? 'checked' : ''}" data-lesson-name="${encodeURIComponent(lesson)}" title="${isChecked ? 'Mark incomplete' : 'Mark complete'}">
-                        ${isChecked ? '✓' : ''}
+                        ${isChecked ? '&#10003;' : ''}
                       </button>
                       <span>${lesson}</span>
                     </div>
@@ -2553,7 +2553,7 @@
 
             <div class="badge-progress-box">
               <span class="badge-status-tag">
-                ${isUnlocked ? '★ Unlocked Milestone' : `${Math.min(currentVal, badge.target)} / ${badge.target} (${progressPct}%)`}
+                ${isUnlocked ? '&#9733; Unlocked Milestone' : `${Math.min(currentVal, badge.target)} / ${badge.target} (${progressPct}%)`}
               </span>
               <div class="progress-track" style="height: 6px;">
                 <div class="progress-fill" style="width: ${progressPct}%; background: ${isUnlocked ? 'var(--gradient-gold)' : 'rgba(255,255,255,0.2)'};"></div>
@@ -2596,7 +2596,7 @@
         // Check achievements
         const newlyUnlocked = evaluateAchievements(data);
         if (newlyUnlocked) {
-          showToast("🎉 New Achievement Unlocked!", "toast-gold");
+          showToast("&#127881; New Achievement Unlocked!", "toast-gold");
         }
 
         saveUserData(data);
@@ -2674,7 +2674,7 @@
 
         saveUserData(cleanData);
         refreshDashboard();
-        showToast("All progress has been reset to zero.", "toast-danger");
+        showToast("All progress has been reset to zer&#9989;", "toast-danger");
       }
 
       /**
