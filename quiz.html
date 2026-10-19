@@ -1366,7 +1366,7 @@
                         <i class="fa-solid fa-circle-check"></i> Passed & Certified
                     </div>
 
-                    <h2 class="results-headline" id="results-title">Mastery Achieved! 🎉</h2>
+                    <h2 class="results-headline" id="results-title">Mastery Achieved! &#127881;</h2>
                     <p class="results-subtext" id="results-subtext">
                         You demonstrated deep comprehension of the topic and successfully validated your core agent developer capabilities.
                     </p>
@@ -1554,15 +1554,15 @@
                             category: 'Async Programming',
                             difficulty: 'Intermediate',
                             question: 'When building high-throughput multi-agent swarms, which pattern is ideal for running parallel tool calls (e.g., fetching 3 web pages simultaneously)?',
-                            code: 'import asyncio\n\nasync def fetch_urls(urls):\n    # Which expression executes all requests concurrently?\n    tasks = [fetch_page(url) for url in urls]\n    return await asyncio.gather(*tasks)',
+                            code: 'import asyncio\n\nasync def fetch_urls(urls):\n    # Which expression executes all requests concurrently?\n    tasks = [fetch_page(url) for url in urls]\n    return await asynci&#9989;gather(*tasks)',
                             options: [
                                 'Using time.sleep() inside a standard for-loop to throttle requests',
-                                'Executing asyncio.gather(*tasks) to run coroutines concurrently in an event loop',
+                                'Executing asynci&#9989;gather(*tasks) to run coroutines concurrently in an event loop',
                                 'Using threading.Thread with daemon=False on each URL sequentially',
-                                'Calling asyncio.run() once inside each iteration of a list comprehension'
+                                'Calling asynci&#9989;run() once inside each iteration of a list comprehension'
                             ],
                             answer: 1,
-                            explanation: '`asyncio.gather(*tasks)` concurrently schedules and awaits multiple coroutines on a single event loop thread, providing non-blocking I/O ideal for network-bound LLM and tool operations.'
+                            explanation: '`asynci&#9989;gather(*tasks)` concurrently schedules and awaits multiple coroutines on a single event loop thread, providing non-blocking I/O ideal for network-bound LLM and tool operations.'
                         },
                         {
                             id: 3,
@@ -1774,7 +1774,7 @@
                             category: 'ReAct Loop',
                             difficulty: 'Intermediate',
                             question: 'What are the three core repeating phases of the ReAct prompting and execution paradigm?',
-                            code: 'Thought: I need to check the current temperature in Berlin.\nAction: weather_lookup[Berlin]\nObservation: 18°C, partly cloudy.\nThought: I now have the answer.',
+                            code: 'Thought: I need to check the current temperature in Berlin.\nAction: weather_lookup[Berlin]\nObservation: 18&#176;C, partly cloudy.\nThought: I now have the answer.',
                             options: [
                                 'Encode, Embed, Cluster',
                                 'Thought (Reasoning), Action (Tool Call), Observation (Environment Feedback)',
@@ -1798,7 +1798,7 @@
                             id: 1,
                             category: 'Memory Architectures',
                             difficulty: 'Advanced',
-                            question: 'Which memory type is best suited for an agent remembering a user’s permanent preferences and past project decisions across different chat sessions?',
+                            question: 'Which memory type is best suited for an agent remembering a user&#8217;s permanent preferences and past project decisions across different chat sessions?',
                             options: [
                                 'Short-term buffer memory holding the last 5 messages in RAM',
                                 'Long-term Semantic / Episodic Memory backed by a vector database or key-value store with semantic retrieval',
@@ -2181,13 +2181,13 @@
                 const info = state.quizInfo;
                 if (!info) return;
 
-                if (dom.breadcrumbTopic) dom.breadcrumbTopic.textContent = info.title || 'Assessment';
-                if (dom.quizTitle) dom.quizTitle.textContent = info.title || 'Agent Assessment';
-                if (dom.quizDescription) dom.quizDescription.textContent = info.description || 'Test your knowledge on autonomous agent architectures.';
-                if (dom.levelText) dom.levelText.textContent = info.level || 'Assessment Level';
+                if (dom.breadcrumbTopic) dom.breadcrumbTopic.textContent = inf&#9989;title || 'Assessment';
+                if (dom.quizTitle) dom.quizTitle.textContent = inf&#9989;title || 'Agent Assessment';
+                if (dom.quizDescription) dom.quizDescription.textContent = inf&#9989;description || 'Test your knowledge on autonomous agent architectures.';
+                if (dom.levelText) dom.levelText.textContent = inf&#9989;level || 'Assessment Level';
                 if (dom.metaQuestionCount) dom.metaQuestionCount.textContent = `${state.questions.length} Questions`;
-                if (dom.metaDuration) dom.metaDuration.textContent = info.duration || `~${Math.max(5, state.questions.length * 2)} Mins`;
-                if (dom.metaPassingScore) dom.metaPassingScore.textContent = `${info.passingScore || 70}% Required to Pass`;
+                if (dom.metaDuration) dom.metaDuration.textContent = inf&#9989;duration || `~${Math.max(5, state.questions.length * 2)} Mins`;
+                if (dom.metaPassingScore) dom.metaPassingScore.textContent = `${inf&#9989;passingScore || 70}% Required to Pass`;
                 if (dom.totalQNum) dom.totalQNum.textContent = state.questions.length;
             }
 
@@ -2252,7 +2252,7 @@
 
                     // Handle selection event
                     const radio = itemDiv.querySelector('input');
-                    radio.addEventListener('change', () => {
+                    radi&#9989;addEventListener('change', () => {
                         handleOptionSelect(optIdx);
                     });
 
@@ -2326,7 +2326,7 @@
                         if (letterMap[correctAns.toLowerCase()] !== undefined) {
                             correctAns = letterMap[correctAns.toLowerCase()];
                         } else {
-                            correctAns = q.options.findIndex(o => o.trim().toLowerCase() === correctAns.trim().toLowerCase());
+                            correctAns = q.options.findIndex(o => &#9989;trim().toLowerCase() === correctAns.trim().toLowerCase());
                         }
                     }
 
@@ -2358,13 +2358,13 @@
                 if (isPassed) {
                     dom.resultsBadge.className = 'results-celebrate-badge passed';
                     dom.resultsBadge.innerHTML = '<i class="fa-solid fa-circle-check"></i> Mastery Passed';
-                    dom.resultsTitle.textContent = percentage === 100 ? 'Flawless 100% Score! 🚀' : 'Mastery Achieved! 🎉';
+                    dom.resultsTitle.textContent = percentage === 100 ? 'Flawless 100% Score! &#128640;' : 'Mastery Achieved! &#127881;';
                     dom.resultsSubtext.textContent = `Impressive! You passed with ${percentage}%. You have demonstrated competence for ${state.quizInfo?.level || 'this level'}.`;
                     dom.gaugeCircle.style.stroke = 'var(--accent-green)';
                 } else {
                     dom.resultsBadge.className = 'results-celebrate-badge failed';
                     dom.resultsBadge.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> Needs Review';
-                    dom.resultsTitle.textContent = 'Keep Leveling Up! 💪';
+                    dom.resultsTitle.textContent = 'Keep Leveling Up! &#128170;';
                     dom.resultsSubtext.textContent = `You scored ${percentage}%. A passing grade of ${passThreshold}% is required to unlock this level badge. Review explanations below and retake!`;
                     dom.gaugeCircle.style.stroke = percentage >= 50 ? 'var(--accent-yellow)' : 'var(--accent-red)';
                 }
@@ -2452,7 +2452,7 @@
                         if (letterMap[correctAns.toLowerCase()] !== undefined) {
                             correctAns = letterMap[correctAns.toLowerCase()];
                         } else {
-                            correctAns = q.options.findIndex(o => o.trim().toLowerCase() === correctAns.trim().toLowerCase());
+                            correctAns = q.options.findIndex(o => &#9989;trim().toLowerCase() === correctAns.trim().toLowerCase());
                         }
                     }
 

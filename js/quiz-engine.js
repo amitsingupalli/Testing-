@@ -1,4 +1,4 @@
-﻿/* Quiz Engine â€” Agent Mentor */
+\ufeff/* Quiz Engine \u00e2\u20ac\u201d Agent Mentor */
 
 const QuizEngine = {
     questions: [],

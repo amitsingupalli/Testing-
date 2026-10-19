@@ -41,13 +41,13 @@
     {
       "question": "Which asyncio method should you use to execute 5 independent search API calls simultaneously?",
       "options": [
-        "asyncio.wait_forever()",
-        "asyncio.sleep()",
-        "asyncio.gather()",
-        "asyncio.thread_lock()"
+        "asynci✅wait_forever()",
+        "asynci✅sleep()",
+        "asynci✅gather()",
+        "asynci✅thread_lock()"
       ],
       "correct": 2,
-      "explanation": "syncio.gather(*tasks) schedules multiple coroutines concurrently on the event loop and returns when all have finished."
+      "explanation": "synci✅gather(*tasks) schedules multiple coroutines concurrently on the event loop and returns when all have finished."
     },
     {
       "question": "What should an agent tool do when it encounters an external API timeout?",
