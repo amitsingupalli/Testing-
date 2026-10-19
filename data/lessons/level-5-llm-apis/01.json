@@ -32,7 +32,8 @@
   "checklist": [
     "Understood client-server handshake of function calling",
     "Defined JSON Schema properties with types and descriptions",
-    "Appended ole: tool message response with matching tool_call_id"
+    "Appended 
+ole: tool message response with matching tool_call_id"
   ],
   "mistakes": [
     "Mismatching the 	ool_call_id in the returned observation message"

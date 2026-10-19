@@ -15,7 +15,7 @@
     {
       "filename": "react_agent.py",
       "language": "python",
-      "content": "class AgentMemory:\n    def __init__(self):\n        self.short_term: list[str] = []\n        self.scratchpad: list[dict] = []\n        \n    def record_step(self, thought: str, action: str, observation: str):\n        self.scratchpad.append({\n            'thought': thought,\n            'action': action,\n            'observation': observation\n        })\n        print(f'ðŸ§  Thought: {thought}')\n        print(f'âš¡ Action: {action}')\n        print(f'ðŸ‘€ Observation: {observation}')\n\nmem = AgentMemory()\nmem.record_step(\n    'Need to find current USD/INR rate',\n    'call_forex_tool(pair=\"USD/INR\")',\n    '83.45 INR'\n)\n"
+      "content": "class AgentMemory:\n    def __init__(self):\n        self.short_term: list[str] = []\n        self.scratchpad: list[dict] = []\n        \n    def record_step(self, thought: str, action: str, observation: str):\n        self.scratchpad.append({\n            'thought': thought,\n            'action': action,\n            'observation': observation\n        })\n        print(f'ðŸ§  Thought: {thought}')\n        print(f's Action: {action}')\n        print(f'ðŸ‘€ Observation: {observation}')\n\nmem = AgentMemory()\nmem.record_step(\n    'Need to find current USD/INR rate',\n    'call_forex_tool(pair=\"USD/INR\")',\n    '83.45 INR'\n)\n"
     }
   ],
   "practice": {
