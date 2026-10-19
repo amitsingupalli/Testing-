@@ -1,4 +1,4 @@
-﻿/* Utility Functions â€” Agent Mentor */
+\ufeff/* Utility Functions \u00e2\u20ac\u201d Agent Mentor */
 
 const Utils = {
     // Format date nicely

@@ -1,4 +1,4 @@
-﻿/* Main App â€” Agent Mentor */
+\ufeff/* Main App \u00e2\u20ac\u201d Agent Mentor */
 
 const App = {
     init() {

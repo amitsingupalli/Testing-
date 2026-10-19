@@ -1,4 +1,4 @@
-﻿/* Progress Manager â€” Agent Mentor */
+\ufeff/* Progress Manager \u00e2\u20ac\u201d Agent Mentor */
 
 const ProgressManager = {
     STORAGE_KEY: 'agent-mentor-progress',

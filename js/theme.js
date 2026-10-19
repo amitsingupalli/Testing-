@@ -1,4 +1,4 @@
-﻿/* Theme Manager â€” Agent Mentor */
+\ufeff/* Theme Manager \u00e2\u20ac\u201d Agent Mentor */
 
 const ThemeManager = {
     STORAGE_KEY: 'agent-mentor-theme',

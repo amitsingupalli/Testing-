@@ -1,4 +1,4 @@
-﻿/* Global Command Palette & Keyboard Shortcuts â€” Agent Mentor */
+\ufeff/* Global Command Palette & Keyboard Shortcuts \u00e2\u20ac\u201d Agent Mentor */
 const CommandPalette = {
     init() {
         window.addEventListener('keydown', (e) => {
@@ -9,7 +9,7 @@ const CommandPalette = {
         });
     },
     toggleModal() {
-        alert('ðŸ” Quick Jump Command Palette\\n\\nPress 1: Roadmap\\nPress 2: Study Plan\\nPress 3: Topics\\nPress 4: Progress Dashboard');
+        alert('\u00f0\u0178\u201d\u008d Quick Jump Command Palette\\n\\nPress 1: Roadmap\\nPress 2: Study Plan\\nPress 3: Topics\\nPress 4: Progress Dashboard');
     }
 };
 document.addEventListener('DOMContentLoaded', () => CommandPalette.init());
