@@ -1,4 +1,4 @@
-﻿/* Lesson Renderer â€” Agent Mentor */
+\ufeff/* Lesson Renderer \u00e2\u20ac\u201d Agent Mentor */
 
 const LessonRenderer = {
     currentLesson: null,
