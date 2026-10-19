@@ -10,7 +10,8 @@
     "Use Field with descriptions to guide LLM field generation",
     "Validate and coerce LLM output JSON into typed Python objects"
   ],
-  "concept": "Pydantic models generate the exact JSON schema passed to OpenAI's esponse_format={'type': 'json_object'} or client.beta.chat.completions.parse().",
+  "concept": "Pydantic models generate the exact JSON schema passed to OpenAI's 
+esponse_format={'type': 'json_object'} or client.beta.chat.completions.parse().",
   "code": [
     {
       "filename": "agent_schemas.py",

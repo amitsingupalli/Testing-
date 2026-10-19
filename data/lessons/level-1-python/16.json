@@ -15,7 +15,7 @@
     {
       "filename": "test_tools.py",
       "language": "python",
-      "content": "from unittest.mock import patch, MagicMock\nimport pytest\n\ndef fetch_user_data(user_id: int) -> dict:\n    # Imagine this hits a real database or API\n    import requests\n    resp = requests.get(f'https://api.example.com/users/{user_id}')\n    return resp.json()\n\n# Test using pytest and mock\n@patch('requests.get')\ndef test_fetch_user_data(mock_get):\n    mock_response = MagicMock()\n    mock_response.json.return_value = {'id': 42, 'name': 'Aditi Rao', 'role': 'Engineer'}\n    mock_get.return_value = mock_response\n    \n    data = fetch_user_data(42)\n    assert data['id'] == 42\n    assert data['name'] == 'Aditi Rao'\n    mock_get.assert_called_once_with('https://api.example.com/users/42')\n    print('\\nâœ… Pytest mock verified successfully!')\n"
+      "content": "from unittest.mock import patch, MagicMock\nimport pytest\n\ndef fetch_user_data(user_id: int) -> dict:\n    # Imagine this hits a real database or API\n    import requests\n    resp = requests.get(f'https://api.example.com/users/{user_id}')\n    return resp.json()\n\n# Test using pytest and mock\n@patch('requests.get')\ndef test_fetch_user_data(mock_get):\n    mock_response = MagicMock()\n    mock_response.json.return_value = {'id': 42, 'name': 'Aditi Rao', 'role': 'Engineer'}\n    mock_get.return_value = mock_response\n    \n    data = fetch_user_data(42)\n    assert data['id'] == 42\n    assert data['name'] == 'Aditi Rao'\n    mock_get.assert_called_once_with('https://api.example.com/users/42')\n    print('\\n✅ Pytest mock verified successfully!')\n"
     }
   ],
   "practice": {

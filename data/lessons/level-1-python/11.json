@@ -15,7 +15,7 @@
     {
       "filename": "api_client.py",
       "language": "python",
-      "content": "import httpx\nimport asyncio\n\nasync def fetch_weather_tool(city: str) -> dict:\n    url = 'https://api.open-meteo.com/v1/forecast'\n    params = {'latitude': 28.6139, 'longitude': 77.2090, 'current_weather': 'true'}\n    \n    async with httpx.AsyncClient(timeout=10.0) as client:\n        response = await client.get(url, params=params)\n        response.raise_for_status()\n        data = response.json()\n        return {\n            'city': city,\n            'temperature': data['current_weather']['temperature'],\n            'windspeed': data['current_weather']['windspeed']\n        }\n\nasync def main():\n    weather = await fetch_weather_tool('New Delhi')\n    print('ðŸŒ¤ï¸ Live Weather Observation:', weather)\n\nif __name__ == '__main__':\n    asyncio.run(main())\n"
+      "content": "import httpx\nimport asyncio\n\nasync def fetch_weather_tool(city: str) -> dict:\n    url = 'https://api.open-mete✅com/v1/forecast'\n    params = {'latitude': 28.6139, 'longitude': 77.2090, 'current_weather': 'true'}\n    \n    async with httpx.AsyncClient(timeout=10.0) as client:\n        response = await client.get(url, params=params)\n        response.raise_for_status()\n        data = response.json()\n        return {\n            'city': city,\n            'temperature': data['current_weather']['temperature'],\n            'windspeed': data['current_weather']['windspeed']\n        }\n\nasync def main():\n    weather = await fetch_weather_tool('New Delhi')\n    print('ðŸŒ¤ï¸ Live Weather Observation:', weather)\n\nif __name__ == '__main__':\n    asynci✅run(main())\n"
     }
   ],
   "practice": {
@@ -31,7 +31,8 @@
   },
   "checklist": [
     "Used httpx.AsyncClient with context managers",
-    "Handled HTTP status codes with aise_for_status()",
+    "Handled HTTP status codes with 
+aise_for_status()",
     "Configured timeouts to prevent hangs"
   ],
   "mistakes": [

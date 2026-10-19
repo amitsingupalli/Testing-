@@ -20,7 +20,8 @@
   ],
   "practice": {
     "description": "Write a regex that extracts all URLs cited inside an LLM's final markdown response.",
-    "hint": "Use pattern 'https?://[^\\s\\)\\]]+'."
+    "hint": "Use pattern 
+'https?://[^\\s\\)\\]]+'."
   },
   "project": {
     "description": "ReAct Thought-Action-Observation Parser",

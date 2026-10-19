@@ -15,11 +15,12 @@
     {
       "filename": "resilient_tool.py",
       "language": "python",
-      "content": "import time\nimport logging\n\ndef safe_tool_executor(tool_func, **kwargs) -> str:\n    \"\"\"Executes a tool safely and returns a string observation for the agent.\"\"\"\n    try:\n        result = tool_func(**kwargs)\n        return f'SUCCESS: {result}'\n    except KeyError as e:\n        return f'OBSERVATION ERROR: Missing expected parameter: {e}. Please correct your parameters.'\n    except TimeoutError:\n        return 'OBSERVATION ERROR: Tool timed out while contacting external API. Try an alternative tool or query.'\n    except Exception as e:\n        logging.error(f'Unexpected error: {e}')\n        return f'OBSERVATION ERROR: Tool execution failed due to: {type(e).__name__}: {str(e)}'\n\ndef divide_tool(a: float, b: float) -> float:\n    if b == 0:\n        raise ZeroDivisionError('Cannot divide by zero.')\n    return a / b\n\nprint(safe_tool_executor(divide_tool, a=10, b=0))\nprint(safe_tool_executor(divide_tool, a=10, b=2))\n"
+      "content": "import time\nimport logging\n\ndef safe_tool_executor(tool_func, **kwargs) -> str:\n    \"\"\"Executes a tool safely and returns a string observation for the agent.\"\"\"\n    try:\n        result = tool_func(**kwargs)\n        return f'SUCCESS: {result}'\n    except KeyError as e:\n        return f'OBSERVATION ERROR: Missing expected parameter: {e}. Please correct your parameters.'\n    except TimeoutError:\n        return 'OBSERVATION ERROR: Tool timed out while contacting external API. Try an alternative tool or query.'\n    except Exception as e:\n        logging.error(f'Unexpected error: {e}')\n        return f'OBSERVATION ERROR: Tool execution failed due to: {type(e).__name__}: {str(e)}'\n\ndef divide_tool(a: float, b: float) -> float:\n    if b == 0:\n        raise ZeroDivisionError('Cannot divide by zer✅')\n    return a / b\n\nprint(safe_tool_executor(divide_tool, a=10, b=0))\nprint(safe_tool_executor(divide_tool, a=10, b=2))\n"
     }
   ],
   "practice": {
-    "description": "Wrap an HTTP request function in a try-except block that handles equests.exceptions.ConnectionError and returns an actionable LLM prompt string.",
+    "description": "Wrap an HTTP request function in a try-except block that handles 
+equests.exceptions.ConnectionError and returns an actionable LLM prompt string.",
     "hint": "Catch ConnectionError and return a message asking the agent to verify network connectivity."
   },
   "project": {

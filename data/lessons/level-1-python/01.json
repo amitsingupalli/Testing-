@@ -21,7 +21,7 @@
     {
       "filename": "agent_boot.py",
       "language": "python",
-      "content": "import sys\nimport os\n\ndef check_system_readiness():\n    print(f'ðŸ¤– Python Version: {sys.version}')\n    in_venv = sys.prefix != sys.base_prefix\n    print(f'ðŸ”’ Virtual Environment Active: {in_venv}')\n    assert in_venv, 'Warning: You are not running inside a virtual environment!'\n    print('âœ… Agent core environment is ready for deployment.')\n\nif __name__ == '__main__':\n    check_system_readiness()"
+      "content": "import sys\nimport os\n\ndef check_system_readiness():\n    print(f'🤖 Python Version: {sys.version}')\n    in_venv = sys.prefix != sys.base_prefix\n    print(f'ðŸ”’ Virtual Environment Active: {in_venv}')\n    assert in_venv, 'Warning: You are not running inside a virtual environment!'\n    print('✅ Agent core environment is ready for deployment.')\n\nif __name__ == '__main__':\n    check_system_readiness()"
     }
   ],
   "practice": {

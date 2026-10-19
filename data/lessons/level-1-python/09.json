@@ -21,7 +21,8 @@
   "practice": {
     "description": "Create a WikipediaSearchTool subclass inheriting from BaseTool that mocks search functionality.",
     "hint": "Set 
-ame and description attributes and override the un method."
+ame and description attributes and override the 
+un method."
   },
   "project": {
     "description": "Modular Multi-Tool Agent Base Class",
